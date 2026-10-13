@@ -1,30 +1,47 @@
-# glambotphilly.com redesign
+# glambotphilly.com
 
-A 13-page static site for GlamBot Philly (The Philly Glam Experience). Each event type has its own SEO landing page, there are separate pricing and FAQ pages, and a "GlamBot vs 360 booth" page targets 360 searches.
+The website for GlamBot Philly (The Philly Glam Experience). It is a 13-page static site with an SEO landing page for each event type, pricing and FAQ pages, and a "GlamBot vs 360 booth" page. It is hosted on Cloudflare Pages.
 
 ```
-python3 build.py          # writes dist/ (upload this folder to any static host)
+python3 build.py                  # writes dist/  (what Cloudflare serves)
+python3 build.py --artifact out/  # optional preview build with .html links
 ```
 
-Edit `CONFIG` at the top of `build.py` for prices, phone, email and the form endpoint. Then rebuild. All copy lives in `build.py`, and the styles are in `src/assets/site.css`.
+Edit `CONFIG` at the top of `build.py` for prices, phone, email and the form endpoint, then commit. Cloudflare rebuilds on every push to `main`. All copy is in `build.py`, and the styles are in `src/assets/site.css`. The build needs no dependencies, only Python 3.
+
+## Cloudflare Pages setup (one time)
+
+1. Go to **Workers & Pages → Create → Pages → Connect to Git** and pick this repo.
+2. Build settings:
+   - **Framework preset:** None
+   - **Build command:** `python3 build.py`
+   - **Build output directory:** `dist`
+   - **Production branch:** `main`
+3. Once the glambotphilly.com zone is active in Cloudflare, add **both** custom domains, `www.glambotphilly.com` and `glambotphilly.com`, under **Custom domains**. Then add a redirect rule from the apex to `www`. Canonical URLs use `www`.
+4. The build also writes these Cloudflare files:
+   - `_headers`: caching and security headers
+   - `_redirects`: 301s from likely old URLs such as `/pricing` and `/contact`
+   - `404.html`
+
+   Pages serves `/wedding-glambot-philadelphia` for `wedding-glambot-philadelphia.html`, and every internal link already uses those clean URLs.
 
 ## Page map and target searches
 
 | Page | Primary searches | Secondary |
 |---|---|---|
 | `/` | glambot rental philadelphia, glambot philadelphia, glam bot near me | robotic camera booth, slow motion video booth |
-| `/wedding-glambot-philadelphia.html` | wedding glambot, slow motion wedding video booth | unique wedding entertainment ideas, red carpet wedding, luxury wedding photo booth philadelphia |
-| `/gala-fundraiser-glambot.html` | gala entertainment ideas, red carpet for gala | fundraiser gala ideas, sponsor activation, step and repeat with video |
-| `/corporate-event-glambot.html` | brand activation ideas philadelphia, branded video booth | product launch event ideas, trade show booth attraction |
-| `/holiday-party-glambot.html` | corporate holiday party ideas philadelphia | office christmas party entertainment, NYE party entertainment |
-| `/bar-bat-mitzvah-glambot.html` | bar mitzvah entertainment ideas, bat mitzvah party ideas | mitzvah photo booth philadelphia |
-| `/prom-sweet-16-quinceanera-glambot.html` | prom red carpet ideas, quinceañera entertainment | sweet 16 party ideas, school dance photo booth |
-| `/glambot-vs-360-photo-booth.html` | glambot vs 360 booth, 360 booth alternative | 360 photo booth rental philadelphia, luxury photo booth |
-| `/glambot-pricing.html` | glambot cost, how much does a glambot cost | glambot rental price |
-| `/faq.html` | what is a glambot, how does a glambot work | glambot space requirements |
-| `/service-area.html` | glambot near me, glambot [town] | main line / bucks county / south jersey |
-| `/dj-planner-partners.html` | DJ add-on services, white label glambot | — |
-| `/book.html` | — (conversion page) | — |
+| `/wedding-glambot-philadelphia` | wedding glambot, slow motion wedding video booth | unique wedding entertainment ideas, red carpet wedding, luxury wedding photo booth philadelphia |
+| `/gala-fundraiser-glambot` | gala entertainment ideas, red carpet for gala | fundraiser gala ideas, sponsor activation, step and repeat with video |
+| `/corporate-event-glambot` | brand activation ideas philadelphia, branded video booth | product launch event ideas, trade show booth attraction |
+| `/holiday-party-glambot` | corporate holiday party ideas philadelphia | office christmas party entertainment, NYE party entertainment |
+| `/bar-bat-mitzvah-glambot` | bar mitzvah entertainment ideas, bat mitzvah party ideas | mitzvah photo booth philadelphia |
+| `/prom-sweet-16-quinceanera-glambot` | prom red carpet ideas, quinceañera entertainment | sweet 16 party ideas, school dance photo booth |
+| `/glambot-vs-360-photo-booth` | glambot vs 360 booth, 360 booth alternative | 360 photo booth rental philadelphia, luxury photo booth |
+| `/glambot-pricing` | glambot cost, how much does a glambot cost | glambot rental price |
+| `/faq` | what is a glambot, how does a glambot work | glambot space requirements |
+| `/service-area` | glambot near me, glambot [town] | main line / bucks county / south jersey |
+| `/dj-planner-partners` | DJ add-on services, white label glambot | — |
+| `/book` | — (conversion page) | — |
 
 ### Built-in SEO
 - Each page has a unique title and meta description, a canonical URL, and Open Graph tags.
@@ -38,7 +55,7 @@ Edit `CONFIG` at the top of `build.py` for prices, phone, email and the form end
 - Videos and images are small. Videos are 720p and about 0.5–0.7 MB each, so pages load fast.
 
 ### Positioning choices (from the research)
-- **Price shown up front.** Almost no Philly competitor publishes a price, so showing "From $1,775" is a real differentiator.
+- **Price shown up front.** Almost no Philly competitor publishes a price, so "From $2,995 for 3 hours" stands out. It also sits under the $3,500+ that published U.S. competitors charge.
 - **"A real robotic arm."** Some 360 companies around Philly now sell a spinning platform as a "glambot." The site says plainly that ours is not one.
 - **The 360 angle stays educational, not snarky.** 360 booths are now the default at every party (median rental is about $750). The site explains the differences that matter at dress-up events:
   - guests stay on the floor instead of climbing a spinning platform
@@ -48,12 +65,11 @@ Edit `CONFIG` at the top of `build.py` for prices, phone, email and the form end
 ## Before launch
 
 1. **Connect the form.** Set `form_endpoint` in `CONFIG` to a Formspree, Basin or Tally webhook, or your Rally inquiry endpoint. Until it's set, the form tells visitors to email hello@glambotphilly.com.
-2. **Add a phone number** to `CONFIG["phone"]` if you want one shown.
-3. **Redirect old URLs.** Set up 301 redirects from the current site's pages to the new ones, so you keep the rankings you already have.
-4. **Search setup:**
+2. **Redirect old URLs.** Add any of the old site's URLs that `_redirects` doesn't already cover. Search Console → Pages lists them. Add each one to `REDIRECTS` in `build.py` so you keep your rankings.
+3. **Search setup:**
    - Submit `sitemap.xml` in Google Search Console.
    - Create or claim the **Google Business Profile** for GlamBot Philly. Use the "event entertainment" category and post clips weekly. This is the biggest lever for "glambot near me."
-5. **Ask for reviews.** Every happy client should get a Google review link. We left reviews off the site until there are real ones to quote.
+4. **Ask for reviews.** Every happy client should get a Google review link. We left reviews off the site until there are real ones to quote.
 
 ## Media we still need (from Google Drive)
 
@@ -69,14 +85,9 @@ The Drive connector caps downloads at about 4 MB per file, so most raw clips (13
 
 Real event photos of the robot arm and red carpet setup would also help the "What is a GlamBot" section.
 
-## Open questions
+## Decisions on record
 
-- **Pricing.** Three sources disagree:
-  - The Jan 2026 pricing guide says $1,995 (2 hrs) / $2,995 (3 hrs), but that is the white-label partner sheet.
-  - Danny's Aug 2026 client quote was **$1,775 for up to 3 hours**. The site uses that figure.
-  - The custom backdrop is listed at ~$1,400 in the guide and $1,050 elsewhere. The site shows it as "quoted per design."
-- **Trademark.** "GLAMBOT" is a registered trademark of Pixster Photobooth LLC (USPTO serial 97438011).
-  - If your unit is an official Pixster Glambot®, say so on the site. It's a selling point.
-  - If it isn't, consider leading with "The Philly Glam Experience" and descriptive terms ("robotic slow-motion camera").
-- **Couple clip.** `hero-couple.mp4` (white studio, couple dancing) came from the Marketing Material folder. It has no watermark, and its file timestamp is March 2024, before launch. Confirm it's your footage, or swap it out.
-- **Client names.** The site names Fabrika, Monaco Philadelphia and Haverford College as recent events. Confirm you're OK naming them.
+- **Pricing:** from $2,995 for 3 hours. Extra time is $500 per 30 minutes or $1,000 per hour. Add-ons are in `CONFIG`.
+- **Phone:** the Glam Bot line in Quo, (267) 888-GLAM (4526).
+- **Naming past events:** OK to name Fabrika, Monaco Philadelphia and Haverford College.
+- **Manufacturer demo footage:** OK to use. This covers the couple clip, the robot-arm photo, and the brand-activation stills on the corporate page.

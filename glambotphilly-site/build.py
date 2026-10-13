@@ -25,13 +25,15 @@ CONFIG = {
     "brand_line": "The Philly Glam Experience",
     "domain": "https://www.glambotphilly.com",
     "email": "hello@glambotphilly.com",
-    "phone": "",  # e.g. "(267) 555-0100". Leave empty to hide phone everywhere.
+    "phone": "(267) 888-GLAM",  # shown on the page; leave empty to hide phone everywhere
+    "phone_digits": "(267) 888-4526",
+    "phone_e164": "+12678884526",
     # Where the inquiry form POSTs (Formspree, Basin, a Rally/Tally webhook...).
     # Empty = the form shows a "not connected yet" message with the email.
     "form_endpoint": "",
-    "price_from": "$1,775",
-    "price_from_number": "1775",
-    "package_hours": "up to 3 hours",
+    "price_from": "$2,995",
+    "price_from_number": "2995",
+    "package_hours": "3 hours",
     "extra_30": "$500",
     "extra_60": "$1,000",
     "addon_tv": "$250",
@@ -78,7 +80,7 @@ def e(s):
 
 
 def url(slug):
-    return f"{C['domain']}/" if slug == "index" else f"{C['domain']}/{slug}.html"
+    return f"{C['domain']}/" if slug == "index" else f"{C['domain']}/{slug}"
 
 
 # --------------------------------------------------------------------------
@@ -112,13 +114,14 @@ def nav_links(current):
         cur = ' aria-current="page"' if slug == current else ""
         return f'<a href="{slug}.html"{cur}>{label}</a>'
     events = "".join(a(s, label) for s, label, *_ in EVENTS)
+    phone_link = (f'<a class="nav-phone" href="tel:{C["phone_e164"]}">{e(C["phone"])}</a>' if C["phone"] else "")
     return f"""<nav class="nav" aria-label="Main">
   <details class="dropdown"><summary>Events</summary><div class="dropdown-panel">{events}</div></details>
   {a('glambot-pricing', 'Pricing')}
   {a('glambot-vs-360-photo-booth', 'GlamBot vs 360')}
   {a('faq', 'FAQ')}
   {a('service-area', 'Service Area')}
-  <a class="btn btn-gold" href="book.html">Check your date</a>
+  {phone_link}<a class="btn btn-gold" href="book.html">Check your date</a>
 </nav>"""
 
 
@@ -138,7 +141,7 @@ def header(current):
 
 
 def contact_lines():
-    phone = (f'<div><span>Call or text</span><b>{e(C["phone"])}</b></div>' if C["phone"] else "")
+    phone = (f'<div><span>Call or text</span><a href="tel:{C["phone_e164"]}">{e(C["phone"])} ({e(C["phone_digits"][-4:])})</a></div>' if C["phone"] else "")
     return f"""<div class="contact-lines">
   <div><span>Email</span><a href="mailto:{C['email']}">{C['email']}</a></div>
   {phone}
@@ -148,7 +151,7 @@ def contact_lines():
 
 def footer():
     events = "".join(f'<li><a href="{s}.html">{label}</a></li>' for s, label, *_ in EVENTS)
-    phone = f'<p>{e(C["phone"])}</p>' if C["phone"] else ""
+    phone = f'<p><a href="tel:{C["phone_e164"]}">{e(C["phone"])} ({e(C["phone_digits"][-4:])})</a></p>' if C["phone"] else ""
     return f"""<footer class="site-footer">
   <div class="wrap">
     <div class="footer-grid">
@@ -266,7 +269,7 @@ BUSINESS = {
     "parentOrganization": {"@type": "Organization", "name": "PA Fun Company"},
 }
 if C["phone"]:
-    BUSINESS["telephone"] = C["phone"]
+    BUSINESS["telephone"] = C["phone_e164"]
 
 
 def service_schema(name, desc, slug):
@@ -415,7 +418,7 @@ home_body = f"""
     <div class="actions"><a class="btn btn-ghost" href="glambot-vs-360-photo-booth.html">How it compares to a 360 booth</a></div>
   </div>
   <div class="duo">
-    <div class="reel-frame"><img src="media/couple-2.jpg" alt="Couple mid-twirl during a slow-motion GlamBot shot" loading="lazy"></div>
+    <div class="reel-frame"><img src="media/robot-arm.jpg" alt="The GlamBot robotic camera arm beside a red carpet" loading="lazy"><span class="reel-tag">The robot</span></div>
     <div class="reel-frame"><video src="media/hero-couple.mp4" poster="media/hero-couple.jpg" autoplay muted loop playsinline preload="none" aria-label="Couple dancing in a slow-motion GlamBot clip"></video><span class="reel-tag">Slow motion</span></div>
   </div>
 </div></section>
@@ -479,7 +482,7 @@ PAGES.append(page(
 
 # ---- Event pages ---------------------------------------------------------
 def event_page(slug, *, title, desc, h1, lede, intro_h2, intro, timeline_h2, timeline, ideas_h2, ideas, notes_h2, notes,
-               faq, media=("bride.mp4", "bride.jpg"), media_caption="", media_alt="", cta=None):
+               faq, media=("bride.mp4", "bride.jpg"), media_caption="", media_alt="", cta=None, extra=""):
     ev = next(x for x in EVENTS if x[0] == slug)
     label, form_value = ev[1], ev[5]
     trail = [("index", "Home"), (slug, label)]
@@ -509,7 +512,7 @@ def event_page(slug, *, title, desc, h1, lede, intro_h2, intro, timeline_h2, tim
     <div class="timeline">{tl}</div>
   </div>
 </div></section>
-
+{extra}
 <section class="section"><div class="wrap">
   <div class="section-head"><p class="eyebrow">Shot list</p><h2>{ideas_h2}</h2><p class="muted">Our director runs these on the night. You don't have to plan a thing.</p></div>
   <ul class="ideas">{idl}</ul>
@@ -635,6 +638,12 @@ event_page(
     cta="Check your gala date",
 )
 
+DEMO_STRIP = """<section class="section"><div class="wrap">
+  <div class="section-head"><p class="eyebrow">At brand events</p><h2>Stadiums, rooftops, <em>product launches</em>.</h2><p class="muted">Stills from GlamBot activations: sponsor walls, fire performers, stadium concourses and rooftop parties. Your backdrop and logo go wherever the carpet goes.</p></div>
+  <div class="demo-grid">""" + "".join(
+    f'<img src="media/demo-{i}.jpg" alt="Guest posing for the GlamBot at a brand activation" loading="lazy" width="540" height="360">' for i in (2, 3, 4, 1, 6, 5)) + """</div>
+</div></section>"""
+
 event_page(
     "corporate-event-glambot",
     title="Brand Activation & Corporate Event GlamBot | Philadelphia",
@@ -679,6 +688,7 @@ event_page(
     media_caption="Your logo rides along on every clip guests share.",
     media_alt="Slow-motion clip from a GlamBot event",
     cta="Plan your activation",
+    extra=DEMO_STRIP,
 )
 
 event_page(
@@ -890,7 +900,7 @@ pr_faq = [
     ("How much does a GlamBot rental cost in Philadelphia?",
      f"<p>Our GlamBot experience starts at <strong>{C['price_from']}</strong> for {C['package_hours']}. That includes the director, host, red carpet, LED lighting, unlimited videos, your logo on every clip, instant text and email sharing, an online gallery and travel within {C['travel_radius']} of {C['travel_base']}.</p>"),
     ("Why do other GlamBot companies not list prices?",
-     "<p>We can't speak for them, but we'd rather you know up front. Most robotic GlamBot experiences we've seen published run well above our starting price.</p>"),
+     "<p>We can't speak for them, but we'd rather you know up front.</p>"),
     ("Do you charge for travel?",
      f"<p>Travel within {C['travel_radius']} of {C['travel_base']} is included. That covers Philadelphia, most of the Main Line, Montgomery, Bucks, Chester and Delaware Counties, and nearby South Jersey. Beyond that it's {C['travel_fee']}.</p>"),
     ("Can we add more time?",
@@ -921,7 +931,7 @@ pr_body = f"""
     <div class="package featured">
       <p class="eyebrow">The GlamBot Experience</p>
       <p class="price">{C['price_from']}<small>{C['package_hours']}</small></p>
-      <p class="muted">Inside your venue for the run of the party. Most weddings, galas and mitzvahs book this.</p>
+      <p class="muted">Three hours inside your venue, from cocktail hour through the reception. Most weddings, galas and mitzvahs book this.</p>
       <ul>{pkg_items}</ul>
       <a class="btn btn-gold" href="book.html">Check your date</a>
     </div>
@@ -1087,9 +1097,64 @@ PAGES.append(page("book", "Book a GlamBot | Check Availability | GlamBot Philly"
                   bk_body, [BUSINESS, breadcrumb_schema(bk_trail)]))
 
 
+# ---- 404 -----------------------------------------------------------------
+nf_body = """
+<main id="main">
+<section class="page-hero"><div class="wrap">
+  <p class="eyebrow">404 · Off the carpet</p>
+  <h1>This page <em>walked off</em> the red carpet.</h1>
+  <p class="lede">The link may be old or mistyped. Here's where most people are headed.</p>
+  <div class="actions"><a class="btn btn-gold" href="index.html">Back to home</a><a class="btn btn-ghost" href="glambot-pricing.html">Pricing</a><a class="btn btn-ghost" href="book.html">Check your date</a></div>
+</div></section>
+<section class="section"><div class="wrap">""" + events_grid() + """</div></section>
+</main>"""
+NOT_FOUND = page("404", "Page Not Found | GlamBot Philly", "This page isn't here. Find GlamBot pricing, event pages and availability for Philadelphia events.", nf_body, [BUSINESS], current="")
+
+HEADERS = """/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: SAMEORIGIN
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+/assets/*
+  Cache-Control: public, max-age=86400
+
+/media/*
+  Cache-Control: public, max-age=2592000
+"""
+
+# Old Webflow/Wix-style paths people may have bookmarked. Extend once the old
+# site's URLs are known (Google Search Console > Pages lists them).
+REDIRECTS = """/home / 301
+/index / 301
+/weddings /wedding-glambot-philadelphia 301
+/wedding /wedding-glambot-philadelphia 301
+/corporate /corporate-event-glambot 301
+/events /corporate-event-glambot 301
+/pricing /glambot-pricing 301
+/packages /glambot-pricing 301
+/contact /book 301
+/book-now /book 301
+/faqs /faq 301
+"""
+
+
 # --------------------------------------------------------------------------
 # write
 # --------------------------------------------------------------------------
+import re
+
+SLUGS = sorted({p["slug"] for p in PAGES} | {"404"}, key=len, reverse=True)
+
+
+def clean_links(doc):
+    """Cloudflare Pages serves /page for page.html; link there directly and
+    use root-absolute asset paths so the 404 page works at any depth."""
+    doc = re.sub(r'(href|src|poster)="(assets|media)/', r'\1="/\2/', doc)
+    doc = re.sub(r'href="index\.html(#[\w-]+)?"', lambda m: f'href="/{m.group(1) or ""}"', doc)
+    for slug in SLUGS:
+        doc = re.sub(rf'href="{re.escape(slug)}\.html(#[\w-]+)?"', lambda m: f'href="/{slug}{m.group(1) or ""}"', doc)
+    return doc
 
 def full_doc(p):
     return f"""<!doctype html>
@@ -1110,19 +1175,21 @@ def write_site(out, artifact=False):
     if out.exists():
         shutil.rmtree(out)
     shutil.copytree(SRC, out)
-    for p in PAGES:
+    for p in PAGES + ([] if artifact else [NOT_FOUND]):
         name = "index.html" if p["slug"] == "index" else f"{p['slug']}.html"
         if artifact and p["slug"] == "index":
             # The artifact host wraps its main page in its own document skeleton.
             doc = p["head"] + "\n" + p["body"] + "\n"
         else:
-            doc = full_doc(p)
+            doc = full_doc(p) if artifact else clean_links(full_doc(p))
         (out / name).write_text(doc, encoding="utf-8")
     if not artifact:
         urls = "".join(f"  <url><loc>{url(p['slug'])}</loc></url>\n" for p in PAGES)
         (out / "sitemap.xml").write_text(
             f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{urls}</urlset>\n')
         (out / "robots.txt").write_text(f"User-agent: *\nAllow: /\nSitemap: {C['domain']}/sitemap.xml\n")
+        (out / "_headers").write_text(HEADERS)
+        (out / "_redirects").write_text(REDIRECTS)
 
 
 if __name__ == "__main__":
