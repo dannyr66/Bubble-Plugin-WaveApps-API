@@ -25,6 +25,23 @@ Edit `CONFIG` at the top of `build.py` for prices, phone, email and the form end
 
    Pages serves `/wedding-glambot-philadelphia` for `wedding-glambot-philadelphia.html`, and every internal link already uses those clean URLs.
 
+## Current domain state (Oct 13, 2026)
+
+- **DNS:** glambotphilly.com is an active zone on Cloudflare (Danny's account). The registrar is still Porkbun, in a separate Porkbun login.
+- **Email:** hello@glambotphilly.com uses Porkbun email forwarding. The Cloudflare zone has the matching records:
+  - MX `fwd1.porkbun.com` (priority 10)
+  - MX `fwd2.porkbun.com` (priority 20)
+  - SPF TXT `v=spf1 include:_spf.porkbun.com ~all`
+  - DMARC TXT `v=DMARC1; p=none;`
+
+  Keep these records when you change anything else.
+- **Holding page:** a Cloudflare Worker named `glambotphilly-holding` serves a branded holding page on `glambotphilly.com/*` and `www.glambotphilly.com/*`. It returns status 503 with Retry-After, so Google doesn't index it.
+
+  **When the Pages site is ready:**
+  1. Delete both Worker routes and the two placeholder `AAAA 100::` records, which are labeled "Placeholder for holding-page Worker" in the DNS comments.
+  2. Add both hostnames as custom domains on the Pages project.
+  3. Delete the Worker.
+
 ## Page map and target searches
 
 | Page | Primary searches | Secondary |
