@@ -5,29 +5,30 @@
 <link rel="stylesheet" href="fonts/fonts.css">
 <style>
 :root {
-  --bg: #0f1117; --panel: #1b1e27; --panel2: #262a35; --fg: #f3f3f5; --muted: #9aa0ad;
-  --flare: #ff5a1f; --sticker: #ffd43b; --good: #2fbf71; --warn: #f2b01e; --bad: #ef4b3c;
-  --paper: #ffffff; --ink: #17191f; --line: #e7e5de; --soft: #f4f3ef;
+  /* Rally new look */
+  --bg: #0B2A45; --panel: rgb(251 248 241 / 0.07); --fg: #FBF8F1; --muted: #A9BCCC;
+  --cream: #FBF8F1; --navy: #0B2A45; --primary: #0E3A5D; --sky: #8CC4F0;
+  --good: #256842; --warn: #B45309; --bad: #9B1C1C; --ok-bg: #E3F1E8; --bad-bg: #F9E4E4;
+  --paper: #ffffff; --ink: #12324F; --line: #EDE7D6; --soft: #FBF8F1; --label: #6E7269;
   --display: "Bricolage Grotesque", "Arial Black", sans-serif;
-  --body: "Instrument Sans", "DejaVu Sans", sans-serif;
-  --mono: "JetBrains Mono", "DejaVu Sans Mono", monospace;
+  --body: "Schibsted Grotesk", "DejaVu Sans", sans-serif;
+  --mono: "IBM Plex Mono", "DejaVu Sans Mono", monospace;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html, body { width: 720px; height: 1280px; overflow: hidden; background: var(--bg); }
 #stage { position: relative; width: 720px; height: 1280px; overflow: hidden; background: var(--bg); color: var(--fg); font-family: var(--body); }
 .abs { position: absolute; }
-#glow { position: absolute; inset: -200px; background: radial-gradient(520px 420px at 50% 22%, rgb(255 90 31 / 0.22), transparent 70%); }
-#brand { position: absolute; top: 46px; left: 40px; display: flex; align-items: center; gap: 12px; font-family: var(--display); font-size: 30px; font-weight: 800; z-index: 50; }
-.logo { width: 42px; height: 42px; border-radius: 50%; background: var(--flare); color: #fff; display: grid; place-items: center; font-family: var(--display); font-weight: 800; font-size: 24px; }
-#tag { position: absolute; top: 56px; right: 40px; font-family: var(--mono); font-size: 15px; font-weight: 700; letter-spacing: 0.08em; color: var(--muted); border: 2px solid #3a3f4c; padding: 4px 10px; border-radius: 6px; z-index: 50; }
-#sticker { position: absolute; top: 150px; left: 56px; right: 56px; z-index: 40; background: var(--sticker); color: var(--ink); font-family: var(--display); font-weight: 800; font-size: 54px; line-height: 1.04; text-align: center; padding: 18px 20px 20px; border-radius: 8px; box-shadow: 0 7px 0 rgb(0 0 0 / 0.45); white-space: pre-line; }
+#glow { position: absolute; inset: -200px; background: radial-gradient(520px 420px at 50% 22%, rgb(140 196 240 / 0.16), transparent 70%); }
+#brand { position: absolute; top: 46px; left: 40px; display: flex; align-items: center; gap: 12px; font-family: var(--display); font-size: 36px; font-weight: 800; letter-spacing: -0.02em; color: var(--cream); z-index: 50; }
+#tag { position: absolute; top: 56px; right: 40px; font-family: var(--mono); font-size: 15px; font-weight: 500; letter-spacing: 0.08em; color: var(--muted); border: 2px solid rgb(169 188 204 / 0.4); padding: 4px 10px; border-radius: 6px; z-index: 50; }
+#sticker { position: absolute; top: 150px; left: 56px; right: 56px; z-index: 40; background: var(--sky); color: var(--navy); font-family: var(--display); font-weight: 800; font-size: 54px; line-height: 1.04; text-align: center; padding: 18px 20px 20px; border-radius: 16px; box-shadow: 0 7px 0 rgb(0 0 0 / 0.45); white-space: pre-line; }
 #caps { position: absolute; left: 40px; right: 40px; top: 900px; z-index: 60; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 10px; }
 #caps span { font-family: var(--body); font-weight: 700; font-size: 46px; line-height: 1.15; padding: 2px 10px 6px; border-radius: 8px; color: #fff; text-shadow: 0 2px 10px rgb(0 0 0 / 0.6); }
-#caps span.on { background: #fff; color: var(--ink); text-shadow: none; }
+#caps span.on { background: var(--cream); color: var(--ink); text-shadow: none; }
 #caps span.future { color: rgb(255 255 255 / 0.45); }
 
 .pwrap { position: absolute; inset: 0; transform: translateY(-20px) scale(0.9); transform-origin: 360px 250px; }
-.phone { position: absolute; left: 150px; top: 250px; width: 420px; height: 700px; border-radius: 48px; background: #000; border: 9px solid #2c303b; overflow: hidden; box-shadow: 0 30px 80px rgb(0 0 0 / 0.55); }
+.phone { position: absolute; left: 150px; top: 250px; width: 420px; height: 700px; border-radius: 48px; background: #000; border: 9px solid #24496B; overflow: hidden; box-shadow: 0 30px 80px rgb(0 0 0 / 0.55); }
 .screen { position: absolute; inset: 0; overflow: hidden; }
 .lock { background: linear-gradient(170deg, #1d2540 0%, #2b1d3f 60%, #1a1424 100%); }
 .lock .time { position: absolute; top: 84px; left: 0; right: 0; text-align: center; font-weight: 600; font-size: 92px; letter-spacing: -2px; }
@@ -39,9 +40,10 @@ html, body { width: 720px; height: 1280px; overflow: hidden; background: var(--b
 .notif p { font-size: 17px; line-height: 1.25; opacity: 0.92; }
 
 .app { background: var(--soft); color: var(--ink); }
-.app .hdr { background: var(--ink); color: #fff; padding: 56px 20px 16px; display: flex; align-items: center; gap: 10px; }
+.app .hdr { background: var(--navy); color: #fff; padding: 56px 20px 16px; display: flex; align-items: center; gap: 10px; }
 .app .hdr .logo { width: 34px; height: 34px; font-size: 19px; }
-.app .hdr b { font-family: var(--display); font-size: 26px; }
+.app .hdr b { font-family: var(--display); font-size: 22px; font-weight: 700; }
+.hwm { font-family: var(--display); font-weight: 800; font-size: 24px; letter-spacing: -0.02em; margin-right: 8px; }
 .app .hdr span { margin-left: auto; font-size: 16px; opacity: 0.75; }
 .legend { margin: 14px 16px 6px; display: flex; gap: 14px; font-family: var(--mono); font-size: 13px; font-weight: 700; letter-spacing: 0.04em; color: #5d6170; }
 .row { margin: 8px 12px; background: var(--paper); border-radius: 14px; padding: 12px 14px; display: flex; align-items: center; gap: 12px; border: 1px solid var(--line); }
@@ -57,28 +59,28 @@ html, body { width: 720px; height: 1280px; overflow: hidden; background: var(--b
 .sheet .big { font-family: var(--display); font-size: 28px; font-weight: 800; }
 .sheet p { font-size: 17px; line-height: 1.35; }
 .btns { display: flex; gap: 10px; padding-top: 6px; }
-.btn { flex: 1; text-align: center; padding: 13px; border-radius: 12px; font-weight: 700; font-size: 17px; background: var(--soft); }
-.btn.go { background: var(--flare); color: #fff; }
+.btn { flex: 1; text-align: center; padding: 13px; border-radius: 999px; font-weight: 700; font-size: 17px; background: var(--soft); }
+.btn.go { background: var(--primary); color: var(--cream); }
 
-.end { position: absolute; inset: 0; background: var(--flare); z-index: 55; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 26px; padding-bottom: 260px; color: #fff; }
+.end { position: absolute; inset: 0; background: var(--primary); z-index: 55; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 26px; padding-bottom: 260px; color: #fff; }
 .end .word { font-family: var(--display); font-weight: 800; font-size: 170px; line-height: 0.9; letter-spacing: -4px; display: flex; align-items: center; gap: 22px; }
-.end .word .logo { width: 120px; height: 120px; font-size: 76px; background: #fff; color: var(--flare); }
-.end .line { font-family: var(--display); font-weight: 800; font-size: 46px; }
-.end .cta { background: var(--ink); color: #fff; font-weight: 700; font-size: 38px; padding: 18px 30px; border-radius: 16px; }
-.end .cta em { font-style: normal; background: var(--sticker); color: var(--ink); padding: 0 10px; border-radius: 6px; }
+.end .line { font-family: var(--display); font-weight: 800; font-size: 46px; color: var(--sky); }
+.end .cta { background: var(--cream); color: var(--ink); font-weight: 700; font-size: 38px; padding: 18px 34px; border-radius: 999px; }
+.end .cta em { font-style: normal; background: var(--sky); color: var(--navy); padding: 0 10px; border-radius: 6px; }
 
 .clock { position: absolute; top: 380px; left: 0; right: 0; text-align: center; font-family: var(--mono); font-weight: 700; font-size: 130px; letter-spacing: -4px; }
 .clocksub { position: absolute; top: 550px; left: 0; right: 0; text-align: center; font-size: 34px; color: var(--muted); }
-.tile { position: absolute; width: 196px; height: 118px; margin: -59px 0 0 -98px; background: var(--panel); border: 3px solid #333846; border-radius: 18px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; }
+.tile { position: absolute; width: 196px; height: 118px; margin: -59px 0 0 -98px; background: var(--panel); border: 3px solid rgb(169 188 204 / 0.35); border-radius: 18px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; }
 .tile .k { font-family: var(--mono); font-weight: 700; font-size: 17px; letter-spacing: 0.05em; color: var(--fg); }
 .tile .s { font-size: 15px; color: var(--muted); }
 .tile .g { width: 44px; height: 30px; border: 3px solid var(--muted); border-radius: 6px; }
-.hub { position: absolute; left: 360px; top: 450px; width: 210px; height: 210px; margin: -105px 0 0 -105px; border-radius: 50%; background: var(--flare); display: grid; place-items: center; font-family: var(--display); font-weight: 800; font-size: 52px; color: #fff; box-shadow: 0 0 0 18px rgb(255 90 31 / 0.18); }
-.you { position: absolute; width: 74px; height: 74px; margin: -37px 0 0 -37px; border-radius: 50%; background: var(--sticker); color: var(--ink); display: grid; place-items: center; font-family: var(--mono); font-weight: 700; font-size: 17px; z-index: 5; }
-.xmark { position: absolute; width: 38px; height: 38px; margin: -19px 0 0 -19px; border-radius: 50%; background: var(--bad); color: #fff; display: grid; place-items: center; font-weight: 700; font-size: 22px; }
+.hub { position: absolute; left: 360px; top: 450px; width: 210px; height: 210px; margin: -105px 0 0 -105px; border-radius: 50%; background: var(--sky); display: grid; place-items: center; font-family: var(--display); font-weight: 800; font-size: 52px; color: var(--navy); box-shadow: 0 0 0 18px rgb(140 196 240 / 0.2); }
+.you { position: absolute; width: 74px; height: 74px; margin: -37px 0 0 -37px; border-radius: 50%; background: var(--cream); color: var(--ink); display: grid; place-items: center; font-family: var(--mono); font-weight: 600; font-size: 17px; z-index: 5; }
+.xmark { position: absolute; width: 38px; height: 38px; margin: -19px 0 0 -19px; border-radius: 50%; background: var(--bad-bg); color: var(--bad); display: grid; place-items: center; font-weight: 700; font-size: 22px; }
 .checks { position: absolute; top: 600px; left: 120px; right: 120px; display: grid; gap: 14px; }
 .check { display: flex; align-items: center; gap: 16px; font-size: 34px; font-weight: 700; }
-.check .tick { width: 42px; height: 42px; font-size: 24px; }
+.check .tick { width: 42px; height: 42px; font-size: 24px; background: var(--ok-bg); color: var(--good); }
+.toast .tick { background: var(--ok-bg); color: var(--good); }
 
 .rec { position: absolute; top: 250px; left: 190px; z-index: 30; background: var(--bad); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 16px; padding: 4px 10px; border-radius: 6px; }
 .web { background: var(--paper); color: var(--ink); }
@@ -105,7 +107,7 @@ html, body { width: 720px; height: 1280px; overflow: hidden; background: var(--b
 .sms .shdr { padding: 54px 20px 14px; text-align: center; border-bottom: 1px solid var(--line); font-weight: 700; font-size: 18px; }
 .bub { position: absolute; max-width: 300px; padding: 12px 15px; border-radius: 20px; font-size: 17px; line-height: 1.35; }
 .bub.in { left: 14px; background: #e9e9eb; }
-.bub.out { right: 14px; background: var(--flare); color: #fff; font-weight: 700; }
+.bub.out { right: 14px; background: var(--primary); color: #fff; font-weight: 700; }
 .bigdots { position: absolute; top: 250px; left: 0; right: 0; display: flex; justify-content: center; gap: 26px; }
 .bd { display: grid; justify-items: center; gap: 10px; font-family: var(--mono); font-weight: 700; font-size: 14px; color: #5d6170; }
 .bd i { width: 76px; height: 76px; border-radius: 50%; background: #d8d6cf; display: grid; place-items: center; color: #fff; font-style: normal; font-size: 34px; font-family: var(--body); }
@@ -186,7 +188,7 @@ function buildCaptions() {
 function chrome() {
   const g = el('div', '', stage); g.id = 'glow';
   anims.push(t => { g.style.transform = `translate(${Math.sin(t * 0.4) * 40}px, ${Math.cos(t * 0.3) * 30}px)`; });
-  el('div', '', stage, '<div class="logo">R</div>Rally').id = 'brand';
+  el('div', '', stage, 'Rally').id = 'brand';
   el('div', '', stage, 'CONCEPT · AI VOICE').id = 'tag';
 }
 function sticker(tin, tout) {
@@ -195,7 +197,7 @@ function sticker(tin, tout) {
 }
 function endCard(tin, ctaHtml) {
   const n = el('div', 'end', stage);
-  el('div', 'word', n, '<div class="logo">R</div>Rally');
+  el('div', 'word', n, 'Rally');
   const l = el('div', 'line', n, 'Rally your crew. Run your day.');
   const c = el('div', 'cta', n, ctaHtml);
   show(n, tin, Infinity, 'fade', 0.3);
@@ -244,7 +246,7 @@ function circumstance() {
   // Rally app slides over the lock screen
   const app = el('div', 'screen app', ph);
   show(app, c5.s + 0.3, Infinity, 'slideup', 0.55);
-  el('div', 'hdr', app, '<div class="logo">R</div><b>Saturday</b><span>4 parties</span>');
+  el('div', 'hdr', app, '<span class="hwm">Rally</span><b>Saturday</b><span>4 parties</span>');
   const lg = el('div', 'legend', app, '<span>DOTS =</span><span style="color:var(--ink)">GEAR · CREW · PAPERWORK</span>');
   show(lg, c6.s + 0.6, Infinity, 'left');
   const rows = [
@@ -309,7 +311,7 @@ function realreason() {
   for (let i = 0; i < 5; i++) for (let j = i + 1; j < 5; j++) {
     const l = document.createElementNS('http://www.w3.org/2000/svg', 'line');
     l.setAttribute('x1', pos[i][0]); l.setAttribute('y1', pos[i][1]); l.setAttribute('x2', pos[j][0]); l.setAttribute('y2', pos[j][1]);
-    l.setAttribute('stroke', '#ef4b3c'); l.setAttribute('stroke-width', 4); l.setAttribute('stroke-dasharray', '10 12');
+    l.setAttribute('stroke', '#F08A7E'); l.setAttribute('stroke-width', 4); l.setAttribute('stroke-dasharray', '10 12');
     svg.appendChild(l); lines.push(l);
   }
   const r9 = r('r9');
@@ -329,8 +331,8 @@ function realreason() {
       n.style.left = x + 'px'; n.style.top = y + 'px';
       n.style.opacity = clamp(p * 3) * (1 - m);
       n.style.transform = `scale(${lerp(0.5, 1, back(p)) * (1 + 0.12 * hl) * lerp(1, 0.3, m)})`;
-      n.style.borderColor = hl ? 'var(--flare)' : '#333846';
-      n.style.background = hl ? '#2a1e19' : 'var(--panel)';
+      n.style.borderColor = hl ? 'var(--sky)' : 'rgb(169 188 204 / 0.35)';
+      n.style.background = hl ? 'rgb(140 196 240 / 0.16)' : 'var(--panel)';
     });
     return n;
   });
@@ -358,7 +360,7 @@ function realreason() {
     const c = el('div', 'check', box, `<div class="tick">✓</div>${txt}`);
     show(c, r(id).s, Infinity, 'left', 0.35);
   });
-  endCard(r('r11').s, 'Start your free trial');
+  endCard(r('r11').s, 'Start free');
 }
 
 /* ---------- Ad 4: Receipt ---------- */
@@ -382,8 +384,8 @@ function receipt() {
   const tap1 = p2.s + 1.1, tap2 = p2.e - 0.2;
   anims.push(t => {
     const sel = t >= tap1;
-    svcs[1].style.borderColor = sel ? 'var(--flare)' : 'var(--line)';
-    svcs[1].style.background = sel ? '#fff4ee' : '';
+    svcs[1].style.borderColor = sel ? 'var(--primary)' : 'var(--line)';
+    svcs[1].style.background = sel ? 'rgb(14 58 93 / 0.06)' : '';
     sub.style.background = t >= tap2 && t < tap2 + 0.3 ? '#075a64' : '#0b7c8a';
     let tp = null;
     if (t > tap1 - 0.5 && t < tap1 + 0.4) tp = [210, 260, t - tap1];
@@ -395,12 +397,12 @@ function receipt() {
   // B: operator booking detail
   const det = el('div', 'screen app det', ph);
   show(det, p3.s, Infinity, 'slideup', 0.5);
-  el('div', 'hdr', det, '<div class="logo">R</div><b>New booking</b><span>just now</span>');
+  el('div', 'hdr', det, '<span class="hwm">Rally</span><b>New booking</b><span>just now</span>');
   el('div', 'title', det, "Ava's 7th Birthday");
   el('div', 'sub', det, 'Sat · 10:00 AM · Foam Party Deluxe');
   const evs = [
     [p3.s + 0.6, '✓', 'var(--good)', 'Booking requested', 'Jess M. · booking page'],
-    [p3.s + 1.6, '$', 'var(--flare)', 'Deposit invoice sent · $100', 'sent automatically'],
+    [p3.s + 1.6, '$', 'var(--primary)', 'Deposit invoice sent · $100', 'sent automatically'],
     [p3.e - 0.3, '✓', 'var(--good)', 'Deposit paid · $100', 'card on file saved'],
   ];
   evs.forEach(([tin, ic, col, a, b]) => show(el('div', 'ev', det, `<div class="tick" style="background:${col}">${ic}</div><div>${a}<small>${b}</small></div>`), tin, Infinity, 'left'));
@@ -437,7 +439,7 @@ function receipt() {
   const p6 = p('p6');
   const rd = el('div', 'screen app det', ph);
   show(rd, p6.s, Infinity, 'slideup', 0.5);
-  el('div', 'hdr', rd, '<div class="logo">R</div><b>Booking</b><span>Sat 10:00 AM</span>');
+  el('div', 'hdr', rd, '<span class="hwm">Rally</span><b>Booking</b><span>Sat 10:00 AM</span>');
   el('div', 'title', rd, "Ava's 7th Birthday");
   el('div', 'sub', rd, 'Foam Party Deluxe · Doylestown');
   const bd = el('div', 'bigdots', rd);

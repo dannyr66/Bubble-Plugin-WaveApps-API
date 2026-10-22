@@ -1,6 +1,6 @@
 # Generated concept videos
 
-Fully generated 1080×1920 ad concepts: animated Rally screens, on-screen text, word-by-word captions and an AI voiceover. No filmed footage. They show how the hooks play; they aren't final ads.
+Fully generated 1080×1920 ad concepts: animated Rally screens, on-screen text, word-by-word captions and an AI voiceover. No filmed footage. They show how the hooks play; they aren't final ads. Styled in the Rally new look: navy and cream, sky accents, Bricolage Grotesque, Schibsted Grotesk and IBM Plex Mono.
 
 | File | Hook | Length |
 |---|---|---|

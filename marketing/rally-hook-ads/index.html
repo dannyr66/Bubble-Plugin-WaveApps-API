@@ -2,229 +2,235 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=IBM+Plex+Mono:wght@500;600&family=Schibsted+Grotesk:wght@400;500;600;700&display=swap">
 <style>
-/* Layout: a single reading column for the plan, breaking out to a wide row of phone mock-ups and storyboards. */
+/* Layout: Rally new look. Navy header band, cream page, white cards, one reading column that widens for tables, phones and tools. Light only, like the app. */
 :root {
-  --paper: #f6f5f1;
-  --surface: #ffffff;
-  --ink: #17191f;
-  --muted: #5d6170;
-  --line: #dddbd3;
-  --flare: #ff5a1f;      /* placeholder Rally accent, swap for the real brand color */
-  --flare-ink: #ffffff;
-  --sky: #1f6fff;
-  --good: #1a9b5b;
-  --warn: #d69a00;
-  --bad: #d23c2c;
-  --sticker: #ffd43b;
-  --sticker-ink: #17191f;
-  --screen: #101218;
-  --screen-2: #1c1f28;
-  --screen-fg: #f3f3f5;
-  --fill-tag: #fff1d6;
-  --fill-tag-ink: #7a4a00;
-  --display: "Bricolage Grotesque", "Arial Black", system-ui, sans-serif;
-  --body: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --paper: #121318; --surface: #1b1d24; --ink: #ecebe6; --muted: #a2a5b0; --line: #2e313b;
-    --flare: #ff6b35; --sky: #5b93ff; --good: #3ccf86; --warn: #f2bd2c; --bad: #ff6b5b;
-    --screen: #0a0b0f; --screen-2: #191c25; --fill-tag: #3a2c10; --fill-tag-ink: #ffd48a;
-    color-scheme: dark;
-  }
-}
-:root[data-theme="dark"] {
-  --paper: #121318; --surface: #1b1d24; --ink: #ecebe6; --muted: #a2a5b0; --line: #2e313b;
-  --flare: #ff6b35; --sky: #5b93ff; --good: #3ccf86; --warn: #f2bd2c; --bad: #ff6b5b;
-  --screen: #0a0b0f; --screen-2: #191c25; --fill-tag: #3a2c10; --fill-tag-ink: #ffd48a;
-  color-scheme: dark;
+  --cream: #FBF8F1; --surface: #ffffff; --ink: #12324F; --body: #4E5B69; --label: #6E7269; --hairline: #EDE7D6;
+  --divider: rgba(18,50,79,.18); --card-line: rgba(18,50,79,.16); --outline: rgba(18,50,79,.25); --field: rgba(18,50,79,.55);
+  --primary: #0E3A5D; --on-primary: #FBF8F1; --navy: #0B2A45; --sky: #8CC4F0; --rail-text: #A9BCCC;
+  --ok: #256842; --ok-bg: #E3F1E8; --ok-ink: #1F5A38; --warn: #B45309; --warn-bg: #FBEBD3; --warn-ink: #7F4506;
+  --bad: #9B1C1C; --bad-bg: #F9E4E4; --bad-ink: #8E1A1A; --info-bg: #E2ECF8; --info-ink: #1E4E86;
+  --well: rgba(18,50,79,.035); --chip-on: rgba(14,58,93,.07);
+  --r-card: 16px; --r-well: 12px;
+  --display: "Bricolage Grotesque", Georgia, serif;
+  --sans: "Schibsted Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  color-scheme: light;
 }
 * { box-sizing: border-box; }
-body {
-  background: var(--paper); color: var(--ink); font-family: var(--body); font-size: 16px; line-height: 1.6;
-  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
-  padding-block: 0 64px;
-}
-.wrap { max-width: 1180px; margin: 0 auto; }
+body { background: var(--cream); color: var(--body); font-family: var(--sans); font-size: 16px; line-height: 1.55; padding-block: 0 72px; }
+.band { background: var(--navy); color: var(--cream); padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.page { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.wrap { max-width: 1160px; margin: 0 auto; }
 .col { max-width: 720px; }
-h1, h2, h3 { font-family: var(--display); line-height: 1.08; text-wrap: balance; margin: 0; }
-h1 { font-size: clamp(2.2rem, 6vw, 3.6rem); font-weight: 800; letter-spacing: -0.02em; }
-h2 { font-size: clamp(1.6rem, 3.4vw, 2.2rem); font-weight: 800; letter-spacing: -0.01em; }
-h3 { font-size: 1.2rem; font-weight: 600; }
+h1, h2, h3 { font-family: var(--display); color: var(--ink); line-height: 1.1; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(2.2rem, 6vw, 3.5rem); font-weight: 800; letter-spacing: -0.02em; color: var(--cream); }
+h2 { font-size: clamp(1.6rem, 3.4vw, 2.15rem); font-weight: 700; letter-spacing: -0.015em; }
+h3 { font-size: 1.15rem; font-weight: 700; letter-spacing: -0.01em; }
 p { margin: 0; }
-.label { font-family: var(--mono); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
-.fill { background: var(--fill-tag); color: var(--fill-tag-ink); padding: 0 0.3em; border-radius: 3px; font-family: var(--mono); font-size: 0.88em; white-space: nowrap; }
+b, strong { color: var(--ink); }
+.eyebrow { font-family: var(--mono); font-size: 0.75rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--label); }
+.fill { background: var(--warn-bg); color: var(--warn-ink); padding: 0 0.35em; border-radius: 6px; font-family: var(--mono); font-size: 0.86em; white-space: nowrap; }
+.muted { color: var(--label); }
+a { color: var(--ink); text-decoration-thickness: 1.5px; text-underline-offset: 3px; text-decoration-color: rgba(18,50,79,.4); }
+:focus-visible { outline: 3px solid var(--primary); outline-offset: 2px; }
+
+/* header */
+header.wrap { padding-block: 26px 44px; display: grid; gap: 18px; }
+.wm { font-family: var(--display); font-weight: 800; font-size: 28px; letter-spacing: -0.02em; color: var(--cream); line-height: 1; }
+.band .eyebrow { color: var(--rail-text); }
+.lede { font-size: 1.12rem; color: var(--rail-text); max-width: 680px; }
+.lede b { color: var(--cream); }
+nav.jump { display: flex; flex-wrap: wrap; gap: 8px; }
+nav.jump a { min-height: 40px; padding: 0 16px; border-radius: 999px; border: 1px solid rgba(169,188,204,.4); color: var(--cream); text-decoration: none; font-weight: 600; font-size: 0.92rem; display: inline-flex; align-items: center; }
+nav.jump a:hover { background: rgba(140,196,240,.14); border-color: var(--sky); }
+
 section { padding-block: 56px 0; display: grid; gap: 20px; }
-section + section { border-top: 1px solid var(--line); margin-top: 56px; }
-.lede { font-size: 1.15rem; color: var(--muted); max-width: 640px; }
+section + section { border-top: 1px solid var(--hairline); margin-top: 56px; }
+.part { padding-block: 64px 0; display: grid; gap: 10px; }
+.part h2 { font-size: clamp(2rem, 4.6vw, 2.8rem); font-weight: 800; }
+.stack { display: grid; gap: 14px; }
 
-header { padding-block: 48px 0; display: grid; gap: 18px; }
-.meta { display: flex; flex-wrap: wrap; gap: 8px 20px; }
+/* tables */
+.table-wrap { overflow-x: auto; background: var(--surface); border: 1px solid var(--card-line); border-radius: var(--r-card); }
+table { border-collapse: collapse; width: 100%; min-width: 640px; font-size: 0.95rem; }
+th, td { text-align: left; vertical-align: top; padding: 12px 16px; border-bottom: 1px solid var(--hairline); }
+tr:last-child td { border-bottom: 0; }
+th { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--label); font-weight: 500; background: var(--well); }
+td:first-child { font-weight: 600; color: var(--ink); }
+td.blank { min-width: 90px; }
+.tag { display: inline-flex; align-items: center; height: 24px; padding: 0 10px; border-radius: 999px; font-size: 0.8rem; font-weight: 600; white-space: nowrap; }
+.t-ok { background: var(--ok-bg); color: var(--ok-ink); } .t-warn { background: var(--warn-bg); color: var(--warn-ink); } .t-bad { background: var(--bad-bg); color: var(--bad-ink); } .t-info { background: var(--info-bg); color: var(--info-ink); } .t-muted { background: rgba(18,50,79,.07); color: var(--ink); }
 
-/* The flagged-issue callout */
-.flag { background: var(--surface); border: 2px solid var(--ink); border-radius: 6px; padding: 20px 22px; display: grid; gap: 10px; max-width: 760px; }
+/* cards */
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 14px; }
+.card { background: var(--surface); border: 1px solid var(--card-line); border-radius: var(--r-card); padding: 18px 20px; display: grid; gap: 8px; align-content: start; min-width: 0; }
+.card p, .card li { font-size: 0.95rem; }
+.card ul { margin: 0; padding-left: 1.1em; display: grid; gap: 4px; }
+.card.pick { border: 2px solid var(--primary); }
+.well { background: var(--well); border: 1px solid var(--hairline); border-radius: var(--r-well); padding: 16px 18px; display: grid; gap: 8px; }
+.flag { background: var(--surface); border: 2px solid var(--ink); border-radius: var(--r-card); padding: 20px 22px; display: grid; gap: 10px; max-width: 780px; }
 .flag strong { font-family: var(--display); font-size: 1.15rem; }
 .strike { text-decoration: line-through; text-decoration-color: var(--bad); text-decoration-thickness: 3px; }
+.big { font-family: var(--display); font-weight: 800; font-size: clamp(2.4rem, 6vw, 3.4rem); color: var(--ink); line-height: 1; font-variant-numeric: tabular-nums; }
+.statrow { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 18px; align-items: center; }
+@media (max-width: 520px) { .statrow { grid-template-columns: 1fr; } }
 
-/* Video breakdown table */
-.table-wrap { overflow-x: auto; }
-table { border-collapse: collapse; width: 100%; min-width: 640px; font-size: 0.95rem; }
-th, td { text-align: left; vertical-align: top; padding: 12px 14px 12px 0; border-bottom: 1px solid var(--line); }
-th { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
-td:first-child { font-family: var(--mono); font-weight: 700; white-space: nowrap; }
-td.stage { white-space: nowrap; }
-.pill { display: inline-block; font-family: var(--mono); font-size: 0.7rem; font-weight: 700; padding: 2px 8px; border-radius: 99px; border: 1px solid currentColor; }
-.cold { color: var(--sky); } .warm { color: var(--warn); } .hot { color: var(--flare); }
-
-.rules { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
-.rule { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 16px 18px; display: grid; gap: 6px; align-content: start; }
-.rule h3 { font-size: 1.05rem; }
-.rule p { color: var(--muted); font-size: 0.95rem; }
-
-/* Cast */
-.cast { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
-.person { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 18px; display: grid; gap: 8px; align-content: start; }
-.person .role { font-family: var(--display); font-size: 1.35rem; font-weight: 800; }
-.person ul { margin: 0; padding-left: 1.1em; color: var(--muted); font-size: 0.95rem; }
-
-/* Phone mock-ups */
+/* phone mock-ups */
 .phones { display: grid; grid-template-columns: repeat(auto-fill, minmax(232px, 1fr)); gap: 28px 22px; }
 .ad { display: grid; gap: 12px; align-content: start; min-width: 0; }
 .ad-head { display: flex; align-items: baseline; gap: 10px; }
-.ad-num { font-family: var(--display); font-weight: 800; font-size: 1.6rem; color: var(--flare); line-height: 1; }
-.ad-name { font-family: var(--display); font-weight: 600; font-size: 1.1rem; }
-.phone {
-  position: relative; width: 100%; max-width: 280px; aspect-ratio: 9 / 16; border-radius: 26px; overflow: hidden;
-  background: var(--screen); color: var(--screen-fg); border: 6px solid var(--ink); box-shadow: 0 10px 28px rgb(0 0 0 / 0.18);
-  display: flex; flex-direction: column;
-}
-.ph-top { display: flex; align-items: center; gap: 8px; padding: 12px 12px 6px; font-size: 0.72rem; z-index: 2; }
-.ph-logo { width: 22px; height: 22px; border-radius: 50%; background: var(--flare); color: var(--flare-ink); display: grid; place-items: center; font-family: var(--display); font-weight: 800; font-size: 0.8rem; }
-.ph-top b { font-weight: 700; }
-.ph-top span { opacity: 0.7; }
+.ad-num { font-family: var(--display); font-weight: 800; font-size: 1.6rem; color: var(--primary); line-height: 1; }
+.ad-name { font-family: var(--display); font-weight: 700; font-size: 1.1rem; color: var(--ink); }
+.phone { position: relative; width: 100%; max-width: 280px; aspect-ratio: 9 / 16; border-radius: 28px; overflow: hidden; background: var(--navy); color: var(--cream); border: 6px solid var(--ink); box-shadow: 0 14px 34px rgba(11,42,69,.22); display: flex; flex-direction: column; }
+.ph-top { display: flex; align-items: center; gap: 8px; padding: 12px 12px 6px; font-size: 0.72rem; z-index: 2; color: var(--rail-text); }
+.ph-top b { font-family: var(--display); font-weight: 800; font-size: 0.95rem; color: var(--cream); }
 .scene { flex: 1; position: relative; padding: 8px 12px; display: grid; align-content: center; gap: 8px; min-height: 0; }
-.shown {
-  position: absolute; left: 10px; right: 10px; top: 14%; z-index: 3; background: var(--sticker); color: var(--sticker-ink);
-  font-family: var(--display); font-weight: 800; font-size: 1.12rem; line-height: 1.08; text-align: center; padding: 8px 10px;
-  transform: rotate(-2deg); border-radius: 4px; box-shadow: 0 3px 0 rgb(0 0 0 / 0.35); text-wrap: balance;
-}
+.shown { position: absolute; left: 10px; right: 10px; top: 14%; z-index: 3; background: var(--sky); color: var(--navy); font-family: var(--display); font-weight: 800; font-size: 1.12rem; line-height: 1.08; text-align: center; padding: 8px 10px; transform: rotate(-2deg); border-radius: 10px; box-shadow: 0 3px 0 rgba(0,0,0,.35); text-wrap: balance; }
 .said { padding: 6px 12px 8px; z-index: 2; font-weight: 700; font-size: 0.82rem; line-height: 1.3; }
-.said .w { background: var(--surface); color: var(--ink); padding: 1px 5px; border-radius: 3px; }
-.said .dim { opacity: 0.55; }
-.ph-cta { margin: 0 12px 14px; padding: 9px; border-radius: 8px; background: var(--flare); color: var(--flare-ink); font-weight: 700; font-size: 0.8rem; text-align: center; }
+.said .w { background: var(--cream); color: var(--ink); padding: 1px 5px; border-radius: 4px; }
+.said .dim { opacity: 0.6; }
+.ph-cta { margin: 0 12px 14px; padding: 9px; border-radius: 999px; background: var(--cream); color: var(--ink); font-weight: 700; font-size: 0.8rem; text-align: center; }
 .ad-specs { display: grid; gap: 6px; font-size: 0.92rem; }
 .spec { display: grid; grid-template-columns: 62px 1fr; gap: 8px; }
-.spec .label { padding-top: 3px; }
-
-/* Scene pieces */
+.spec .eyebrow { padding-top: 3px; }
 .texts { display: grid; gap: 6px; padding-top: 34%; }
-.bubble { background: var(--screen-2); border-radius: 12px; padding: 6px 9px; font-size: 0.7rem; line-height: 1.3; }
-.bubble i { display: block; font-style: normal; opacity: 0.6; font-size: 0.62rem; }
+.bubble { background: rgba(251,248,241,.12); border-radius: 12px; padding: 6px 9px; font-size: 0.7rem; line-height: 1.3; }
+.bubble i { display: block; font-style: normal; opacity: 0.65; font-size: 0.62rem; }
 .clock { position: absolute; right: 12px; bottom: 6px; font-family: var(--mono); font-size: 0.7rem; opacity: 0.7; }
-
 .apps { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding-top: 30%; }
-.app { background: var(--screen-2); border-radius: 8px; padding: 8px; font-family: var(--mono); font-size: 0.62rem; text-align: center; position: relative; }
+.app { background: rgba(251,248,241,.1); border: 1px solid rgba(169,188,204,.3); border-radius: 10px; padding: 8px; font-family: var(--mono); font-size: 0.62rem; text-align: center; position: relative; }
 .app:last-child { grid-column: 1 / -1; }
 .app::after { content: "×"; position: absolute; top: -7px; right: -5px; background: var(--bad); color: #fff; width: 16px; height: 16px; border-radius: 50%; font-size: 0.7rem; line-height: 16px; }
-
-.tag { justify-self: center; margin-top: 30%; background: var(--flare); color: var(--flare-ink); font-family: var(--display); font-weight: 800; padding: 16px 22px 12px; border-radius: 6px 6px 14px 14px; text-align: center; position: relative; }
-.tag::before { content: ""; position: absolute; top: 6px; left: 50%; width: 10px; height: 10px; margin-left: -5px; border-radius: 50%; background: var(--screen); }
-.tag big { display: block; font-size: 1.8rem; line-height: 1.1; padding-top: 6px; }
+.tagp { justify-self: center; margin-top: 30%; background: var(--cream); color: var(--ink); font-family: var(--display); font-weight: 800; padding: 16px 22px 12px; border-radius: 8px 8px 16px 16px; text-align: center; position: relative; }
+.tagp::before { content: ""; position: absolute; top: 6px; left: 50%; width: 10px; height: 10px; margin-left: -5px; border-radius: 50%; background: var(--navy); }
+.tagp big { display: block; font-size: 1.8rem; line-height: 1.1; padding-top: 6px; }
+.tagp small { display: block; font-family: var(--sans); font-weight: 600; font-size: 0.7rem; color: var(--body); }
 .checks { display: grid; gap: 3px; font-size: 0.68rem; padding: 0 6px; }
-.checks div::before { content: "✓ "; color: var(--good); font-weight: 700; }
-
-.rally-ui { margin-top: 30%; background: var(--surface); color: var(--ink); border-radius: 8px; padding: 9px; display: grid; gap: 6px; font-size: 0.66rem; }
-.rally-ui .row { display: flex; justify-content: space-between; align-items: center; gap: 6px; border-bottom: 1px solid var(--line); padding-bottom: 5px; }
+.checks div::before { content: "✓ "; color: var(--sky); font-weight: 700; }
+.rally-ui { margin-top: 30%; background: var(--cream); color: var(--ink); border-radius: 12px; padding: 9px; display: grid; gap: 6px; font-size: 0.66rem; }
+.rally-ui .row { display: flex; justify-content: space-between; align-items: center; gap: 6px; border-bottom: 1px solid var(--hairline); padding-bottom: 5px; }
 .rally-ui .row:last-child { border-bottom: 0; padding-bottom: 0; }
 .dots { display: flex; gap: 3px; }
-.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--good); }
-.dot.y { background: var(--warn); } .dot.r { background: var(--bad); }
-.rec { position: absolute; top: 12%; left: 12px; font-family: var(--mono); font-size: 0.6rem; background: var(--bad); color: #fff; padding: 1px 6px; border-radius: 3px; z-index: 4; }
-.facecam { position: absolute; right: 12px; bottom: 6px; width: 54px; height: 54px; border-radius: 50%; background: var(--screen-2); border: 2px solid var(--flare); display: grid; place-items: center; font-family: var(--mono); font-size: 0.55rem; text-align: center; line-height: 1.1; }
-
+.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--ok); }
+.rec { position: absolute; top: 12%; left: 12px; font-family: var(--mono); font-size: 0.6rem; background: var(--bad); color: #fff; padding: 1px 6px; border-radius: 4px; z-index: 4; }
+.facecam { position: absolute; right: 12px; bottom: 6px; width: 54px; height: 54px; border-radius: 50%; background: rgba(251,248,241,.12); border: 2px solid var(--sky); display: grid; place-items: center; font-family: var(--mono); font-size: 0.55rem; text-align: center; line-height: 1.1; }
 .bignum { margin-top: 32%; text-align: center; display: grid; gap: 2px; }
-.bignum big { font-family: var(--display); font-weight: 800; font-size: 2.6rem; line-height: 1; color: var(--sticker); }
-.bignum span { font-size: 0.74rem; opacity: 0.8; }
-.bignum .zero big { color: var(--good); }
+.bignum big { font-family: var(--display); font-weight: 800; font-size: 2.6rem; line-height: 1; color: var(--sky); }
+.bignum span { font-size: 0.74rem; opacity: 0.85; }
 
-/* Storyboards */
+/* storyboards, funnel, weeks */
 .boards { display: grid; gap: 28px; }
 .board { display: grid; gap: 10px; }
 .beats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
-.beat { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 12px 14px; display: grid; gap: 6px; align-content: start; font-size: 0.9rem; }
-.beat .t { font-family: var(--mono); font-size: 0.7rem; font-weight: 700; color: var(--flare); }
-.beat .v { color: var(--muted); font-size: 0.85rem; }
-
-/* Funnel + calendar */
-.funnel { display: grid; gap: 8px; max-width: 760px; }
-.tier { display: grid; grid-template-columns: 110px 1fr; gap: 14px; align-items: start; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 14px 16px; }
-.tier p { color: var(--muted); font-size: 0.95rem; }
+.beat { background: var(--surface); border: 1px solid var(--card-line); border-radius: var(--r-well); padding: 12px 14px; display: grid; gap: 6px; align-content: start; font-size: 0.9rem; }
+.beat .t { font-family: var(--mono); font-size: 0.7rem; font-weight: 600; color: var(--primary); }
+.beat .v { color: var(--label); font-size: 0.85rem; }
+.tiers { display: grid; gap: 8px; max-width: 800px; }
+.tier { display: grid; grid-template-columns: 110px 1fr; gap: 14px; align-items: start; background: var(--surface); border: 1px solid var(--card-line); border-radius: var(--r-well); padding: 14px 16px; }
+.tier p { font-size: 0.95rem; }
+@media (max-width: 520px) { .tier { grid-template-columns: 1fr; gap: 6px; } }
 .weeks { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; }
 .week { border-top: 3px solid var(--ink); padding-top: 10px; display: grid; gap: 6px; align-content: start; }
-.week ul { margin: 0; padding-left: 1.1em; color: var(--muted); font-size: 0.94rem; }
+.week b { font-family: var(--display); }
+.week ul { margin: 0; padding-left: 1.1em; font-size: 0.94rem; }
 .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
-.kpi { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 14px 16px; display: grid; gap: 4px; }
-.kpi b { font-family: var(--display); font-size: 1.5rem; font-variant-numeric: tabular-nums; }
-.kpi p { color: var(--muted); font-size: 0.88rem; }
+.kpi { background: var(--surface); border: 1px solid var(--card-line); border-radius: var(--r-card); padding: 14px 16px; display: grid; gap: 4px; }
+.kpi .v { font-family: var(--display); font-weight: 700; font-size: 1.5rem; color: var(--ink); font-variant-numeric: tabular-nums; }
+.kpi p { font-size: 0.88rem; }
 
-.paths { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
-.path { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 18px; display: grid; gap: 8px; align-content: start; }
-.path.pick { border: 2px solid var(--flare); }
-.path p, .path li { color: var(--muted); font-size: 0.94rem; }
-.path ul { margin: 0; padding-left: 1.1em; }
-ol.next { margin: 0; padding-left: 1.3em; display: grid; gap: 8px; max-width: 720px; }
-a { color: var(--sky); }
-:focus-visible { outline: 3px solid var(--sky); outline-offset: 2px; }
+/* tools */
+.tool { background: var(--surface); border: 1px solid var(--card-line); border-radius: var(--r-card); padding: 20px 22px; display: grid; gap: 14px; max-width: 860px; }
+.checklist { list-style: none; margin: 0; padding: 0; display: grid; }
+.checklist li { border-top: 1px solid var(--hairline); }
+.checklist li:first-child { border-top: 0; }
+.checklist label { display: grid; grid-template-columns: 24px minmax(0, 1fr); gap: 12px; align-items: start; padding: 11px 0; cursor: pointer; font-size: 0.96rem; color: var(--ink); }
+.checklist input { width: 20px; height: 20px; margin: 2px 0 0; accent-color: var(--primary); }
+.verdict { border-radius: var(--r-well); padding: 12px 14px; font-weight: 600; font-size: 0.96rem; }
+.v-ok { background: var(--ok-bg); color: var(--ok-ink); } .v-warn { background: var(--warn-bg); color: var(--warn-ink); } .v-bad { background: var(--bad-bg); color: var(--bad-ink); }
+.calc { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+.calc label { display: grid; gap: 6px; font-weight: 600; color: var(--ink); font-size: 0.94rem; }
+.calc label span { font-weight: 400; color: var(--label); font-size: 0.85rem; }
+.calc input { min-height: 44px; border-radius: 12px; border: 1px solid var(--field); background: var(--surface); padding: 0 14px; font: inherit; color: var(--ink); font-variant-numeric: tabular-nums; width: 100%; }
+.outs { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; }
+.out { background: var(--well); border: 1px solid var(--hairline); border-radius: var(--r-well); padding: 12px 14px; display: grid; gap: 2px; }
+.out .k { font-size: 0.84rem; color: var(--label); font-weight: 600; }
+.out .v { font-family: var(--display); font-weight: 700; font-size: 1.6rem; color: var(--ink); font-variant-numeric: tabular-nums; }
+.formmock { background: var(--surface); border: 1px solid var(--card-line); border-radius: 20px; padding: 22px; display: grid; gap: 14px; max-width: 420px; }
+.formmock .wmk { font-family: var(--display); font-weight: 800; font-size: 22px; color: var(--ink); }
+.formmock h3 { font-size: 1.45rem; }
+.fm-field { display: grid; gap: 6px; }
+.fm-field .l { font-weight: 600; color: var(--ink); font-size: 0.94rem; }
+.fm-input { min-height: 44px; border-radius: 999px; border: 1px solid var(--field); padding: 0 16px; display: flex; align-items: center; color: var(--label); font-size: 0.94rem; }
+.fm-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.fm-chip { min-height: 40px; padding: 0 16px; border-radius: 999px; border: 1px solid var(--outline); display: inline-flex; align-items: center; font-weight: 600; font-size: 0.9rem; color: var(--body); }
+.fm-chip.on { border-color: var(--ink); color: var(--ink); background: var(--chip-on); }
+.fm-btn { min-height: 48px; border-radius: 999px; background: var(--primary); color: var(--on-primary); font-weight: 700; display: flex; align-items: center; justify-content: center; }
+.fm-note { font-size: 0.8rem; color: var(--label); }
+.twoup { display: grid; grid-template-columns: minmax(0, 420px) minmax(0, 1fr); gap: 24px; align-items: start; }
+@media (max-width: 820px) { .twoup { grid-template-columns: 1fr; } }
+pre.prompt { margin: 0; white-space: pre-wrap; font-family: var(--mono); font-size: 0.84rem; line-height: 1.55; background: var(--well); border: 1px solid var(--hairline); border-radius: var(--r-well); padding: 14px 16px; color: var(--ink); overflow-x: auto; }
+.email { background: var(--surface); border: 1px solid var(--card-line); border-radius: var(--r-card); padding: 18px 20px; display: grid; gap: 10px; max-width: 640px; font-size: 0.96rem; }
+.email .subj { font-family: var(--mono); font-size: 0.8rem; color: var(--label); }
+ol.next { margin: 0; padding-left: 1.3em; display: grid; gap: 8px; max-width: 740px; }
 </style>
 
+<div class="band">
+<header class="wrap">
+  <span class="wm">Rally</span>
+  <span class="eyebrow">Meta ads plan · Oct 2026</span>
+  <h1>Five hooks for Rally</h1>
+  <p class="lede">The video you sent teaches five ways to open a SaaS ad on Meta, plus two rules for the first three seconds. This page applies all of it to Rally and mobile party operators. The second half adapts the <b>Demo Form Kit</b> to Rally's Start free signup, because the ads only work if Meta can learn who signs up.</p>
+  <nav class="jump" aria-label="Sections">
+    <a href="#ads">The ads</a>
+    <a href="#form">The signup form</a>
+    <a href="#videos">Making the videos</a>
+    <a href="#next">Next steps</a>
+  </nav>
+</header>
+</div>
+
+<div class="page">
 <div class="wrap">
 
-<header>
-  <span class="label">Rally · Meta ads plan · Oct 2026</span>
-  <h1>Five hooks for Rally</h1>
-  <p class="lede">The video you sent teaches five ways to open a SaaS ad on Meta, plus two rules for the first three seconds. This page applies all of it to Rally and mobile party operators. It covers the plan, five scripted ads with mock-ups, and how we could turn them into real videos with you and Chris.</p>
-  <div class="meta">
-    <span class="label">Source: 2:18 vertical explainer</span>
-    <span class="label"><span class="fill">[like this]</span> = fill with real Rally data</span>
-  </div>
-</header>
+<div class="part" id="ads">
+  <span class="eyebrow">Part 1</span>
+  <h2>The ads</h2>
+  <p class="muted"><span class="fill">[like this]</span> marks something to fill with real Rally data before it runs.</p>
+</div>
 
 <section>
-  <span class="label">01 · What the video teaches</span>
+  <span class="eyebrow">01 · What the video teaches</span>
   <h2>A "meet the platform" opener isn't a hook</h2>
-  <div class="col" style="display:grid;gap:14px">
-    <p>The video opens on a fake ad that reads "Meet the all-in-one platform for modern finance teams." It calls that a nametag: the viewer skips it in under half a second because it says what the product is and nothing about them. It then walks through five hook types that work for B2B SaaS on Meta right now, and says to run all five because each one reaches a different buyer.</p>
-  </div>
+  <p class="col">The video opens on a fake ad that reads "Meet the all-in-one platform for modern finance teams." It calls that a nametag: the viewer skips it in under half a second because it says what the product is and nothing about them. It then walks through five hook types that work for B2B SaaS on Meta right now, and says to run all five because each one reaches a different buyer.</p>
   <div class="table-wrap">
     <table>
       <thead><tr><th>Hook</th><th>What it does</th><th>Example from the video</th><th>Funnel</th></tr></thead>
       <tbody>
-        <tr><td>1 Circumstance</td><td>Describes the viewer's exact moment so precisely they think "that's me."</td><td>"It's the third day of month-end close, you're still matching invoices by hand, and your CFO just asked why the numbers don't tie out."</td><td class="stage"><span class="pill cold">Cold</span></td></tr>
-        <tr><td>2 Real reason</td><td>Names the true cause of the pain. You teach the mechanism first, then show the product fixing it.</td><td>"The real reason your close takes ten days isn't your team. It's that your data lives in four tools that don't talk to each other."</td><td class="stage"><span class="pill cold">Cold</span></td></tr>
-        <tr><td>3 Price tag</td><td>Says the price in the first line. It scares off people who could never buy, so the leads you do get already know the number.</td><td>"$20,000 a year. Here's what you get."</td><td class="stage"><span class="pill hot">Know you</span></td></tr>
-        <tr><td>4 Receipt</td><td>"Just finished setting this up for a customer," then a real screen share. It plays like a case study, not an ad.</td><td>Screen share of the actual dashboard and workflow.</td><td class="stage"><span class="pill warm">Warm</span></td></tr>
-        <tr><td>5 Proof drop</td><td>Opens on a specific customer result. A hard number buys about ten more seconds if it's true and you can back it up.</td><td>"Nx customer result," specific and real.</td><td class="stage"><span class="pill warm">Warm</span></td></tr>
+        <tr><td>1 Circumstance</td><td>Describes the viewer's exact moment so precisely they think "that's me."</td><td>"It's the third day of month-end close, you're still matching invoices by hand, and your CFO just asked why the numbers don't tie out."</td><td><span class="tag t-info">Cold</span></td></tr>
+        <tr><td>2 Real reason</td><td>Names the true cause of the pain. You teach the mechanism first, then show the product fixing it.</td><td>"The real reason your close takes ten days isn't your team. It's that your data lives in four tools that don't talk to each other."</td><td><span class="tag t-info">Cold</span></td></tr>
+        <tr><td>3 Price tag</td><td>Says the price in the first line. It scares off people who could never buy, so the leads you do get already know the number.</td><td>"$20,000 a year. Here's what you get."</td><td><span class="tag t-bad">Know you</span></td></tr>
+        <tr><td>4 Receipt</td><td>"Just finished setting this up for a customer," then a real screen share. It plays like a case study, not an ad.</td><td>Screen share of the actual dashboard and workflow.</td><td><span class="tag t-warn">Warm</span></td></tr>
+        <tr><td>5 Proof drop</td><td>Opens on a specific customer result. A hard number buys about ten more seconds if it's true and you can back it up.</td><td>"Nx customer result," specific and real.</td><td><span class="tag t-warn">Warm</span></td></tr>
       </tbody>
     </table>
   </div>
-  <div class="rules">
-    <div class="rule"><span class="label">Rule</span><h3>Two hooks in three seconds</h3><p>The on-screen text should say something different from the spoken line. Muted viewers get one hook and viewers with sound get two. If the text only repeats the caption, it adds nothing.</p></div>
-    <div class="rule"><span class="label">Rule</span><h3>Bin the nametag and feature list</h3><p>"All-in-one platform" and a list of features both go in the trash. Neither one gives the viewer a reason to stop scrolling.</p></div>
-    <div class="rule"><span class="label">Tactic</span><h3>Comment-keyword CTA</h3><p>The video ends with "Comment OPENER and I'll send you the doc." The comments push reach up and the DMs give you a lead list.</p></div>
+  <div class="grid">
+    <div class="card"><span class="eyebrow">Rule</span><h3>Two hooks in three seconds</h3><p>The on-screen text should say something different from the spoken line. Muted viewers get one hook and viewers with sound get two. If the text only repeats the caption, it adds nothing.</p></div>
+    <div class="card"><span class="eyebrow">Rule</span><h3>Bin the nametag and feature list</h3><p>"All-in-one platform" and a list of features both go in the trash. Neither one gives the viewer a reason to stop scrolling.</p></div>
+    <div class="card"><span class="eyebrow">Tactic</span><h3>Comment-keyword CTA</h3><p>The video ends with "Comment OPENER and I'll send you the doc." The comments push reach up and the DMs give you a lead list.</p></div>
   </div>
 </section>
 
 <section>
-  <span class="label">02 · What this means for Rally</span>
+  <span class="eyebrow">02 · What this means for Rally</span>
   <h2>Rally's headline is a nametag right now</h2>
   <div class="flag">
     <strong>Our own words: <span class="strike">"All-in-one command center for mobile entertainment businesses."</span></strong>
     <p>That's exactly the line the video throws away. The idea behind it is good, but it's in the wrong spot. "Rally replaces the 3–5 tools you're stitching together" is a strong <em>Real reason</em> hook once we tell it from the operator's side. Keep "Rally your crew. Run your day." as the closing line on the end card. It shouldn't be the opener.</p>
   </div>
-  <div class="col" style="display:grid;gap:14px">
+  <div class="col stack">
     <p><b>Who we're talking to:</b> owner-operators of foam parties, game trucks, mobile laser tag, bubble shows, escape trailers and similar businesses. They work from a phone, usually with 1–3 crews, and run bookings out of a Google Form, a calendar, Square or Wave, a PDF waiver and a group text. Their worst hours are Friday night and Saturday morning.</p>
     <p><b>What they feel (the circumstance):</b> chasing deposits by text, a waiver unsigned at setup, a crew member who doesn't know the address, a mom asking "what time are you coming?" at 11 p.m.</p>
     <p><b>Why it happens (the real reason):</b> booking, payment, paperwork and crew live in separate apps, and the operator is the cable connecting them.</p>
@@ -233,46 +239,29 @@ a { color: var(--sky); }
 </section>
 
 <section>
-  <span class="label">03 · On camera</span>
+  <span class="eyebrow">03 · On camera</span>
   <h2>One presenter: you or Chris</h2>
   <p class="col">Each ad has one person talking straight to the phone camera, with Rally screen recordings and simple on-screen graphics cut in. Either of you can present all five. A couple of things to weigh:</p>
-  <div class="cast">
-    <div class="person">
-      <span class="label">If it's Chris</span>
-      <span class="role">The voice operators know</span>
-      <ul>
-        <li>The operator groups already trust him</li>
-        <li>The circumstance hooks land hardest from someone who has lived them</li>
-        <li>The same videos can go up as posts in the groups</li>
-      </ul>
-    </div>
-    <div class="person">
-      <span class="label">If it's Danny</span>
-      <span class="role">The operator who built it</span>
-      <ul>
-        <li>Runs five brands on Rally day to day</li>
-        <li>The receipt and proof drop are his real bookings and numbers</li>
-        <li>Can screen-record on his own phone between events</li>
-      </ul>
-    </div>
+  <div class="grid">
+    <div class="card"><span class="eyebrow">If it's Chris</span><h3>The voice operators know</h3><ul><li>The operator groups already trust him</li><li>The circumstance hooks land hardest from someone who has lived them</li><li>The same videos can go up as posts in the groups</li></ul></div>
+    <div class="card"><span class="eyebrow">If it's Danny</span><h3>The operator who built it</h3><ul><li>Runs five brands on Rally day to day</li><li>The receipt and proof drop are his real bookings and numbers</li><li>Can screen-record on his own phone between events</li></ul></div>
   </div>
 </section>
 
 <section>
-  <span class="label">04 · The five ads</span>
+  <span class="eyebrow">04 · The five ads</span>
   <h2>Mock-ups: the first three seconds</h2>
-  <p class="col" style="color:var(--muted)">Each phone shows the hook frame. The yellow sticker is the <b>shown</b> hook (on-screen text) and the caption is the <b>said</b> hook (spoken line). They're deliberately different. Everything after the hook is in the storyboards below.</p>
-
+  <p class="col">Each phone shows the hook frame. The blue sticker is the <b>shown</b> hook (on-screen text) and the caption is the <b>said</b> hook (spoken line). They're deliberately different. Everything after the hook is in the storyboards below.</p>
   <div class="phones">
 
     <article class="ad">
       <div class="ad-head"><span class="ad-num">1</span><span class="ad-name">Circumstance</span></div>
       <div class="phone" role="img" aria-label="Ad 1 mock-up: late-night parent texts with sticker reading 4 parties tomorrow, 0 deposits confirmed">
-        <div class="ph-top"><div class="ph-logo">R</div><b>Rally</b><span>· Sponsored</span></div>
+        <div class="ph-top"><b>Rally</b><span>· Sponsored</span></div>
         <div class="scene">
           <div class="shown">4 parties tomorrow.<br>0 deposits confirmed.</div>
           <div class="texts">
-            <div class="bubble"><i>Jess (Ava's bday)</i>did u get my deposit?? 🫧</div>
+            <div class="bubble"><i>Jess (Ava's bday)</i>did u get my deposit??</div>
             <div class="bubble"><i>Mark R.</i>what time are you guys coming</div>
             <div class="bubble"><i>Unknown</i>do we need to sign something?</div>
           </div>
@@ -282,68 +271,64 @@ a { color: var(--sky); }
         <div class="ph-cta">Comment SATURDAY</div>
       </div>
       <div class="ad-specs">
-        <div class="spec"><span class="label">Said</span><span>"It's Friday night, you've got four parties tomorrow, and you're still texting three moms to find out who paid the deposit."</span></div>
-        <div class="spec"><span class="label">Who</span><span>Presenter to camera, in the truck or the shop</span></div>
+        <div class="spec"><span class="eyebrow">Said</span><span>"It's Friday night, you've got four parties tomorrow, and you're still texting three moms to find out who paid the deposit."</span></div>
+        <div class="spec"><span class="eyebrow">Who</span><span>Presenter to camera, in the truck or the shop</span></div>
       </div>
     </article>
 
     <article class="ad">
       <div class="ad-head"><span class="ad-num">2</span><span class="ad-name">Real reason</span></div>
       <div class="phone" role="img" aria-label="Ad 2 mock-up: five disconnected app tiles with sticker reading It's not you. It's your 5 apps.">
-        <div class="ph-top"><div class="ph-logo">R</div><b>Rally</b><span>· Sponsored</span></div>
+        <div class="ph-top"><b>Rally</b><span>· Sponsored</span></div>
         <div class="scene">
           <div class="shown">It's not you.<br>It's your 5 apps.</div>
           <div class="apps">
-            <div class="app">Booking form</div>
-            <div class="app">Calendar</div>
-            <div class="app">Card reader</div>
-            <div class="app">PDF waiver</div>
-            <div class="app">Crew group text</div>
+            <div class="app">Booking form</div><div class="app">Calendar</div><div class="app">Card reader</div><div class="app">PDF waiver</div><div class="app">Crew group text</div>
           </div>
         </div>
         <p class="said"><span class="w">The real reason you're doing admin at midnight</span> <span class="dim">isn't that you're disorganized.</span></p>
-        <div class="ph-cta">Learn more</div>
+        <div class="ph-cta">Start free</div>
       </div>
       <div class="ad-specs">
-        <div class="spec"><span class="label">Said</span><span>"The real reason you're doing admin at midnight isn't that you're disorganized. It's that your bookings, payments, waivers and crew live in five apps that don't talk to each other."</span></div>
-        <div class="spec"><span class="label">Who</span><span>Presenter to camera, then animated app tiles</span></div>
+        <div class="spec"><span class="eyebrow">Said</span><span>"The real reason you're doing admin at midnight isn't that you're disorganized. It's that your bookings, payments, waivers and crew live in five apps that don't talk to each other."</span></div>
+        <div class="spec"><span class="eyebrow">Who</span><span>Presenter to camera, then animated app tiles</span></div>
       </div>
     </article>
 
     <article class="ad">
       <div class="ad-head"><span class="ad-num">3</span><span class="ad-name">Price tag</span></div>
-      <div class="phone" role="img" aria-label="Ad 3 mock-up: price tag with placeholder monthly price and feature checks, sticker reading Less than one party">
-        <div class="ph-top"><div class="ph-logo">R</div><b>Rally</b><span>· Sponsored</span></div>
+      <div class="phone" role="img" aria-label="Ad 3 mock-up: price tag reading 10 dollars per booking with sticker reading No booking, no bill">
+        <div class="ph-top"><b>Rally</b><span>· Sponsored</span></div>
         <div class="scene">
-          <div class="shown">Costs less than<br>one party a month.</div>
-          <div class="tag">Rally Pro<big>$[XX]/mo</big></div>
+          <div class="shown">No booking.<br>No bill.</div>
+          <div class="tagp">Rally<big>$10</big><small>per confirmed booking</small></div>
           <div class="checks">
             <div>Booking page + deposits</div>
             <div>Waivers signed on their phone</div>
             <div>Crew gets the address + gear list</div>
-            <div>19 reminders that send themselves</div>
+            <div>Reminders that send themselves</div>
           </div>
         </div>
-        <p class="said"><span class="w">Rally is [$XX] a month.</span> <span class="dim">Here's exactly what you get.</span></p>
-        <div class="ph-cta">Start free trial</div>
+        <p class="said"><span class="w">Rally is ten dollars a booking.</span> <span class="dim">You don't pay a cent until someone books.</span></p>
+        <div class="ph-cta">Start free</div>
       </div>
       <div class="ad-specs">
-        <div class="spec"><span class="label">Said</span><span>"Rally is <span class="fill">[$XX]</span> a month. Here's exactly what you get, and what it replaces."</span></div>
-        <div class="spec"><span class="label">Who</span><span>Presenter. Retargeting only.</span></div>
+        <div class="spec"><span class="eyebrow">Said</span><span>"Rally is ten dollars a booking. You don't pay a cent until someone books. Here's what that ten dollars does."</span></div>
+        <div class="spec"><span class="eyebrow">Who</span><span>Presenter. Retargeting only. Price is from your Trial and Pays For Itself designs, so <span class="fill">[confirm it's live]</span>.</span></div>
       </div>
     </article>
 
     <article class="ad">
       <div class="ad-head"><span class="ad-num">4</span><span class="ad-name">Receipt</span></div>
       <div class="phone" role="img" aria-label="Ad 4 mock-up: Rally booking screen with confidence dots and a face cam, sticker reading Real booking, no edits">
-        <div class="ph-top"><div class="ph-logo">R</div><b>Rally</b><span>· Sponsored</span></div>
+        <div class="ph-top"><b>Rally</b><span>· Sponsored</span></div>
         <div class="scene">
           <span class="rec">● REC</span>
           <div class="shown">Real booking.<br>Real Saturday. No edits.</div>
           <div class="rally-ui">
             <div class="row"><b>Sat · Foam Party Deluxe</b><span class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></span></div>
-            <div class="row"><span>Deposit</span><b style="color:var(--good)">Paid</b></div>
-            <div class="row"><span>Waiver</span><b style="color:var(--good)">Signed</b></div>
+            <div class="row"><span>Deposit</span><b style="color:var(--ok)">Paid</b></div>
+            <div class="row"><span>Waiver</span><b style="color:var(--ok)">Signed</b></div>
             <div class="row"><span>Crew</span><b>2 confirmed</b></div>
           </div>
           <div class="facecam">Face<br>cam</div>
@@ -352,28 +337,28 @@ a { color: var(--sky); }
         <div class="ph-cta">Learn more</div>
       </div>
       <div class="ad-specs">
-        <div class="spec"><span class="label">Said</span><span>"I just set up Saturday's foam party for a customer. Watch what happens the second she books."</span></div>
-        <div class="spec"><span class="label">Who</span><span>Presenter on face cam over a phone screen recording</span></div>
+        <div class="spec"><span class="eyebrow">Said</span><span>"I just set up Saturday's foam party for a customer. Watch what happens the second she books."</span></div>
+        <div class="spec"><span class="eyebrow">Who</span><span>Presenter on face cam over a phone screen recording</span></div>
       </div>
     </article>
 
     <article class="ad">
       <div class="ad-head"><span class="ad-num">5</span><span class="ad-name">Proof drop</span></div>
       <div class="phone" role="img" aria-label="Ad 5 mock-up: large booking count and zero chased waivers, placeholders for real numbers">
-        <div class="ph-top"><div class="ph-logo">R</div><b>Rally</b><span>· Sponsored</span></div>
+        <div class="ph-top"><b>Rally</b><span>· Sponsored</span></div>
         <div class="scene">
           <div class="shown">5 brands. 1 app.<br>0 waivers chased.</div>
           <div class="bignum">
             <div><big>[X]</big><span>bookings last season</span></div>
-            <div class="zero"><big>0</big><span>waivers chased by hand</span></div>
+            <div><big>0</big><span>waivers chased by hand</span></div>
           </div>
         </div>
         <p class="said"><span class="w">[X] bookings last season,</span> <span class="dim">and I never once chased a waiver by text.</span></p>
         <div class="ph-cta">Comment SATURDAY</div>
       </div>
       <div class="ad-specs">
-        <div class="spec"><span class="label">Said</span><span>"<span class="fill">[X]</span> bookings last season across five brands, and I never chased a single waiver by text."</span></div>
-        <div class="spec"><span class="label">Who</span><span>Presenter, then a cut to the Rally dashboard</span></div>
+        <div class="spec"><span class="eyebrow">Said</span><span>"<span class="fill">[X]</span> bookings last season across five brands, and I never chased a single waiver by text."</span></div>
+        <div class="spec"><span class="eyebrow">Who</span><span>Presenter, then a cut to the Rally dashboard</span></div>
       </div>
     </article>
 
@@ -381,13 +366,12 @@ a { color: var(--sky); }
 </section>
 
 <section>
-  <span class="label">05 · Storyboards</span>
+  <span class="eyebrow">05 · Storyboards</span>
   <h2>Beat by beat</h2>
-  <p class="col" style="color:var(--muted)">Each ad runs 30–45 seconds: hook, then teach, then show Rally, then the CTA. Every ad ends on the same card so the brand builds up over repeat views.</p>
+  <p class="col">Each ad runs 30–45 seconds: hook, then teach, then show Rally, then the CTA. Every ad ends on the same card so the brand builds up over repeat views.</p>
   <div class="boards">
-
     <div class="board">
-      <h3>1 · Circumstance <span class="pill cold">Cold</span></h3>
+      <h3>1 · Circumstance <span class="tag t-info">Cold</span></h3>
       <div class="beats">
         <div class="beat"><span class="t">0–3s · Hook</span><p>Presenter, phone in hand: "It's Friday night, you've got four parties tomorrow…"</p><p class="v">Sticker: 4 parties tomorrow. 0 deposits confirmed.</p></div>
         <div class="beat"><span class="t">3–12s · Twist the knife</span><p>"…one waiver's unsigned, and your new guy doesn't know the address."</p><p class="v">Quick cuts of text bubbles stacking up.</p></div>
@@ -395,29 +379,26 @@ a { color: var(--sky); }
         <div class="beat"><span class="t">30–40s · CTA</span><p>"Comment SATURDAY and I'll send you the exact reminders we automate."</p><p class="v">End card: Rally your crew. Run your day.</p></div>
       </div>
     </div>
-
     <div class="board">
-      <h3>2 · Real reason <span class="pill cold">Cold</span></h3>
+      <h3>2 · Real reason <span class="tag t-info">Cold</span></h3>
       <div class="beats">
         <div class="beat"><span class="t">0–3s · Hook</span><p>"The real reason you're doing admin at midnight isn't that you're disorganized."</p><p class="v">Sticker: It's not you. It's your 5 apps.</p></div>
         <div class="beat"><span class="t">3–15s · Teach</span><p>"Your booking's in a form, the money's in Square, the waiver's a PDF and your crew's in a group text. You're the cable between them."</p><p class="v">Five tiles, a red × on every connection.</p></div>
         <div class="beat"><span class="t">15–32s · Fix</span><p>"In Rally, one booking does all of it: the invoice goes out, the waiver goes out, crew gets assigned, reminders get scheduled."</p><p class="v">Tiles snap into one Rally hub.</p></div>
-        <div class="beat"><span class="t">32–40s · CTA</span><p>"Teach first, sell second." Learn more, or start a trial.</p><p class="v">End card.</p></div>
+        <div class="beat"><span class="t">32–40s · CTA</span><p>"Teach first, sell second." Start free.</p><p class="v">End card.</p></div>
       </div>
     </div>
-
     <div class="board">
-      <h3>3 · Price tag <span class="pill hot">Retarget</span></h3>
+      <h3>3 · Price tag <span class="tag t-bad">Retarget</span></h3>
       <div class="beats">
-        <div class="beat"><span class="t">0–3s · Hook</span><p>"Rally is <span class="fill">[$XX]</span> a month. Here's exactly what you get."</p><p class="v">Sticker: Costs less than one party a month.</p></div>
-        <div class="beat"><span class="t">3–20s · List</span><p>Booking page, deposits and auto-billing, waivers on phones, crew portal, 19 automations, client portal.</p><p class="v">Each item checks off over the matching screen.</p></div>
+        <div class="beat"><span class="t">0–3s · Hook</span><p>"Rally is ten dollars a booking. You don't pay a cent until someone books."</p><p class="v">Sticker: No booking. No bill.</p></div>
+        <div class="beat"><span class="t">3–20s · List</span><p>Booking page, deposits and auto-billing, waivers on phones, crew portal, automatic reminders, client portal.</p><p class="v">Each item checks off over the matching screen.</p></div>
         <div class="beat"><span class="t">20–30s · Compare</span><p>"Add up what you pay now for forms, e-sign and texting. Then add your Friday nights."</p><p class="v">Their stack added up against one Rally line.</p></div>
-        <div class="beat"><span class="t">30–35s · CTA</span><p>"Free trial. Your booking link is live today."</p><p class="v">Show only to site visitors and video viewers.</p></div>
+        <div class="beat"><span class="t">30–35s · CTA</span><p>"Start free. Your booking page is live today."</p><p class="v">Show only to site visitors and video viewers.</p></div>
       </div>
     </div>
-
     <div class="board">
-      <h3>4 · Receipt <span class="pill warm">Warm</span></h3>
+      <h3>4 · Receipt <span class="tag t-warn">Warm</span></h3>
       <div class="beats">
         <div class="beat"><span class="t">0–3s · Hook</span><p>Presenter on face cam: "I just set up Saturday's foam party for a customer. Watch what happens when she books."</p><p class="v">Sticker: Real booking. Real Saturday. No edits.</p></div>
         <div class="beat"><span class="t">3–20s · Walk through</span><p>A real booking comes in, the deposit invoice sends itself, the waiver link goes out, and the crew gets a text.</p><p class="v">Phone screen recording with real taps. Blur the client's name.</p></div>
@@ -425,9 +406,8 @@ a { color: var(--sky); }
         <div class="beat"><span class="t">30–38s · CTA</span><p>"That's the whole admin side of a party. Learn more."</p><p class="v">End card.</p></div>
       </div>
     </div>
-
     <div class="board">
-      <h3>5 · Proof drop <span class="pill warm">Warm</span></h3>
+      <h3>5 · Proof drop <span class="tag t-warn">Warm</span></h3>
       <div class="beats">
         <div class="beat"><span class="t">0–3s · Hook</span><p>"<span class="fill">[X]</span> bookings last season across five brands, and I never chased a waiver by text."</p><p class="v">Sticker: 5 brands. 1 app. 0 waivers chased.</p></div>
         <div class="beat"><span class="t">3–15s · Back it up</span><p>Show the real dashboard: revenue by brand, signed documents count, <span class="fill">[avg days to payment]</span>.</p><p class="v">Real screenshot, nothing mocked.</p></div>
@@ -435,64 +415,422 @@ a { color: var(--sky); }
         <div class="beat"><span class="t">30–38s · CTA</span><p>"Comment SATURDAY and I'll send you our setup."</p><p class="v">End card.</p></div>
       </div>
     </div>
-
   </div>
 </section>
 
 <section>
-  <span class="label">06 · Plan</span>
+  <span class="eyebrow">06 · Plan</span>
   <h2>Where each ad runs</h2>
-  <div class="funnel">
-    <div class="tier"><span class="pill cold">Cold</span><div><b>Circumstance + Real reason</b><p>Meta Reels and Feed. Target interests around party rental, inflatables, event entertainment and small business owners, plus lookalikes of current Rally users. Make one circumstance version per niche (foam, game truck, laser tag, bubbles), since each one reaches a different operator.</p></div></div>
-    <div class="tier"><span class="pill warm">Warm</span><div><b>Receipt + Proof drop</b><p>Anyone who watched 50% or more of a cold ad, commented, or visited the site. Chris also posts these organically in the operator groups.</p></div></div>
-    <div class="tier"><span class="pill hot">Know you</span><div><b>Price tag</b><p>Site visitors, trial starters who haven't connected Stripe, and anyone who commented SATURDAY. These people already know you, so the price filters for real buyers.</p></div></div>
+  <div class="tiers">
+    <div class="tier"><span class="tag t-info">Cold</span><div><b>Circumstance + Real reason</b><p>Meta Reels and Feed. Target interests around party rental, inflatables, event entertainment and small business owners, plus lookalikes of current Rally users. Make one circumstance version per niche (foam, game truck, laser tag, bubbles), since each one reaches a different operator.</p></div></div>
+    <div class="tier"><span class="tag t-warn">Warm</span><div><b>Receipt + Proof drop</b><p>Anyone who watched 50% or more of a cold ad, commented, or visited the site. Chris also posts these organically in the operator groups.</p></div></div>
+    <div class="tier"><span class="tag t-bad">Know you</span><div><b>Price tag</b><p>Site visitors, people who started signup but didn't finish, and anyone who commented SATURDAY. These people already know you, so the price filters for real buyers.</p></div></div>
   </div>
-
-  <h3 style="margin-top:12px">Lead magnet for "Comment SATURDAY"</h3>
-  <p class="col">"The Saturday Playbook": the automations we actually run (booking confirmed, deposit reminder, day-before, day-of crew text, review request), copied out of Rally's 19 defaults with our real wording. Send it by DM. Every commenter becomes a lead for the price-tag retargeting.</p>
-
-  <h3 style="margin-top:12px">First four weeks</h3>
+  <h3>Lead magnet for "Comment SATURDAY"</h3>
+  <p class="col">"The Saturday Playbook": the automations we actually run (booking confirmed, deposit reminder, day-before, day-of crew text, review request), copied out of Rally's 19 defaults with our real wording. Send it by DM, with a link to the one-question signup in Part 2. A comment isn't a conversion Meta can learn from, so the DM has to get people to sign up.</p>
+  <h3>First four weeks</h3>
   <div class="weeks">
-    <div class="week"><span class="label">Week 1</span><b>Film</b><ul><li>One afternoon: all five hooks, two takes each</li><li>Record the receipt on a real booking</li><li>Pull real numbers for the proof drop</li></ul></div>
-    <div class="week"><span class="label">Week 2</span><b>Test</b><ul><li>Five ads, same budget each (for example $15/day each, about $525 for the week)</li><li>Same body and CTA, only the hook changes</li></ul></div>
-    <div class="week"><span class="label">Week 3</span><b>Cut and copy</b><ul><li>Stop the bottom two hooks</li><li>Make three new circumstance versions of the winner, one per niche</li></ul></div>
-    <div class="week"><span class="label">Week 4</span><b>Retarget</b><ul><li>Turn on the price tag for warm audiences</li><li>DM everyone who commented the playbook</li></ul></div>
+    <div class="week"><span class="eyebrow">Week 1</span><b>Film and fix the form</b><ul><li>One afternoon: all five hooks, two takes each</li><li>Record the receipt on a real booking</li><li>Switch signup to one question (Part 2)</li></ul></div>
+    <div class="week"><span class="eyebrow">Week 2</span><b>Test</b><ul><li>Five ads, same budget each (for example $15/day each, about $525 for the week)</li><li>Same body and CTA, only the hook changes</li></ul></div>
+    <div class="week"><span class="eyebrow">Week 3</span><b>Cut and copy</b><ul><li>Stop the bottom two hooks</li><li>Make three new circumstance versions of the winner, one per niche</li></ul></div>
+    <div class="week"><span class="eyebrow">Week 4</span><b>Retarget</b><ul><li>Turn on the price tag for warm audiences</li><li>DM everyone who commented the playbook</li></ul></div>
   </div>
-
-  <h3 style="margin-top:12px">What to watch</h3>
+  <h3>What to watch</h3>
   <div class="kpis">
-    <div class="kpi"><span class="label">Hook rate</span><b>&gt; 30%</b><p>3-second views divided by impressions. This tells you whether the first line works.</p></div>
-    <div class="kpi"><span class="label">Hold rate</span><b>&gt; 10%</b><p>ThruPlays divided by 3-second views. This tells you whether the teaching part holds.</p></div>
-    <div class="kpi"><span class="label">Cost per comment</span><b>Track</b><p>Each SATURDAY comment is a lead. Compare this across hooks.</p></div>
-    <div class="kpi"><span class="label">Trial → Stripe</span><b>Track</b><p>Shows who actually set up, as opposed to who only clicked.</p></div>
+    <div class="kpi"><span class="eyebrow">Hook rate</span><span class="v">&gt; 30%</span><p>3-second views divided by impressions. This tells you whether the first line works.</p></div>
+    <div class="kpi"><span class="eyebrow">Hold rate</span><span class="v">&gt; 10%</span><p>ThruPlays divided by 3-second views. This tells you whether the teaching part holds.</p></div>
+    <div class="kpi"><span class="eyebrow">Signups a week</span><span class="v">~50</span><p>Per ad set, so Meta can leave learning. See Part 2.</p></div>
+    <div class="kpi"><span class="eyebrow">Signup → Stripe</span><span class="v">Track</span><p>Shows who actually set up, as opposed to who only clicked.</p></div>
   </div>
-  <p class="col" style="color:var(--muted);font-size:0.9rem">The targets are rough starting points for short-form Meta video. Reset them once we have a week of our own data.</p>
+  <p class="col muted" style="font-size:0.9rem">The hook and hold targets are rough starting points for short-form Meta video. Reset them once we have a week of our own data.</p>
+</section>
+
+<div class="part" id="form">
+  <span class="eyebrow">Part 2 · The Demo Form Kit, applied to Rally</span>
+  <h2>Our signup can starve Meta</h2>
+  <p class="col">Rally doesn't have a demo form. It has <b>Start free</b>. The same logic applies: every question on the way into Rally cuts how many operators finish, and the operators who finish are the only thing Meta learns from. Each signup tells Meta "this kind of operator buys," and it goes and finds more of them. A handful of signups a week gives it almost nothing to learn from.</p>
+</div>
+
+<section>
+  <span class="eyebrow">07 · The number</span>
+  <div class="statrow">
+    <span class="big">~50</span>
+    <div class="stack">
+      <h2>About fifty signups a week</h2>
+      <p>Meta's Help Center says an ad set usually needs around 50 optimization events in a week to leave the learning phase. Until then, delivery is less stable and costs jump around. Below that, Meta flags the ad set as "Learning limited."</p>
+      <p class="muted" style="font-size:0.88rem">Source: Meta Business Help Center, "About the learning phase" and "About learning limited." Check the current wording, as Meta updates these pages.</p>
+    </div>
+  </div>
+  <div class="well col">
+    <h3>What starving looks like for Rally</h3>
+    <p>Think of the market as groups: foam operators, game trucks, DJs, photo booths, bounce-house rental companies. Meta tries one group. If almost nobody signs up, it moves to the next. With too few signups it never settles on the group that buys, which is why one week the signups are foam operators and the next week they're DJs and inflatable rental shops, and cost per signup swings for no clear reason.</p>
+    <p class="muted" style="font-size:0.88rem">"Groups" is a simple way to picture how Meta looks for buyers, not Meta's own description of its system.</p>
+  </div>
+  <h3>The fix on one page</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Move</th><th>What it means for Rally</th><th>What it replaces</th></tr></thead>
+      <tbody>
+        <tr><td>1. One-question signup</td><td>Ask only "Do you bring events or parties to your customers?" Everyone who says yes gets straight in.</td><td>Asking for business name, services, team size and brand colors before they can see Rally</td></tr>
+        <tr><td>2. Routing</td><td>Big operators get a setup call with Danny. Everyone else starts free right away. Both count as a conversion for Meta.</td><td>Sending everyone the same way, or spending Danny's calls on one-truck operators</td></tr>
+        <tr><td>3. Add-back order</td><td>Put questions back one at a time as weekly signups grow, then tell Meta who actually confirmed a booking.</td><td>Deciding the whole form up front and never changing it</td></tr>
+      </tbody>
+    </table>
+  </div>
 </section>
 
 <section>
-  <span class="label">07 · Making the videos</span>
-  <h2>Can we generate these?</h2>
-  <p class="col">Partly. The person on camera and the Rally screen recordings get filmed, because operators trust a real person and the receipt and proof-drop ads only work if they're real. Everything layered on top can be built for you.</p>
-  <div class="paths">
-    <div class="path">
-      <span class="label">You film</span>
-      <h3>About one afternoon</h3>
-      <ul><li>All five hooks to a phone camera, two takes each</li><li>The body of each script, read straight through</li><li>One real booking screen-recorded from start to finish</li><li>The crew portal and dashboard screens on a real event day</li></ul>
+  <span class="eyebrow">08 · Diagnose</span>
+  <h2>Is the signup starving Meta?</h2>
+  <div class="tool">
+    <ul class="checklist" id="diag">
+      <li><label><input type="checkbox" id="dg1">The ad set shows "Learning limited" most weeks</label></li>
+      <li><label><input type="checkbox" id="dg2">Fewer than 50 signups a week on the event we optimize for</label></li>
+      <li><label><input type="checkbox" id="dg3">More than three fields before someone is inside Rally</label></li>
+      <li><label><input type="checkbox" id="dg4">We ask about revenue, team size or number of crews on the first screen</label></li>
+      <li><label><input type="checkbox" id="dg5">Signup types change a lot week to week (foam one week, DJs the next)</label></li>
+      <li><label><input type="checkbox" id="dg6">Cost per signup swings by more than double between weeks with no change to the ads</label></li>
+      <li><label><input type="checkbox" id="dg7">Under half of the people who start signup finish it</label></li>
+      <li><label><input type="checkbox" id="dg8">Big operators who'd want a call have no way to book one</label></li>
+      <li><label><input type="checkbox" id="dg9">We optimize for page views or comments because signups are too rare</label></li>
+    </ul>
+    <p class="verdict v-ok" id="diagOut" aria-live="polite">0 of 9 checked.</p>
+  </div>
+  <p class="col muted">Three or more checks usually means the form is the bottleneck, not the ads. Fix the form before you change targeting or creative.</p>
+
+  <h3>Where the signup loses people</h3>
+  <p class="col">Fill this in from the signup analytics. Look for the single step where the biggest share of people leave. That's the first thing to cut or move.</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Step</th><th>People</th><th>Share of the step before</th></tr></thead>
+      <tbody>
+        <tr><td>Saw the Start free page</td><td class="blank"></td><td class="blank"></td></tr>
+        <tr><td>Started signup</td><td class="blank"></td><td class="blank"></td></tr>
+        <tr><td>Answered the gate question</td><td class="blank"></td><td class="blank"></td></tr>
+        <tr><td>Account created</td><td class="blank"></td><td class="blank"></td></tr>
+        <tr><td>Connected Stripe</td><td class="blank"></td><td class="blank"></td></tr>
+        <tr><td>Confirmed a first real booking</td><td class="blank"></td><td class="blank"></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <span class="eyebrow">09 · The math</span>
+  <h2>How many signals do we send?</h2>
+  <p class="col">Weekly conversions = weekly visitors to the signup page × the share who finish. Budget to reach 50 = 50 × cost per conversion. The numbers below are examples. Replace them with ours.</p>
+  <div class="tool">
+    <div class="calc">
+      <label for="cA">Weekly visitors to the signup page <span>(A)</span><input id="cA" type="number" inputmode="decimal" min="0" value="400"></label>
+      <label for="cB">Share who finish today, % <span>(B)</span><input id="cB" type="number" inputmode="decimal" min="0" max="100" step="0.5" value="3"></label>
+      <label for="cC">Ad spend per week, $ <span>(C)</span><input id="cC" type="number" inputmode="decimal" min="0" value="525"></label>
+      <label for="cD">Share you expect with one question, % <span>(D)</span><input id="cD" type="number" inputmode="decimal" min="0" max="100" step="0.5" value="12"></label>
     </div>
-    <div class="path">
-      <span class="label">I build</span>
-      <h3>Graphics and edits</h3>
-      <ul><li>The yellow stickers and word-by-word captions</li><li>The app tiles, price tag and big-number graphics</li><li>The end card</li><li>Cut-downs per niche (foam, game truck, laser tag, bubbles) using the same footage</li></ul>
+    <div class="outs">
+      <div class="out"><span class="k">Signups a week today</span><span class="v" id="oNow">–</span></div>
+      <div class="out"><span class="k">Cost per signup today</span><span class="v" id="oCost">–</span></div>
+      <div class="out"><span class="k">Budget for 50 a week at today's cost</span><span class="v" id="oBudget">–</span></div>
+      <div class="out"><span class="k">Signups a week with one question</span><span class="v" id="oOne">–</span></div>
+    </div>
+    <p class="verdict v-warn" id="calcOut" aria-live="polite"></p>
+  </div>
+  <p class="col muted">If the budget needed for 50 a week is far more than we spend, the fix isn't more budget. It's a form more people can finish, or a conversion event higher up.</p>
+
+  <h3>What the number means</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Signups a week</th><th>What it usually means</th><th>What to do</th></tr></thead>
+      <tbody>
+        <tr><td>Under 15</td><td>Meta has very little to learn from</td><td>One question only. Optimize for account created, not anything deeper.</td></tr>
+        <tr><td>15 to 50</td><td>Learning, but unstable</td><td>One question. Route small operators to Start free so they still count.</td></tr>
+        <tr><td>50 to 100</td><td>Enough to learn</td><td>Start adding questions back, one at a time.</td></tr>
+        <tr><td>Over 100</td><td>Plenty of signal</td><td>Add filters, and send Stripe-connected and first-booking events back to Meta.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="col muted" style="font-size:0.9rem">These ranges are starting points built around Meta's roughly 50 a week, not rules from Meta. Operators mostly switch tools November to February, so judge volume in that window, not in July.</p>
+
+  <h3>Rally's event ladder</h3>
+  <p class="col">Optimize for the deepest event we reach about 50 times a week, and keep sending the deeper ones so Meta still sees them. Rally has an advantage here: it's our own software, so its server can send every one of these to Meta directly, with no CRM or automation tool in between.</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Event</th><th>Typical volume</th><th>Use it when</th></tr></thead>
+      <tbody>
+        <tr><td>Paying account (first billed booking)</td><td><span class="tag t-muted">Lowest</span></td><td>Almost never as the optimization event. Send it back for reporting and value.</td></tr>
+        <tr><td>First real booking confirmed</td><td><span class="tag t-muted">Low</span></td><td>The best signal of a real operator. Optimize for it once it reaches about 50 a week on its own.</td></tr>
+        <tr><td>Stripe connected</td><td><span class="tag t-muted">Low–medium</span></td><td>A good middle signal that they're setting up for real.</td></tr>
+        <tr><td>Account created, or setup call booked</td><td><span class="tag t-info">Medium</span></td><td>The default for us at launch.</td></tr>
+        <tr><td>Landing page view</td><td><span class="tag t-bad">Highest</span></td><td>Never. It teaches Meta to find people who click.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <span class="eyebrow">10 · One-question signup</span>
+  <h2>The gate question</h2>
+  <p class="col">The one question has a single job: remove people who could never use Rally, without asking anything a real operator would hesitate to answer. It's a yes or no on fit, not a full qualification.</p>
+  <div class="twoup">
+    <div class="formmock" aria-label="Example one-question signup">
+      <span class="wmk">Rally</span>
+      <h3>Run your Saturday from one app</h3>
+      <p class="fm-note">Answer one question and you're in. Takes 30 seconds.</p>
+      <div class="fm-field"><span class="l">Email</span><div class="fm-input">you@yourpartyco.com</div></div>
+      <div class="fm-field"><span class="l">Do you bring events or parties to your customers?</span><div class="fm-chips"><span class="fm-chip on">Yes</span><span class="fm-chip">No</span></div></div>
+      <div class="fm-field"><span class="l">About how many bookings a year?</span><div class="fm-chips"><span class="fm-chip">Under 50</span><span class="fm-chip on">50–150</span><span class="fm-chip">150–500</span><span class="fm-chip">500+</span></div></div>
+      <div class="fm-btn">Start free</div>
+      <p class="fm-note">Example. Bookings a year only picks the route. It never rejects anyone.</p>
+    </div>
+    <div class="stack">
+      <h3>Why this question passes all four tests</h3>
+      <div class="table-wrap">
+        <table style="min-width:0">
+          <tbody>
+            <tr><td>Answered in two seconds</td><td>Every operator knows whether they drive to the party.</td></tr>
+            <tr><td>Nobody lies or quits at it</td><td>It isn't about money, size or how organized they are.</td></tr>
+            <tr><td>A "no" means never</td><td>Venues and storefronts aren't who Rally's built for.</td></tr>
+            <tr><td>It decides the route</td><td>Yes goes into Rally. No goes to a friendly resources page.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h3>Keep it moving</h3>
+      <ul style="margin:0;padding-left:1.1em;display:grid;gap:6px">
+        <li>Use Google sign-in or an emailed magic link so nobody types a password on a phone.</li>
+        <li>Make the email field the first one. People who start tend to finish.</li>
+        <li>Put Danny's calendar inside the signup for the 500+ route. A second page load loses people.</li>
+        <li>Test it on a phone. Nearly all of this traffic comes from Reels.</li>
+      </ul>
     </div>
   </div>
-  <h3 style="margin-top:12px">Next steps</h3>
+
+  <h3>What not to ask first</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Question</th><th>Why it hurts at low volume</th><th>Where it goes instead</th></tr></thead>
+      <tbody>
+        <tr><td>Business name, logo, brand colors</td><td>Slow on a phone, and nothing they need to decide</td><td>The setup checklist ("Add your logo and brand colors")</td></tr>
+        <tr><td>Services and prices</td><td>Takes real thought; people leave to "come back later"</td><td>The checklist step "Add your first package"</td></tr>
+        <tr><td>Revenue, crew size, number of brands</td><td>People guess or round up, and it feels like a sales trap</td><td>The setup call, or the welcome screen after they're in</td></tr>
+        <tr><td>Phone number</td><td>Feels like a sales call is coming</td><td>Asked in-app when they turn on texts or connect Quo</td></tr>
+        <tr><td>"What software do you use now?"</td><td>A long list, and it rarely changes the route</td><td>One-click choice on the welcome screen</td></tr>
+        <tr><td>"How did you hear about us?"</td><td>Useful, but it belongs after they're in</td><td>The welcome screen</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="col muted">Rally already has a home for most of these: the Earn Free Bookings checklist pays operators a free booking for each setup step, so moving questions out of signup costs us nothing.</p>
+</section>
+
+<section>
+  <span class="eyebrow">11 · Routing</span>
+  <h2>Send every operator somewhere</h2>
+  <p class="col">A one-product coaching business has to say no to small buyers. We don't. Operators can start Rally on their own, so nobody who fits gets turned away. They just go through a different door, and every door counts as a conversion for Meta.</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Who passes the gate</th><th>Where they go</th><th>What we do</th><th>Sent to Meta as</th></tr></thead>
+      <tbody>
+        <tr><td>500+ bookings a year, or several brands</td><td>Danny's calendar, inside the signup</td><td>A live setup call. Import, catalog, maybe the Managed Desk.</td><td><span class="tag t-info">Schedule</span></td></tr>
+        <tr><td>150–500 bookings a year</td><td>Straight into Rally, plus an invite to a weekly group setup session</td><td>A group session. The checklist does the rest.</td><td><span class="tag t-info">CompleteRegistration</span></td></tr>
+        <tr><td>Under 150 bookings a year</td><td>Straight into Rally</td><td>Nothing live. The checklist and onboarding emails do the work.</td><td><span class="tag t-info">CompleteRegistration</span></td></tr>
+        <tr><td>Answered "No"</td><td>A friendly "Rally's built for mobile events" page with free resources</td><td>Nothing</td><td><span class="tag t-muted">Nothing</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="col muted" style="font-size:0.9rem">Event names are Meta standard events. The 500+ line is a proposal: set it where a call with Danny is worth his time.</p>
+  <div class="grid">
+    <div class="card"><span class="eyebrow">Tracking</span><h3>Tell Meta about every route</h3><ul><li>Each route ends on its own page with its own event.</li><li>Don't fire anything on the "not a fit" page. We don't want Meta finding more of them.</li><li>Send events from Rally's server through the Conversions API as well as the pixel.</li><li>Use the same event ID in both, so Meta counts each person once.</li><li>Book a test call and create a test account, then check both in Events Manager.</li></ul></div>
+    <div class="card"><span class="eyebrow">Ownership</span><h3>Who owns each door</h3><ul><li>Setup calls: <span class="fill">[Danny or Chris]</span></li><li>Group sessions: <span class="fill">[name]</span></li><li>Self-serve: the 9-email onboarding series and the setup checklist</li><li>Speed: a call booked on Friday gets a reply the same day</li></ul></div>
+  </div>
+</section>
+
+<section>
+  <span class="eyebrow">12 · Add-back order</span>
+  <h2>Put questions back one at a time</h2>
+  <p class="col">The one-question signup isn't forever. As weekly signups grow, Meta can handle more filtering without starving. Add questions back in this order, one at a time, and watch for two weeks after each change.</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Stage</th><th>When</th><th>Add this</th><th>Why now</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>Under 50 a week</td><td>Nothing. Gate question plus bookings a year for routing.</td><td>Every signal counts more than a filter</td></tr>
+        <tr><td>2</td><td>Steady 50+ a week</td><td>"What do you run?" (foam, game truck, laser tag, bubbles, other)</td><td>Easy to answer, and it personalizes onboarding</td></tr>
+        <tr><td>3</td><td>Steady 75+ a week</td><td>"How do you take bookings today?"</td><td>Lets the welcome email speak to what they're leaving</td></tr>
+        <tr><td>4</td><td>Steady 100+ a week</td><td>"How many crews go out on a busy Saturday?"</td><td>Helps decide who gets a call</td></tr>
+        <tr><td>5</td><td>Plenty of volume, and we need it</td><td>Revenue, as ranges</td><td>Last, because it loses the most people. We may never need it.</td></tr>
+        <tr><td>6</td><td>Enough first bookings each month to see a pattern</td><td>Send Meta first booking confirmed and paying account</td><td>Meta learns from real operators, not just signups</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <h3>The two-week check</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Check</th><th>Keep the question if</th><th>Remove it if</th></tr></thead>
+      <tbody>
+        <tr><td>Signup completion rate</td><td>Drops a little</td><td>Drops sharply</td></tr>
+        <tr><td>Signups a week</td><td>Still above 50</td><td>Falls below 50</td></tr>
+        <tr><td>Stripe-connected rate</td><td>Goes up</td><td>Doesn't move</td></tr>
+        <tr><td>Cost per activated operator</td><td>Goes down</td><td>Goes up</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="col muted" style="font-size:0.9rem">The thresholds are starting points, not rules from Meta.</p>
+</section>
+
+<section>
+  <span class="eyebrow">13 · After they're in</span>
+  <h2>Ask the rest once they've signed up</h2>
+  <p class="col">Once someone's inside Rally, they're committed, and they'll answer questions they'd never answer on a cold form.</p>
+  <div class="grid">
+    <div class="card"><span class="eyebrow">Welcome screen</span><h3>You're in. Here's your first Saturday.</h3><ul><li>A 60–90 second video from Danny: what Rally sets up for you first</li><li>One choice: "What should Rally fix first?" (Deposits, Waivers, Crew, All of it). It reorders their checklist.</li><li>Optional: "How did you hear about us?"</li><li>Below: two or three real results and the top questions operators ask</li></ul></div>
+    <div class="email">
+      <span class="subj">Subject: Your Rally setup call on [day]</span>
+      <p>Hey [first name],</p>
+      <p>You're on my calendar for [day, time]. I run five party brands on Rally myself, so bring the messy stuff.</p>
+      <p>Reply with one line: what goes wrong most often on a Saturday?</p>
+      <p>If you want a head start, here's three minutes of how my foam bookings run: [link]</p>
+      <p>Danny</p>
+      <span class="eyebrow">Sent right after a 500+ operator books</span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <span class="eyebrow">14 · Prompts</span>
+  <h2>Prompts to build it faster</h2>
+  <div class="grid">
+    <div class="stack"><h3>Find the gate question</h3><pre class="prompt">Here are notes from [number] operators who signed up and stuck with Rally and [number] who signed up and never set anything up: [paste].
+
+Find the single question we could ask at signup that best separates the two. It must be answerable in two seconds and must not be about money.
+
+Give me the three best candidates, the share of each group that would have passed, and the exact wording in operators' own words.</pre></div>
+    <div class="stack"><h3>Rewrite the signup</h3><pre class="prompt">Here is Rally's current Start free signup, every field and option: [paste].
+
+Rewrite it as: email, one gate question, and one bookings-a-year question used only for routing. 500+ goes to a setup call with Danny; everyone else goes straight in.
+
+For every field you remove, tell me where it should move (setup checklist, welcome screen, setup call or in-app). Write the "not a fit" page in three friendly sentences.</pre></div>
+    <div class="stack"><h3>Read the two-week check</h3><pre class="prompt">Here are our weekly numbers for the four weeks before and two weeks after we added [question] back to signup: [paste completion rate, signups a week, Stripe-connected rate, cost per activated operator].
+
+Tell me if the question should stay or go, and why, in plain language. Flag anything that might be noise, like a holiday week, a new ad or the start of the off-season.</pre></div>
+  </div>
+</section>
+
+<section>
+  <span class="eyebrow">15 · Mistakes</span>
+  <h2>Where signup fixes go wrong</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Mistake</th><th>Why it hurts</th></tr></thead>
+      <tbody>
+        <tr><td>Cutting questions but still sending small operators to a call</td><td>We lose the signal again. Let them start free.</td></tr>
+        <tr><td>Reporting the "not a fit" page to Meta</td><td>Meta goes looking for more people who can never use Rally.</td></tr>
+        <tr><td>Adding three questions back in one week</td><td>We can't tell which one hurt, and Meta starves again.</td></tr>
+        <tr><td>Optimizing for SATURDAY comments or page views to get volume</td><td>Easy events teach Meta to find people who comment and click, not operators who sign up.</td></tr>
+        <tr><td>Asking for brand and package details before they're in</td><td>Rally already has a checklist for that, with a reward attached.</td></tr>
+        <tr><td>Changing the signup and the ads in the same week</td><td>We won't know which change moved the numbers.</td></tr>
+        <tr><td>Letting free signups sit with no follow-up</td><td>A signup with no onboarding emails is a lead we paid for and wasted.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="well col">
+    <h3>Four weeks after the switch</h3>
+    <ul style="margin:0;padding-left:1.1em;display:grid;gap:4px">
+      <li>More signups a week, usually enough to leave "Learning limited."</li>
+      <li>Steadier cost per signup from week to week.</li>
+      <li>Signups that settle on the kinds of operators who stick.</li>
+      <li>Danny on fewer, better calls, because small operators went straight in.</li>
+      <li>Our result: <span class="fill">[add it here once we have it]</span>. Compare a few weeks, not a single week.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <span class="eyebrow">16 · Checklist</span>
+  <h2>Before we switch the signup</h2>
+  <div class="tool">
+    <ul class="checklist" id="pre">
+      <li><label><input type="checkbox" id="pc1">Wrote down signups a week and where people drop off today</label></li>
+      <li><label><input type="checkbox" id="pc2">Picked one gate question that passes the four tests</label></li>
+      <li><label><input type="checkbox" id="pc3">Set the call line (bookings a year or number of brands)</label></li>
+      <li><label><input type="checkbox" id="pc4">Moved every cut question somewhere (checklist, welcome screen, call, in-app)</label></li>
+      <li><label><input type="checkbox" id="pc5">Put Danny's calendar inside the signup, with no redirect</label></li>
+      <li><label><input type="checkbox" id="pc6">Gave each route its own page and event</label></li>
+      <li><label><input type="checkbox" id="pc7">Took the event off the "not a fit" page</label></li>
+      <li><label><input type="checkbox" id="pc8">Set up the Conversions API from Rally's server with matching event IDs</label></li>
+      <li><label><input type="checkbox" id="pc9">Tested every route on a phone and checked Events Manager</label></li>
+      <li><label><input type="checkbox" id="pc10">Left the ads alone for two weeks after the switch</label></li>
+      <li><label><input type="checkbox" id="pc11">Put a reminder in the calendar for the first add-back check</label></li>
+    </ul>
+    <p class="verdict v-warn" id="preOut" aria-live="polite">0 of 11 done.</p>
+  </div>
+</section>
+
+<section id="videos">
+  <span class="eyebrow">17 · Making the videos</span>
+  <h2>Can we generate these?</h2>
+  <p class="col">Partly. The person on camera and the Rally screen recordings get filmed, because operators trust a real person and the receipt and proof-drop ads only work if they're real. Everything layered on top can be built for you. Three fully generated concept videos (Circumstance, Real reason, Receipt) are in the repo under <code>marketing/rally-hook-ads/video/out/</code>, with an AI voice and animated Rally screens.</p>
+  <div class="grid">
+    <div class="card"><span class="eyebrow">You film</span><h3>About one afternoon</h3><ul><li>All five hooks to a phone camera, two takes each</li><li>The body of each script, read straight through</li><li>One real booking screen-recorded from start to finish</li><li>The crew portal and dashboard screens on a real event day</li></ul></div>
+    <div class="card"><span class="eyebrow">I build</span><h3>Graphics and edits</h3><ul><li>The blue stickers and word-by-word captions</li><li>The app tiles, price tag and big-number graphics</li><li>The end card</li><li>Cut-downs per niche (foam, game truck, laser tag, bubbles) using the same footage</li></ul></div>
+  </div>
+</section>
+
+<section id="next">
+  <span class="eyebrow">Next steps</span>
+  <h2>What's left</h2>
   <ol class="next">
-    <li>Fill in the yellow placeholders: the Rally price, last season's booking count, and the proof numbers from the PA Fun Company Rally account.</li>
+    <li>Confirm $10 per confirmed booking is the live price, and fill in last season's booking count for the proof drop.</li>
     <li>Pick who's on camera: you or Chris.</li>
-    <li>Send me Rally's real brand colors and logo so the mock-ups match.</li>
+    <li>Run the diagnosis above on the current Start free signup and fill in the drop-off table.</li>
+    <li>Switch signup to the one-question version with routing, and wire the events from Rally's server.</li>
     <li>Book a filming afternoon. Shoot all five hooks with two takes each, plus one real booking screen-recorded on a phone.</li>
     <li>Send me the footage and I'll build the graphics and the cuts.</li>
   </ol>
 </section>
 
 </div>
+</div>
+
+<script>
+(function () {
+  function tally(listId, outId, total, fmt) {
+    var list = document.getElementById(listId), out = document.getElementById(outId);
+    function update() {
+      var n = list.querySelectorAll('input:checked').length;
+      var r = fmt(n, total);
+      out.textContent = r.text; out.className = 'verdict ' + r.cls;
+    }
+    list.addEventListener('change', update); update();
+  }
+  tally('diag', 'diagOut', 9, function (n, t) {
+    if (n >= 3) return { text: n + ' of ' + t + ' checked. The signup is probably the bottleneck. Fix it before changing targeting or creative.', cls: 'v-bad' };
+    if (n > 0) return { text: n + ' of ' + t + ' checked. Worth watching, but probably not the main problem yet.', cls: 'v-warn' };
+    return { text: '0 of ' + t + ' checked.', cls: 'v-ok' };
+  });
+  tally('pre', 'preOut', 11, function (n, t) {
+    return { text: n + ' of ' + t + ' done.' + (n === t ? ' Ready to switch.' : ''), cls: n === t ? 'v-ok' : 'v-warn' };
+  });
+
+  var ids = ['cA', 'cB', 'cC', 'cD'];
+  function num(id) { var v = parseFloat(document.getElementById(id).value); return isFinite(v) && v >= 0 ? v : 0; }
+  function fmt(n, money) {
+    if (!isFinite(n)) return '–';
+    var s = Math.round(n).toLocaleString('en-US');
+    return money ? '$' + s : s;
+  }
+  function calc() {
+    var A = num('cA'), B = num('cB') / 100, C = num('cC'), D = num('cD') / 100;
+    var now = A * B, one = A * D;
+    var cost = now > 0 ? C / now : Infinity;
+    document.getElementById('oNow').textContent = fmt(now);
+    document.getElementById('oCost').textContent = fmt(cost, true);
+    document.getElementById('oBudget').textContent = fmt(50 * cost, true);
+    document.getElementById('oOne').textContent = fmt(one);
+    var out = document.getElementById('calcOut'), cls = 'v-warn', text;
+    if (now >= 50) { cls = 'v-ok'; text = 'Already about ' + fmt(now) + ' a week. Enough to learn from, so start adding questions back one at a time.'; }
+    else if (one >= 50) { text = 'Today about ' + fmt(now) + ' a week. A one-question signup gets about ' + fmt(one) + ', enough for Meta to leave learning with the same ads and budget.'; }
+    else if (one >= 15) { text = 'One question gets about ' + fmt(one) + ' a week. Better, but still learning. Route small operators straight in so they all count.'; }
+    else { cls = 'v-bad'; text = 'Even one question gets about ' + fmt(one) + ' a week. Optimize for account created and send the deeper events back.'; }
+    out.className = 'verdict ' + cls; out.textContent = text;
+  }
+  ids.forEach(function (id) { document.getElementById(id).addEventListener('input', calc); });
+  calc();
+})();
+</script>
