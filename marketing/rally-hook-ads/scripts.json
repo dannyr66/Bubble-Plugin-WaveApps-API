@@ -1,0 +1,72 @@
+{
+  "_about": "Rally Meta ad scripts, five-hook framework. Values in [brackets] must be replaced with real Rally data before production. 'said' = spoken line / caption, 'shown' = on-screen sticker text (deliberately different).",
+  "cast": {
+    "skeptic": "Chris (voice of the operator; asks the doubtful questions)",
+    "explainer": "Danny (founder, runs 5 brands on Rally; teaches + screen-shares)"
+  },
+  "cta_keyword": "SATURDAY",
+  "lead_magnet": "The Saturday Playbook: the automations we actually run, with our real wording",
+  "end_card": "Rally your crew. Run your day.",
+  "ads": [
+    {
+      "id": 1, "hook": "circumstance", "funnel": "cold", "length_s": 40,
+      "said": "It's Friday night, you've got four parties tomorrow, and you're still texting three moms to find out who paid the deposit.",
+      "shown": "4 parties tomorrow. 0 deposits confirmed.",
+      "beats": [
+        {"t": "0-3", "talent": "Chris", "line": "It's Friday night, you've got four parties tomorrow...", "visual": "Chris to camera, phone in hand; sticker on screen"},
+        {"t": "3-12", "talent": "Chris", "line": "...one waiver's unsigned, and your new guy doesn't know the address.", "visual": "Stacking parent text bubbles, 11:48 PM; Danny nods 'Been there.'"},
+        {"t": "12-30", "talent": "Danny", "line": "Here's my Friday now.", "visual": "Rally dashboard action items; zoom on three green confidence dots"},
+        {"t": "30-40", "talent": "Danny", "line": "Comment SATURDAY and I'll send you the exact reminders we automate.", "visual": "End card"}
+      ],
+      "niche_variants": ["foam party", "game truck", "mobile laser tag", "bubble show"]
+    },
+    {
+      "id": 2, "hook": "real_reason", "funnel": "cold", "length_s": 40,
+      "said": "The real reason you're doing admin at midnight isn't that you're disorganized. It's that your bookings, payments, waivers and crew live in five apps that don't talk to each other.",
+      "shown": "It's not you. It's your 5 apps.",
+      "beats": [
+        {"t": "0-3", "talent": "Danny", "line": "The real reason you're doing admin at midnight isn't that you're disorganized.", "visual": "Sticker"},
+        {"t": "3-15", "talent": "Danny + Chris", "line": "Your booking's in a form, the money's in Square, the waiver's a PDF, your crew's in a group text. You're the cable between them. / Chris: ...yeah, that's me.", "visual": "Five app tiles, red x on every connection"},
+        {"t": "15-32", "talent": "Danny", "line": "In Rally one booking does all of it: invoice out, waiver out, crew assigned, reminders scheduled.", "visual": "Tiles snap into a single Rally hub"},
+        {"t": "32-40", "talent": "Danny", "line": "Learn more / start a trial.", "visual": "End card"}
+      ]
+    },
+    {
+      "id": 3, "hook": "price_tag", "funnel": "retarget", "length_s": 35,
+      "said": "Rally is [$XX] a month. Here's exactly what you get, and what it replaces.",
+      "shown": "Costs less than one party a month.",
+      "beats": [
+        {"t": "0-3", "talent": "Danny", "line": "Rally is [$XX] a month. Here's exactly what you get.", "visual": "Price tag graphic + sticker"},
+        {"t": "3-20", "talent": "Danny", "line": "Booking page, deposits and auto-billing, waivers on their phone, crew portal, 19 automations, client portal.", "visual": "Each item checks off over its real screen"},
+        {"t": "20-30", "talent": "Danny", "line": "Add up what you pay now for forms, e-sign and texting. Then add your Friday nights.", "visual": "Stack-vs-Rally comparison"},
+        {"t": "30-35", "talent": "Danny", "line": "Free trial. Your booking link is live today.", "visual": "End card"}
+      ],
+      "audience": "site visitors, 50%+ video viewers, SATURDAY commenters, trials without Stripe connected"
+    },
+    {
+      "id": 4, "hook": "receipt", "funnel": "warm", "length_s": 38,
+      "said": "I just set up Saturday's foam party for a customer. Watch what happens the second she books.",
+      "shown": "Real booking. Real Saturday. No edits.",
+      "beats": [
+        {"t": "0-3", "talent": "Danny (face cam)", "line": "I just set up Saturday's foam party for a customer. Watch what happens when she books.", "visual": "REC badge, face cam bubble, sticker"},
+        {"t": "3-20", "talent": "Danny", "line": "Booking comes in, deposit invoice sends itself, waiver link goes out, crew gets a text.", "visual": "Real phone screen recording; blur client PII"},
+        {"t": "20-30", "talent": "Danny", "line": "And here's what my crew sees on event day.", "visual": "Crew portal: address, map, gear list, On My Way; dots go green"},
+        {"t": "30-38", "talent": "Danny", "line": "That's the whole admin side of a party. Learn more.", "visual": "End card"}
+      ],
+      "requires_real_footage": true
+    },
+    {
+      "id": 5, "hook": "proof_drop", "funnel": "warm", "length_s": 38,
+      "said": "[X] bookings last season across five brands, and I never chased a single waiver by text.",
+      "shown": "5 brands. 1 app. 0 waivers chased.",
+      "beats": [
+        {"t": "0-3", "talent": "Danny", "line": "[X] bookings last season across five brands, and I never chased a waiver by text.", "visual": "Big number graphic + sticker"},
+        {"t": "3-15", "talent": "Danny", "line": "Here's the actual dashboard.", "visual": "Real dashboard: revenue by brand, signed docs, [avg days to payment]"},
+        {"t": "15-30", "talent": "Danny + Chris", "line": "Waivers attach to the service so they send themselves; deposits block the booking until paid. / Chris: So you just... stopped chasing?", "visual": "Service settings screen"},
+        {"t": "30-38", "talent": "Danny", "line": "Comment SATURDAY and I'll send you our setup.", "visual": "End card"}
+      ],
+      "requires_real_footage": true,
+      "numbers_must_be_verified": true
+    }
+  ]
+}
