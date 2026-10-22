@@ -1,0 +1,62 @@
+{
+  "ad": "bubbles",
+  "title": "Ad 1d \u00b7 Circumstance, bubble show",
+  "sticker": "9 AM daycare show.\nNo invoice sent.",
+  "total": 36.893,
+  "segments": [
+    {
+      "id": "b1",
+      "cap": "It's Thursday night, and you've got a daycare bubble show at nine tomorrow morning.",
+      "s": 0.25,
+      "e": 4.356
+    },
+    {
+      "id": "b2",
+      "cap": "The director still needs your insurance certificate, and the invoice never went out.",
+      "s": 4.656,
+      "e": 8.885
+    },
+    {
+      "id": "b3",
+      "cap": "Next week's school wants a signed contract by Monday.",
+      "s": 9.185,
+      "e": 11.954
+    },
+    {
+      "id": "b4",
+      "cap": "And your helper is asking which bubble machines are going.",
+      "s": 12.254,
+      "e": 15.059
+    },
+    {
+      "id": "b5",
+      "cap": "Here's what that same night looks like in Rally.",
+      "s": 15.359,
+      "e": 17.521
+    },
+    {
+      "id": "b6",
+      "cap": "Every booking gets three dots. Gear, crew, and paperwork.",
+      "s": 17.821,
+      "e": 21.094
+    },
+    {
+      "id": "b7",
+      "cap": "Your insurance certificate and contract go out with the booking, and the invoice sends itself.",
+      "s": 21.394,
+      "e": 26.237
+    },
+    {
+      "id": "b8",
+      "cap": "Your helper gets the address, the time, and the gear list. Automatically.",
+      "s": 26.537,
+      "e": 30.16
+    },
+    {
+      "id": "b9",
+      "cap": "Comment SATURDAY, and I'll send you the exact reminders we automate.",
+      "s": 30.46,
+      "e": 34.193
+    }
+  ]
+}

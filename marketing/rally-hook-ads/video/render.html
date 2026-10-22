@@ -112,6 +112,33 @@ html, body { width: 720px; height: 1280px; overflow: hidden; background: var(--b
 .bd { display: grid; justify-items: center; gap: 10px; font-family: var(--mono); font-weight: 700; font-size: 14px; color: #5d6170; }
 .bd i { width: 76px; height: 76px; border-radius: 50%; background: #d8d6cf; display: grid; place-items: center; color: #fff; font-style: normal; font-size: 34px; font-family: var(--body); }
 .ready { position: absolute; top: 420px; left: 40px; right: 40px; text-align: center; background: var(--good); color: #fff; font-family: var(--display); font-weight: 800; font-size: 34px; padding: 14px; border-radius: 16px; }
+
+.tick.warn { background: var(--bad-bg); color: var(--bad); }
+.tracker { margin: 10px 12px 4px; background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px; display: grid; gap: 6px; }
+.tracker .tl { font-family: var(--mono); font-size: 13px; font-weight: 600; color: var(--label); letter-spacing: 0.03em; }
+.tracker .tn { font-family: var(--display); font-weight: 800; font-size: 34px; color: var(--ink); line-height: 1; }
+.tracker .tb { height: 10px; border-radius: 99px; background: #E9E5DA; overflow: hidden; }
+.tracker .tb i { display: block; height: 100%; border-radius: 99px; }
+.bigtag { position: absolute; left: 50%; top: 330px; width: 380px; background: var(--cream); color: var(--ink); border-radius: 26px 26px 46px 46px; padding: 54px 20px 34px; display: grid; justify-items: center; gap: 4px; transform-origin: 50% 0; box-shadow: 0 20px 50px rgb(0 0 0 / 0.35); }
+.bigtag i { position: absolute; top: 18px; left: 50%; width: 24px; height: 24px; margin-left: -12px; border-radius: 50%; background: var(--navy); }
+.bigtag .bt-k { font-family: var(--display); font-weight: 800; font-size: 40px; }
+.bigtag .bt-v { font-family: var(--display); font-weight: 800; font-size: 170px; line-height: 0.95; letter-spacing: -4px; }
+.bigtag .bt-s { font-weight: 600; font-size: 26px; color: #4E5B69; }
+.plist { position: absolute; top: 560px; left: 70px; right: 70px; display: grid; gap: 14px; }
+.prow { display: flex; align-items: center; gap: 16px; background: rgb(251 248 241 / 0.08); border: 1px solid rgb(169 188 204 / 0.3); border-radius: 18px; padding: 14px 18px; font-size: 28px; font-weight: 700; }
+.prow .tick { width: 40px; height: 40px; font-size: 22px; background: var(--ok-bg); color: var(--good); }
+.eq { position: absolute; top: 560px; left: 60px; right: 60px; display: grid; justify-items: center; gap: 6px; text-align: center; }
+.eq .e1 { font-family: var(--display); font-weight: 800; font-size: 46px; line-height: 1.05; }
+.eq .e2 { font-family: var(--display); font-weight: 800; font-size: 70px; color: var(--sky); line-height: 1; }
+.eq .e3 { font-family: var(--display); font-weight: 800; font-size: 56px; background: var(--sky); color: var(--navy); padding: 4px 22px 10px; border-radius: 16px; }
+.counter { position: absolute; top: 330px; left: 0; right: 0; display: grid; justify-items: center; gap: 4px; }
+.counter .cv { font-family: var(--display); font-weight: 800; font-size: 220px; line-height: 0.95; letter-spacing: -6px; font-variant-numeric: tabular-nums; }
+.counter .cs { font-weight: 700; font-size: 38px; color: var(--sky); }
+.counter .cf { font-family: var(--mono); font-size: 16px; color: var(--muted); padding-top: 6px; }
+.bchips { position: absolute; top: 640px; left: 40px; right: 40px; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+.bchip { display: inline-flex; align-items: center; gap: 10px; background: rgb(251 248 241 / 0.1); border: 1px solid rgb(169 188 204 / 0.35); border-radius: 999px; padding: 10px 18px; font-size: 22px; font-weight: 600; }
+.bchip i, .bdot { width: 14px; height: 14px; border-radius: 50%; flex: none; display: inline-block; }
+.sticker2 { position: absolute; top: 150px; left: 120px; right: 120px; z-index: 40; background: var(--sky); color: var(--navy); font-family: var(--display); font-weight: 800; font-size: 54px; line-height: 1.04; text-align: center; padding: 16px 20px 20px; border-radius: 16px; box-shadow: 0 7px 0 rgb(0 0 0 / 0.45); }
 </style>
 </head>
 <body>
@@ -212,21 +239,48 @@ function phone(tin, tout) {
 }
 const dotColor = { g: 'var(--good)', y: 'var(--warn)', r: 'var(--bad)' };
 
-/* ---------- Ad 1: Circumstance ---------- */
-function circumstance() {
-  const c1 = seg('c1'), c2 = seg('c2'), c3 = seg('c3'), c4 = seg('c4'), c5 = seg('c5'), c6 = seg('c6'), c7 = seg('c7'), c8 = seg('c8'), c9 = seg('c9');
-  const ph = phone(0.05, c9.s);
+/* ---------- Ad 1 and its niche versions: Circumstance ---------- */
+// n = segment index (0-based) a notification or toast is pinned to, plus an offset in seconds.
+const CIRC = {
+  circumstance: {
+    day: 'Friday', time: '11:48', appTitle: 'Saturday', appSub: '4 parties',
+    notifs: [[1, 0.15, '#34c759', 'J', 'Jess M.', 'did u get my deposit??'], [1, 0.9, '#34c759', 'M', 'Mark R.', 'what time are you guys coming tmrw'], [1, 1.65, '#34c759', 'P', 'Priya', 'is the $150 due before or after?'], [2, 0.05, '#ef4b3c', '!', 'Waivers', 'Johnson party · not signed'], [3, 0.05, '#2f7cf6', 'T', 'Tyler (crew)', 'yo whats the address for the 10am']],
+    rows: [['10:00 AM', 'Foam Party Deluxe', "Ava's 7th · Doylestown", 'gyr'], ['12:30 PM', 'Bubble Bash', "Mason's party · Newtown", 'ygr'], ['2:00 PM', 'Foam Party Standard', 'Church picnic · Warminster', 'gry'], ['5:00 PM', 'Glow Foam Night', 'Block party · Yardley', 'ryr']],
+    toasts: [[6, 0.3, true, 'Deposit paid · $150 · Jess M.'], [6, 1.7, true, 'Waiver signed · Johnson party']],
+    sheet: `<div class="lbl">CREW · TYLER</div><div class="big">Sat · Call time 9:15 AM</div><p><b>412 Maple Ave, Doylestown PA</b></p><p>Gear: 2 foam cannons · generator · 50 ft hose</p><div class="btns"><div class="btn">Directions</div><div class="btn go">On my way</div></div>`,
+  },
+  gametruck: {
+    day: 'Friday', time: '10:52', appTitle: 'Saturday', appSub: '3 parties',
+    notifs: [[1, 0.15, '#34c759', 'K', 'Kara M.', 'will the truck fit in our driveway?'], [1, 1.4, '#34c759', 'D', 'Dev P.', 'do i pay the rest now or saturday?'], [2, 0.05, '#2f7cf6', 'C', 'Calendar', 'Generator #2 · 2 events at 1:00 PM'], [3, 0.05, '#2f7cf6', 'M', 'Marcus (driver)', 'which party is first tmrw??']],
+    rows: [['10:00 AM', 'Game Truck Party', "Liam's 9th · Newtown", 'gyr'], ['1:00 PM', 'Game Truck + Laser Tag', 'Scout troop · Langhorne', 'rgr'], ['4:30 PM', 'Game Truck Party', "Ava's 10th · Yardley", 'ygy']],
+    toasts: [[6, 0.2, false, 'Generator #2 is on two bookings'], [6, 2.0, true, 'Generator #1 assigned · conflict cleared']],
+    sheet: `<div class="lbl">DRIVER · MARCUS</div><div class="big">Sat · Leave the shop 8:45 AM</div><p><b>Stop 1</b> · 18 Oak Ln, Newtown · 10:00</p><p><b>Stop 2</b> · Langhorne Park · 1:00</p><div class="btns"><div class="btn">Route</div><div class="btn go">On my way</div></div>`,
+  },
+  lasertag: {
+    day: 'Friday', time: '9:37', appTitle: 'Saturday', appSub: '3 battles',
+    notifs: [[1, 0.15, '#34c759', 'J', "Jen (Ethan's mom)", 'do ALL the parents need to sign??'], [1, 1.3, '#34c759', 'R', 'Rachel', "where's the waiver link again"], [2, 0.05, '#34c759', '14', "Ethan's party (14)", 'can someone resend the form'], [3, 0.05, '#2f7cf6', 'S', 'Sam (ref)', 'what park is it at?']],
+    rows: [['11:00 AM', 'Laser Tag Battle', "Ethan's 11th · Doylestown", 'gyr'], ['2:30 PM', 'Laser Tag Battle', 'Youth group · Warrington', 'grr'], ['5:00 PM', 'Glow Laser Tag', 'Block party · Chalfont', 'yry']],
+    tracker: { seg: 5, label: "Ethan's 11th · waivers signed", from: 3, to: 20 },
+    toasts: [[6, 0.3, true, 'Deposit paid · $150 · Jen K.'], [6, 1.9, true, "All 20 waivers signed · Ethan's 11th"]],
+    sheet: `<div class="lbl">CREW · SAM</div><div class="big">Sat · Call time 10:15 AM</div><p><b>Central Park, Field 2 · Doylestown PA</b></p><p>Gear: 16 vests · 4 bunkers · charging case</p><div class="btns"><div class="btn">Directions</div><div class="btn go">On my way</div></div>`,
+  },
+  bubbles: {
+    day: 'Thursday', time: '10:14', appTitle: 'Friday', appSub: '3 shows',
+    notifs: [[1, 0.15, '#2f7cf6', 'K', 'Karen · Little Oaks', 'do you have your insurance certificate for us?'], [1, 1.6, '#2f7cf6', 'M', 'Mail · Little Oaks', 'Invoice for tomorrow?'], [2, 0.05, '#2f7cf6', 'W', 'Westbrook Elementary', 'need the signed contract by Monday'], [3, 0.05, '#34c759', 'M', 'Mia (helper)', 'which bubble machines are we bringing?']],
+    rows: [['9:00 AM', 'Bubble Show', 'Little Oaks Daycare · Newtown', 'grr'], ['1:00 PM', 'Bubble Bash', "Nora's 5th · Yardley", 'gyg'], ['4:00 PM', 'Bubble Show', 'Library story hour · Doylestown', 'ryy']],
+    toasts: [[6, 0.3, true, 'Insurance certificate sent · Little Oaks'], [6, 2.0, true, 'Invoice sent · $425 · Little Oaks']],
+    sheet: `<div class="lbl">CREW · MIA</div><div class="big">Fri · Call time 8:15 AM</div><p><b>Little Oaks Daycare · 412 Birch St, Newtown</b></p><p>Gear: bubble machines #1 and #3 · 3 gal solution · wands</p><div class="btns"><div class="btn">Directions</div><div class="btn go">On my way</div></div>`,
+  },
+};
+function circ(cfg) {
+  const G = TL.segments, at = (n, off) => G[n].s + off;
+  const end = G[8];
+  const ph = phone(0.05, end.s);
   const lock = el('div', 'screen lock', ph);
-  el('div', 'day', lock, 'Friday');
-  el('div', 'time', lock, '11:48');
+  el('div', 'day', lock, cfg.day);
+  el('div', 'time', lock, cfg.time);
   const list = el('div', 'notifs', lock);
-  const items = [
-    [c2.s + 0.15, '#34c759', 'J', 'Jess M.', 'did u get my deposit??'],
-    [c2.s + 0.9, '#34c759', 'M', 'Mark R.', 'what time are you guys coming tmrw'],
-    [c2.s + 1.65, '#34c759', 'P', 'Priya', 'is the $150 due before or after?'],
-    [c3.s + 0.05, '#ef4b3c', '!', 'Waivers', 'Johnson party · not signed'],
-    [c4.s + 0.05, '#2f7cf6', 'T', 'Tyler (crew)', 'yo whats the address for the 10am'],
-  ];
+  const items = cfg.notifs.map(([n, off, col, ic, who, msg]) => [at(n, off), col, ic, who, msg]);
   // newest on top: insert in reverse arrival order
   items.slice().reverse().forEach(([tin, col, ic, who, msg]) => {
     const n = el('div', 'notif', list, `<div class="ic" style="background:${col}">${ic}</div><div><b>${who}</b><p>${msg}</p></div>`);
@@ -241,54 +295,52 @@ function circumstance() {
     items.forEach(([tin]) => { const d = t - tin; if (d > 0 && d < 0.3) off += Math.sin(d * 90) * 5 * (1 - d / 0.3); });
     ph.style.marginLeft = off + 'px';
   });
-  sticker(c1.s + 0.05, c3.s);
+  sticker(G[0].s + 0.05, G[2].s);
 
-  // Rally app slides over the lock screen
+  // Rally slides over the lock screen
   const app = el('div', 'screen app', ph);
-  show(app, c5.s + 0.3, Infinity, 'slideup', 0.55);
-  el('div', 'hdr', app, '<span class="hwm">Rally</span><b>Saturday</b><span>4 parties</span>');
-  const lg = el('div', 'legend', app, '<span>DOTS =</span><span style="color:var(--ink)">GEAR · CREW · PAPERWORK</span>');
-  show(lg, c6.s + 0.6, Infinity, 'left');
-  const rows = [
-    ['10:00 AM', 'Foam Party Deluxe', "Ava's 7th · Doylestown", 'gyr'],
-    ['12:30 PM', 'Bubble Bash', "Mason's party · Newtown", 'ygr'],
-    ['2:00 PM', 'Foam Party Standard', 'Church picnic · Warminster', 'gry'],
-    ['5:00 PM', 'Glow Foam Night', 'Block party · Yardley', 'ryr'],
-  ];
+  show(app, at(4, 0.3), Infinity, 'slideup', 0.55);
+  el('div', 'hdr', app, `<span class="hwm">Rally</span><b>${cfg.appTitle}</b><span>${cfg.appSub}</span>`);
+  show(el('div', 'legend', app, '<span>DOTS =</span><span style="color:var(--ink)">GEAR · CREW · PAPERWORK</span>'), at(5, 0.6), Infinity, 'left');
+  if (cfg.tracker) {
+    const k = cfg.tracker, s = G[k.seg], nxt = G[k.seg + 1];
+    const card = el('div', 'tracker', app, `<div class="tl">${k.label}</div><div class="tn"></div><div class="tb"><i></i></div>`);
+    const num = card.querySelector('.tn'), bar = card.querySelector('.tb i');
+    show(card, s.s + 0.2, Infinity, 'up');
+    anims.push(t => {
+      const v = Math.round(lerp(k.from, k.to, eo(prog(t, s.s + 0.6, nxt.e - s.s - 0.6))));
+      num.textContent = `${v} / ${k.to}`; bar.style.width = (v / k.to * 100) + '%';
+      bar.style.background = v === k.to ? 'var(--good)' : 'var(--primary)';
+    });
+  }
   const flips = [];
-  rows.forEach(([tm, nm, sub, ds], i) => {
+  cfg.rows.forEach(([tm, nm, sub, ds], i) => {
     const r = el('div', 'row', app, `<div class="tm">${tm}</div><div class="nm"><b>${nm}</b><span>${sub}</span></div>`);
-    show(r, c5.s + 0.7 + i * 0.12, Infinity, 'up');
+    show(r, at(4, 0.7 + i * 0.12), Infinity, 'up');
     const dots = el('div', 'dots', r);
-    [...ds].forEach(k => { const d = el('div', 'dot', dots, null, { background: dotColor[k] }); if (k !== 'g') flips.push(d); else d.dataset.g = 1; });
+    [...ds].forEach(k => { const d = el('div', 'dot', dots, null, { background: dotColor[k] }); if (k !== 'g') flips.push(d); });
   });
-  // pulse the dots while they're named, then flip every non-green dot to green through c7
   const all = [...app.querySelectorAll('.dot')];
   anims.push(t => {
-    const pulse = t > c6.s + 0.6 && t < c6.e ? 1 + 0.25 * Math.max(0, Math.sin((t - c6.s) * 8)) : 1;
+    const pulse = t > at(5, 0.6) && t < G[5].e ? 1 + 0.25 * Math.max(0, Math.sin((t - G[5].s) * 8)) : 1;
     all.forEach(d => d.style.transform = `scale(${pulse})`);
   });
+  const flipFrom = cfg.tracker ? G[6].s + 0.6 : G[6].s + 0.2;
   flips.forEach((d, i) => {
     const orig = d.style.background;
-    const at = c7.s + 0.2 + i * ((c7.e - c7.s - 0.4) / flips.length);
+    const tt = flipFrom + i * ((G[6].e - flipFrom - 0.2) / flips.length);
     anims.push(t => {
-      const p = prog(t, at, 0.2);
+      const p = prog(t, tt, 0.2);
       d.style.background = p > 0.5 ? 'var(--good)' : orig;
       if (p > 0 && p < 1) d.style.transform = `scale(${1 + 0.6 * Math.sin(p * Math.PI)})`;
     });
   });
-  const t1 = el('div', 'toast', app, '<div class="tick">✓</div>Deposit paid · $150 · Jess M.', { bottom: '96px' });
-  show(t1, c7.s + 0.3, c8.s, 'up');
-  const t2 = el('div', 'toast', app, '<div class="tick">✓</div>Waiver signed · Johnson party', { bottom: '28px' });
-  show(t2, c7.s + 1.7, c8.s, 'up');
-  const sh = el('div', 'sheet', app, `
-    <div class="lbl">CREW · TYLER</div>
-    <div class="big">Sat · Call time 9:15 AM</div>
-    <p><b>412 Maple Ave, Doylestown PA</b></p>
-    <p>Gear: 2 foam cannons · generator · 50 ft hose</p>
-    <div class="btns"><div class="btn">Directions</div><div class="btn go">On my way</div></div>`);
-  show(sh, c8.s + 0.1, Infinity, 'slideup', 0.5);
-  endCard(c9.s, 'Comment <em>SATURDAY</em>');
+  cfg.toasts.forEach(([n, off, ok, txt], i) => {
+    const tst = el('div', 'toast', app, `<div class="tick${ok ? '' : ' warn'}">${ok ? '✓' : '!'}</div>${txt}`, { bottom: (i === 0 ? 96 : 28) + 'px' });
+    show(tst, at(n, off), G[7].s, 'up');
+  });
+  show(el('div', 'sheet', app, cfg.sheet), at(7, 0.1), Infinity, 'slideup', 0.5);
+  endCard(end.s, 'Comment <em>SATURDAY</em>');
 }
 
 /* ---------- Ad 2: Real reason ---------- */
@@ -457,10 +509,57 @@ function receipt() {
   endCard(p('p7').s, 'Learn more');
 }
 
+/* ---------- Ad 3: Price tag ---------- */
+function pricetag() {
+  const G = TL.segments;
+  sticker(G[0].s + 0.05, G[2].s);
+  const tag = el('div', 'bigtag', stage, '<i></i><span class="bt-k">Rally</span><span class="bt-v">$10</span><span class="bt-s">per confirmed booking</span>');
+  anims.push(t => {
+    const p = prog(t, 0.1, 0.6), q = eo(prog(t, G[2].s, 0.6)), out = prog(t, G[7].s, 0.3);
+    const swing = Math.sin(t * 3.2) * 9 * Math.exp(-t * 0.9);
+    tag.style.opacity = clamp(p * 3) * (1 - out);
+    tag.style.transform = `translate(-50%, ${lerp(0, -170, q)}px) scale(${lerp(0.6, 1, back(p)) * lerp(1, 0.62, q)}) rotate(${swing}deg)`;
+  });
+  const listBox = el('div', 'plist', stage);
+  [['Booking page takes the deposit', 3], ['Waiver signed on their phone', 4], ['Crew gets the address + gear list', 5], ['Reminders send themselves', 6]].forEach(([txt, n]) => {
+    const row = el('div', 'prow', listBox, `<div class="tick">✓</div><span>${txt}</span>`);
+    show(row, G[n].s, G[7].s, 'left', 0.35);
+  });
+  const eq = el('div', 'eq', stage, '<div class="e1">1–2 parties<br>you would have missed</div><div class="e2">=</div><div class="e3">Rally, paid for</div>');
+  show(eq, G[7].s + 0.2, G[8].s, 'pop', 0.5);
+  endCard(G[8].s, 'Start free');
+}
+
+/* ---------- Ad 5: Proof drop (real numbers from the PA Fun Company account) ---------- */
+function proofdrop() {
+  const G = TL.segments;
+  sticker(G[0].s + 0.05, G[1].s + 0.4);
+  const s1 = scene(0.05, G[2].s);
+  const cnt = el('div', 'counter', s1, '<span class="cv">0</span><span class="cs">bookings this year</span><span class="cf">Rally data · Jan 1 – Oct 21, 2026 · PA Fun Company</span>');
+  const cv = cnt.querySelector('.cv');
+  anims.push(t => { cv.textContent = Math.round(619 * eo(prog(t, 0.4, G[0].e - 0.6))).toLocaleString('en-US'); });
+  const chips = el('div', 'bchips', s1);
+  const brands = [['Bucks Bubbles', '#8CC4F0'], ['Philly Foam', '#F2B8C6'], ['PA Foam Rentals', '#B7E3C8'], ['Mini Golf on the Go', '#F7D38A'], ['Fantastic Fire Department', '#F08A7E'], ['Fantastic Fun Fair', '#C9B8F2'], ['Penn Pumpkin Co.', '#F5A962'], ['The Philly Glam Experience', '#E9C9F2'], ['PA Fun Company', '#FBF8F1']];
+  brands.forEach(([b, c], i) => show(el('div', 'bchip', chips, `<i style="background:${c}"></i>${b}`), G[1].s + i * ((G[1].e - G[1].s) / 9), Infinity, 'pop', 0.35));
+
+  const ph = phone(G[2].s, G[4].s);
+  const app = el('div', 'screen app', ph);
+  el('div', 'hdr', app, '<span class="hwm">Rally</span><b>Saturday</b><span>All brands ▾</span>');
+  el('div', 'legend', app, '<span>9 BRANDS · 1 CREW · 1 CALENDAR</span>');
+  [['9:00 AM', 'Pumpkin Patch Day', 'Penn Pumpkin Co. · Doylestown', 6], ['10:00 AM', 'Foam Party Deluxe', 'Philly Foam · Philadelphia', 1], ['11:30 AM', 'Fire Truck Visit', 'Fantastic Fire Dept · Newtown', 4], ['1:00 PM', 'Bubble Show', 'Bucks Bubbles · Yardley', 0], ['3:00 PM', 'Mini Golf, 9 holes', 'Mini Golf on the Go · Warminster', 3], ['6:30 PM', 'Glam Bot Booth', 'Philly Glam · Philadelphia', 7]].forEach(([tm, nm, sub, b], i) => {
+    const r = el('div', 'row', app, `<i class="bdot" style="background:${brands[b][1]}"></i><div class="tm">${tm}</div><div class="nm"><b>${nm}</b><span>${sub}</span></div>`);
+    show(r, G[2].s + 0.5 + i * 0.25, Infinity, 'up');
+  });
+  const one = el('div', 'sticker2', stage, 'One screen.<br>Not nine.');
+  show(one, G[3].s + 1.2, G[4].s, 'pop', 0.4, 'rotate(2deg)');
+  endCard(G[4].s, 'Comment <em>SATURDAY</em>');
+}
+
 window.boot = tl => {
   TL = tl; S = {}; tl.segments.forEach(s => S[s.id] = s);
   chrome();
-  ({ circumstance, realreason, receipt })[tl.ad]();
+  const ads = { realreason, receipt, pricetag, proofdrop };
+  if (CIRC[tl.ad]) circ(CIRC[tl.ad]); else ads[tl.ad]();
   buildCaptions();
 };
 window.render = t => { for (const f of anims) f(t); };

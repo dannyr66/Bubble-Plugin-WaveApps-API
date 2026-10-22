@@ -7,8 +7,13 @@ Fully generated 1080×1920 ad concepts: animated Rally screens, on-screen text, 
 | `out/circumstance.mp4` | 1 · Circumstance | 34s |
 | `out/realreason.mp4` | 2 · Real reason | 36s |
 | `out/receipt.mp4` | 4 · Receipt (recreated screen recording) | 31s |
+| `out/pricetag.mp4` | 3 · Price tag ($10 per confirmed booking, to be confirmed) | 25s |
+| `out/proofdrop.mp4` | 5 · Proof drop (real numbers: 619 bookings in 2026, 9 brands) | 28s |
+| `out/gametruck.mp4` | 1b · Circumstance, game truck operators | 40s |
+| `out/lasertag.mp4` | 1c · Circumstance, laser tag (per-guest waivers) | 40s |
+| `out/bubbles.mp4` | 1d · Circumstance, bubble shows (female voice `af_heart`) | 37s |
 
-The price tag and proof drop ads are left out until we have Rally's real price and real numbers.
+The proof drop count comes from the PA Fun Company Rally account: bookings confirmed, in progress or completed from Jan 1 to Oct 21, 2026.
 
 ## How it works
 

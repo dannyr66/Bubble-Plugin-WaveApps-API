@@ -28,7 +28,7 @@ for key in wanted:
     t = LEAD
     segments = []
     for seg in ad["segments"]:
-        audio, sr = kokoro.create(seg.get("say", seg["cap"]), voice=cfg["voice"], speed=cfg["speed"], lang="en-us")
+        audio, sr = kokoro.create(seg.get("say", seg["cap"]), voice=ad.get("voice", cfg["voice"]), speed=cfg["speed"], lang="en-us")
         audio = np.asarray(audio, dtype=np.float32)
         # trim leading/trailing near-silence so caption timing tracks the words
         loud = np.where(np.abs(audio) > 0.01)[0]

@@ -154,36 +154,36 @@
       "hook": "proof_drop",
       "funnel": "warm",
       "length_s": 38,
-      "said": "[X] bookings last season across five brands, and I never chased a single waiver by text.",
-      "shown": "5 brands. 1 app. 0 waivers chased.",
+      "said": "619 bookings this year, across nine brands, all run from one app.",
+      "shown": "619 bookings. 9 brands. 1 app.",
       "beats": [
         {
           "t": "0-3",
           "talent": "Presenter",
-          "line": "[X] bookings last season across five brands, and I never chased a waiver by text.",
-          "visual": "Big number graphic + sticker"
+          "line": "619 bookings this year, across nine brands, all run from one app.",
+          "visual": "Counter to 619 + sticker"
         },
         {
-          "t": "3-15",
+          "t": "3-10",
           "talent": "Presenter",
-          "line": "Here's the actual dashboard.",
-          "visual": "Real dashboard: revenue by brand, signed docs, [avg days to payment]"
+          "line": "Foam parties, bubble shows, mini golf, fire trucks, a fun fair, even a pumpkin patch.",
+          "visual": "Nine brand chips"
         },
         {
-          "t": "15-30",
+          "t": "10-22",
           "talent": "Presenter",
-          "line": "Waivers attach to the service so they send themselves; deposits block the booking until paid.",
-          "visual": "Service settings screen"
+          "line": "Each brand gets its own booking page and its own prices, and they all share one crew and one calendar. So when a Saturday stacks up, I check one screen. Not nine.",
+          "visual": "Saturday view, all brands"
         },
         {
-          "t": "30-38",
+          "t": "22-28",
           "talent": "Presenter",
-          "line": "Comment SATURDAY and I'll send you our setup.",
+          "line": "Comment SATURDAY, and I'll send you how we set it up.",
           "visual": "End card"
         }
       ],
       "requires_real_footage": true,
-      "numbers_must_be_verified": true
+      "data_source": "Rally booking_search, PA Fun Company account, statuses confirmed/in progress/completed, 2026-01-01 to 2026-10-21: 619 bookings; 9 brands in account settings."
     }
   ],
   "presenter": "One person to camera: Danny or Chris (TBD)",
