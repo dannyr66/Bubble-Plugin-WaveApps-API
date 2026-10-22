@@ -1,0 +1,62 @@
+{
+  "ad": "lasertag",
+  "title": "Ad 1c \u00b7 Circumstance, laser tag",
+  "sticker": "20 kids tomorrow.\n0 waivers signed.",
+  "total": 39.768,
+  "segments": [
+    {
+      "id": "l1",
+      "cap": "It's Friday night. Tomorrow you've got twenty kids, sixteen laser tag vests, and zero signed waivers.",
+      "s": 0.25,
+      "e": 6.824
+    },
+    {
+      "id": "l2",
+      "cap": "You're asking the birthday mom to collect a waiver from every single parent.",
+      "s": 7.124,
+      "e": 11.578
+    },
+    {
+      "id": "l3",
+      "cap": "Half of them haven't even opened the link.",
+      "s": 11.878,
+      "e": 14.15
+    },
+    {
+      "id": "l4",
+      "cap": "And your new ref doesn't know where the field is.",
+      "s": 14.45,
+      "e": 16.884
+    },
+    {
+      "id": "l5",
+      "cap": "Here's what that same Friday looks like in Rally.",
+      "s": 17.184,
+      "e": 19.709
+    },
+    {
+      "id": "l6",
+      "cap": "Every guest gets their own waiver link, and you watch them come in.",
+      "s": 20.009,
+      "e": 23.802
+    },
+    {
+      "id": "l7",
+      "cap": "Deposits collect themselves, and the booking goes green when the waivers are in.",
+      "s": 24.102,
+      "e": 28.535
+    },
+    {
+      "id": "l8",
+      "cap": "Your crew gets the address, the time, and the gear list. Automatically.",
+      "s": 28.835,
+      "e": 32.722
+    },
+    {
+      "id": "l9",
+      "cap": "Comment SATURDAY, and I'll send you the exact reminders we automate.",
+      "s": 33.022,
+      "e": 37.068
+    }
+  ]
+}

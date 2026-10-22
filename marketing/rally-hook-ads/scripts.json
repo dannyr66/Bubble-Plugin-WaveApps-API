@@ -1,0 +1,191 @@
+{
+  "_about": "Rally Meta ad scripts, five-hook framework. Values in [brackets] must be replaced with real Rally data before production. 'said' = spoken line / caption, 'shown' = on-screen sticker text (deliberately different).",
+  "cta_keyword": "SATURDAY",
+  "lead_magnet": "The Saturday Playbook: the automations we actually run, with our real wording",
+  "end_card": "Rally your crew. Run your day.",
+  "ads": [
+    {
+      "id": 1,
+      "hook": "circumstance",
+      "funnel": "cold",
+      "length_s": 40,
+      "said": "It's Friday night, you've got four parties tomorrow, and you're still texting three moms to find out who paid the deposit.",
+      "shown": "4 parties tomorrow. 0 deposits confirmed.",
+      "beats": [
+        {
+          "t": "0-3",
+          "talent": "Presenter",
+          "line": "It's Friday night, you've got four parties tomorrow...",
+          "visual": "Presenter to camera, phone in hand; sticker on screen"
+        },
+        {
+          "t": "3-12",
+          "talent": "Presenter",
+          "line": "...one waiver's unsigned, and your new guy doesn't know the address.",
+          "visual": "Stacking parent text bubbles, 11:48 PM"
+        },
+        {
+          "t": "12-30",
+          "talent": "Presenter",
+          "line": "Here's my Friday now.",
+          "visual": "Rally dashboard action items; zoom on three green confidence dots"
+        },
+        {
+          "t": "30-40",
+          "talent": "Presenter",
+          "line": "Comment SATURDAY and I'll send you the exact reminders we automate.",
+          "visual": "End card"
+        }
+      ],
+      "niche_variants": [
+        "foam party",
+        "game truck",
+        "mobile laser tag",
+        "bubble show"
+      ]
+    },
+    {
+      "id": 2,
+      "hook": "real_reason",
+      "funnel": "cold",
+      "length_s": 40,
+      "said": "The real reason you're doing admin at midnight isn't that you're disorganized. It's that your bookings, payments, waivers and crew live in five apps that don't talk to each other.",
+      "shown": "It's not you. It's your 5 apps.",
+      "beats": [
+        {
+          "t": "0-3",
+          "talent": "Presenter",
+          "line": "The real reason you're doing admin at midnight isn't that you're disorganized.",
+          "visual": "Sticker"
+        },
+        {
+          "t": "3-15",
+          "talent": "Presenter",
+          "line": "Your booking's in a form, the money's in Square, the waiver's a PDF, your crew's in a group text. You're the cable between them.",
+          "visual": "Five app tiles, red x on every connection"
+        },
+        {
+          "t": "15-32",
+          "talent": "Presenter",
+          "line": "In Rally one booking does all of it: invoice out, waiver out, crew assigned, reminders scheduled.",
+          "visual": "Tiles snap into a single Rally hub"
+        },
+        {
+          "t": "32-40",
+          "talent": "Presenter",
+          "line": "Learn more / start a trial.",
+          "visual": "End card"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "hook": "price_tag",
+      "funnel": "retarget",
+      "length_s": 35,
+      "said": "Rally is ten dollars a booking. You don't pay a cent until someone books. Here's what that ten dollars does.",
+      "shown": "No booking. No bill.",
+      "beats": [
+        {
+          "t": "0-3",
+          "talent": "Presenter",
+          "line": "Rally is ten dollars a booking. You don't pay a cent until someone books.",
+          "visual": "Price tag graphic ($10 per confirmed booking) + sticker"
+        },
+        {
+          "t": "3-20",
+          "talent": "Presenter",
+          "line": "Booking page, deposits and auto-billing, waivers on their phone, crew portal, automatic reminders, client portal.",
+          "visual": "Each item checks off over its real screen"
+        },
+        {
+          "t": "20-30",
+          "talent": "Presenter",
+          "line": "Add up what you pay now for forms, e-sign and texting. Then add your Friday nights.",
+          "visual": "Stack-vs-Rally comparison"
+        },
+        {
+          "t": "30-35",
+          "talent": "Presenter",
+          "line": "Start free. Your booking page is live today.",
+          "visual": "End card"
+        }
+      ],
+      "audience": "site visitors, 50%+ video viewers, SATURDAY commenters, people who started signup but didn't finish",
+      "price_note": "$10 per confirmed booking comes from the Rally Trial and Pays For Itself designs; confirm it is the live price before running."
+    },
+    {
+      "id": 4,
+      "hook": "receipt",
+      "funnel": "warm",
+      "length_s": 38,
+      "said": "I just set up Saturday's foam party for a customer. Watch what happens the second she books.",
+      "shown": "Real booking. Real Saturday. No edits.",
+      "beats": [
+        {
+          "t": "0-3",
+          "talent": "Presenter (face cam)",
+          "line": "I just set up Saturday's foam party for a customer. Watch what happens when she books.",
+          "visual": "REC badge, face cam bubble, sticker"
+        },
+        {
+          "t": "3-20",
+          "talent": "Presenter",
+          "line": "Booking comes in, deposit invoice sends itself, waiver link goes out, crew gets a text.",
+          "visual": "Real phone screen recording; blur client PII"
+        },
+        {
+          "t": "20-30",
+          "talent": "Presenter",
+          "line": "And here's what my crew sees on event day.",
+          "visual": "Crew portal: address, map, gear list, On My Way; dots go green"
+        },
+        {
+          "t": "30-38",
+          "talent": "Presenter",
+          "line": "That's the whole admin side of a party. Learn more.",
+          "visual": "End card"
+        }
+      ],
+      "requires_real_footage": true
+    },
+    {
+      "id": 5,
+      "hook": "proof_drop",
+      "funnel": "warm",
+      "length_s": 38,
+      "said": "619 bookings this year, across nine brands, all run from one app.",
+      "shown": "619 bookings. 9 brands. 1 app.",
+      "beats": [
+        {
+          "t": "0-3",
+          "talent": "Presenter",
+          "line": "619 bookings this year, across nine brands, all run from one app.",
+          "visual": "Counter to 619 + sticker"
+        },
+        {
+          "t": "3-10",
+          "talent": "Presenter",
+          "line": "Foam parties, bubble shows, mini golf, fire trucks, a fun fair, even a pumpkin patch.",
+          "visual": "Nine brand chips"
+        },
+        {
+          "t": "10-22",
+          "talent": "Presenter",
+          "line": "Each brand gets its own booking page and its own prices, and they all share one crew and one calendar. So when a Saturday stacks up, I check one screen. Not nine.",
+          "visual": "Saturday view, all brands"
+        },
+        {
+          "t": "22-28",
+          "talent": "Presenter",
+          "line": "Comment SATURDAY, and I'll send you how we set it up.",
+          "visual": "End card"
+        }
+      ],
+      "requires_real_footage": true,
+      "data_source": "Rally booking_search, PA Fun Company account, statuses confirmed/in progress/completed, 2026-01-01 to 2026-10-21: 619 bookings; 9 brands in account settings."
+    }
+  ],
+  "presenter": "One person to camera: Danny or Chris (TBD)",
+  "design_system": "Rally new look: navy #0B2A45, cream #FBF8F1, ink #12324F, primary #0E3A5D, sky #8CC4F0; Bricolage Grotesque (display), Schibsted Grotesk (body), IBM Plex Mono (labels)"
+}

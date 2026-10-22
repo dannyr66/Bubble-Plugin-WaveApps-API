@@ -1,0 +1,62 @@
+{
+  "ad": "gametruck",
+  "title": "Ad 1b \u00b7 Circumstance, game truck",
+  "sticker": "3 parties tomorrow.\n1 generator, 2 places.",
+  "total": 40.086,
+  "segments": [
+    {
+      "id": "g1",
+      "cap": "It's Friday night, and you've got three game truck parties tomorrow.",
+      "s": 0.25,
+      "e": 3.974
+    },
+    {
+      "id": "g2",
+      "cap": "Two moms want to know if the truck fits in the driveway, and one still hasn't paid.",
+      "s": 4.274,
+      "e": 8.984
+    },
+    {
+      "id": "g3",
+      "cap": "Your second generator is booked in two places at once.",
+      "s": 9.284,
+      "e": 12.667
+    },
+    {
+      "id": "g4",
+      "cap": "And your driver doesn't know which party is first.",
+      "s": 12.967,
+      "e": 15.626
+    },
+    {
+      "id": "g5",
+      "cap": "Here's what that same Friday looks like in Rally.",
+      "s": 15.926,
+      "e": 18.451
+    },
+    {
+      "id": "g6",
+      "cap": "Every booking gets three dots. Gear, crew, and paperwork.",
+      "s": 18.751,
+      "e": 22.289
+    },
+    {
+      "id": "g7",
+      "cap": "A double-booked generator shows up red before Saturday does, and deposits collect themselves.",
+      "s": 22.589,
+      "e": 28.231
+    },
+    {
+      "id": "g8",
+      "cap": "Your driver gets every stop, every time, and every address. Automatically.",
+      "s": 28.531,
+      "e": 33.04
+    },
+    {
+      "id": "g9",
+      "cap": "Comment SATURDAY, and I'll send you the exact reminders we automate.",
+      "s": 33.34,
+      "e": 37.386
+    }
+  ]
+}

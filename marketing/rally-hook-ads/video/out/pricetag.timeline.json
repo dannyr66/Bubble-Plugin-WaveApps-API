@@ -1,0 +1,62 @@
+{
+  "ad": "pricetag",
+  "title": "Ad 3 \u00b7 Price tag",
+  "sticker": "No booking.\nNo bill.",
+  "total": 25.289,
+  "segments": [
+    {
+      "id": "t1",
+      "cap": "Rally is $10 a booking.",
+      "s": 0.25,
+      "e": 1.945
+    },
+    {
+      "id": "t2",
+      "cap": "You don't pay a cent until someone books.",
+      "s": 2.245,
+      "e": 4.459
+    },
+    {
+      "id": "t3",
+      "cap": "Here's what that $10 does.",
+      "s": 4.759,
+      "e": 6.651
+    },
+    {
+      "id": "t4",
+      "cap": "Your booking page takes the deposit.",
+      "s": 6.951,
+      "e": 8.911
+    },
+    {
+      "id": "t5",
+      "cap": "The waiver gets signed on their phone.",
+      "s": 9.061,
+      "e": 10.773
+    },
+    {
+      "id": "t6",
+      "cap": "Your crew gets the address and the gear list.",
+      "s": 10.923,
+      "e": 13.19
+    },
+    {
+      "id": "t7",
+      "cap": "And the reminders send themselves.",
+      "s": 13.34,
+      "e": 15.151
+    },
+    {
+      "id": "t8",
+      "cap": "Catch one or two parties you'd have missed, and Rally has paid for itself.",
+      "s": 15.451,
+      "e": 19.482
+    },
+    {
+      "id": "t9",
+      "cap": "Start free. Your booking page is live today.",
+      "s": 19.782,
+      "e": 22.589
+    }
+  ]
+}

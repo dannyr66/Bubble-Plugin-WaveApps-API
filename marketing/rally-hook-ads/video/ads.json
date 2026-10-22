@@ -1,0 +1,357 @@
+{
+  "voice": "am_michael",
+  "speed": 1.08,
+  "ads": {
+    "circumstance": {
+      "title": "Ad 1 · Circumstance",
+      "sticker": "4 parties tomorrow.\n0 deposits confirmed.",
+      "segments": [
+        {
+          "id": "c1",
+          "cap": "It's Friday night, and you've got four parties tomorrow."
+        },
+        {
+          "id": "c2",
+          "cap": "You're still texting three moms to find out who paid the deposit."
+        },
+        {
+          "id": "c3",
+          "cap": "One waiver is still unsigned."
+        },
+        {
+          "id": "c4",
+          "cap": "And your new guy doesn't know the address."
+        },
+        {
+          "id": "c5",
+          "cap": "Here's what that same Friday looks like in Rally."
+        },
+        {
+          "id": "c6",
+          "cap": "Every booking gets three dots. Gear, crew, and paperwork."
+        },
+        {
+          "id": "c7",
+          "cap": "Deposits collect themselves, and waivers go out the second they book."
+        },
+        {
+          "id": "c8",
+          "cap": "Your crew gets the address, the time, and the gear list. Automatically."
+        },
+        {
+          "id": "c9",
+          "cap": "Comment SATURDAY, and I'll send you the exact reminders we automate.",
+          "say": "Comment Saturday, and I'll send you the exact reminders we automate."
+        }
+      ]
+    },
+    "realreason": {
+      "title": "Ad 2 · Real reason",
+      "sticker": "It's not you.\nIt's your 5 apps.",
+      "segments": [
+        {
+          "id": "r1",
+          "cap": "The real reason you're doing admin at midnight isn't that you're disorganized."
+        },
+        {
+          "id": "r2",
+          "cap": "It's that your business lives in five apps that don't talk to each other."
+        },
+        {
+          "id": "r3",
+          "cap": "The booking is in a form.",
+          "gap": 0.12
+        },
+        {
+          "id": "r4",
+          "cap": "The schedule's in your calendar.",
+          "gap": 0.12
+        },
+        {
+          "id": "r5",
+          "cap": "The money's in a card reader.",
+          "gap": 0.12
+        },
+        {
+          "id": "r6",
+          "cap": "The waiver is a PDF.",
+          "gap": 0.12
+        },
+        {
+          "id": "r7",
+          "cap": "And your crew is in a group text."
+        },
+        {
+          "id": "r8",
+          "cap": "So you're the one copying everything between them. Every single booking."
+        },
+        {
+          "id": "r9",
+          "cap": "In Rally, one booking does all of it."
+        },
+        {
+          "id": "r10a",
+          "cap": "The invoice goes out.",
+          "gap": 0.1
+        },
+        {
+          "id": "r10b",
+          "cap": "The waiver goes out.",
+          "gap": 0.1
+        },
+        {
+          "id": "r10c",
+          "cap": "Your crew gets assigned.",
+          "gap": 0.1
+        },
+        {
+          "id": "r10d",
+          "cap": "And the reminders schedule themselves."
+        },
+        {
+          "id": "r11",
+          "cap": "Rally. Rally your crew, run your day."
+        }
+      ]
+    },
+    "receipt": {
+      "title": "Ad 4 · Receipt",
+      "sticker": "Watch one booking\nrun itself.",
+      "segments": [
+        {
+          "id": "p1",
+          "cap": "I just set up Saturday's foam party for a customer. Watch what happens when she books."
+        },
+        {
+          "id": "p2",
+          "cap": "She picks the Foam Party Deluxe right from my booking page."
+        },
+        {
+          "id": "p3",
+          "cap": "The second she submits, the deposit invoice goes out on its own."
+        },
+        {
+          "id": "p4",
+          "cap": "Then the waiver. She signs it right on her phone."
+        },
+        {
+          "id": "p5",
+          "cap": "My crew gets a text with the address, the time, and the gear list."
+        },
+        {
+          "id": "p6",
+          "cap": "And all three dots go green. That party is ready to run."
+        },
+        {
+          "id": "p7",
+          "cap": "That's the whole admin side of a party. Rally your crew, run your day."
+        }
+      ]
+    },
+    "pricetag": {
+      "title": "Ad 3 · Price tag",
+      "sticker": "No booking.\nNo bill.",
+      "segments": [
+        {
+          "cap": "Rally is $10 a booking.",
+          "say": "Rally is ten dollars a booking.",
+          "id": "t1"
+        },
+        {
+          "cap": "You don't pay a cent until someone books.",
+          "id": "t2"
+        },
+        {
+          "cap": "Here's what that $10 does.",
+          "say": "Here's what that ten dollars does.",
+          "id": "t3"
+        },
+        {
+          "cap": "Your booking page takes the deposit.",
+          "gap": 0.15,
+          "id": "t4"
+        },
+        {
+          "cap": "The waiver gets signed on their phone.",
+          "gap": 0.15,
+          "id": "t5"
+        },
+        {
+          "cap": "Your crew gets the address and the gear list.",
+          "gap": 0.15,
+          "id": "t6"
+        },
+        {
+          "cap": "And the reminders send themselves.",
+          "id": "t7"
+        },
+        {
+          "cap": "Catch one or two parties you'd have missed, and Rally has paid for itself.",
+          "id": "t8"
+        },
+        {
+          "cap": "Start free. Your booking page is live today.",
+          "id": "t9"
+        }
+      ]
+    },
+    "proofdrop": {
+      "title": "Ad 5 · Proof drop",
+      "sticker": "619 bookings.\n9 brands. 1 app.",
+      "segments": [
+        {
+          "cap": "619 bookings this year, across nine brands, all run from one app.",
+          "say": "Six hundred nineteen bookings this year, across nine brands, all run from one app.",
+          "id": "d1"
+        },
+        {
+          "cap": "Foam parties, bubble shows, mini golf, fire trucks, a fun fair, even a pumpkin patch.",
+          "id": "d2"
+        },
+        {
+          "cap": "Each brand gets its own booking page and its own prices, and they all share one crew and one calendar.",
+          "id": "d3"
+        },
+        {
+          "cap": "So when a Saturday stacks up, I check one screen. Not nine.",
+          "id": "d4"
+        },
+        {
+          "cap": "Comment SATURDAY, and I'll send you how we set it up.",
+          "say": "Comment Saturday, and I'll send you how we set it up.",
+          "id": "d5"
+        }
+      ]
+    },
+    "gametruck": {
+      "title": "Ad 1b · Circumstance, game truck",
+      "sticker": "3 parties tomorrow.\n1 generator, 2 places.",
+      "segments": [
+        {
+          "cap": "It's Friday night, and you've got three game truck parties tomorrow.",
+          "id": "g1"
+        },
+        {
+          "cap": "Two moms want to know if the truck fits in the driveway, and one still hasn't paid.",
+          "id": "g2"
+        },
+        {
+          "cap": "Your second generator is booked in two places at once.",
+          "id": "g3"
+        },
+        {
+          "cap": "And your driver doesn't know which party is first.",
+          "id": "g4"
+        },
+        {
+          "cap": "Here's what that same Friday looks like in Rally.",
+          "id": "g5"
+        },
+        {
+          "cap": "Every booking gets three dots. Gear, crew, and paperwork.",
+          "id": "g6"
+        },
+        {
+          "cap": "A double-booked generator shows up red before Saturday does, and deposits collect themselves.",
+          "id": "g7"
+        },
+        {
+          "cap": "Your driver gets every stop, every time, and every address. Automatically.",
+          "id": "g8"
+        },
+        {
+          "cap": "Comment SATURDAY, and I'll send you the exact reminders we automate.",
+          "say": "Comment Saturday, and I'll send you the exact reminders we automate.",
+          "id": "g9"
+        }
+      ]
+    },
+    "lasertag": {
+      "title": "Ad 1c · Circumstance, laser tag",
+      "sticker": "20 kids tomorrow.\n0 waivers signed.",
+      "segments": [
+        {
+          "cap": "It's Friday night. Tomorrow you've got twenty kids, sixteen laser tag vests, and zero signed waivers.",
+          "id": "l1"
+        },
+        {
+          "cap": "You're asking the birthday mom to collect a waiver from every single parent.",
+          "id": "l2"
+        },
+        {
+          "cap": "Half of them haven't even opened the link.",
+          "id": "l3"
+        },
+        {
+          "cap": "And your new ref doesn't know where the field is.",
+          "id": "l4"
+        },
+        {
+          "cap": "Here's what that same Friday looks like in Rally.",
+          "id": "l5"
+        },
+        {
+          "cap": "Every guest gets their own waiver link, and you watch them come in.",
+          "id": "l6"
+        },
+        {
+          "cap": "Deposits collect themselves, and the booking goes green when the waivers are in.",
+          "id": "l7"
+        },
+        {
+          "cap": "Your crew gets the address, the time, and the gear list. Automatically.",
+          "id": "l8"
+        },
+        {
+          "cap": "Comment SATURDAY, and I'll send you the exact reminders we automate.",
+          "say": "Comment Saturday, and I'll send you the exact reminders we automate.",
+          "id": "l9"
+        }
+      ]
+    },
+    "bubbles": {
+      "title": "Ad 1d · Circumstance, bubble show",
+      "voice": "af_heart",
+      "sticker": "9 AM daycare show.\nNo invoice sent.",
+      "segments": [
+        {
+          "cap": "It's Thursday night, and you've got a daycare bubble show at nine tomorrow morning.",
+          "id": "b1"
+        },
+        {
+          "cap": "The director still needs your insurance certificate, and the invoice never went out.",
+          "id": "b2"
+        },
+        {
+          "cap": "Next week's school wants a signed contract by Monday.",
+          "id": "b3"
+        },
+        {
+          "cap": "And your helper is asking which bubble machines are going.",
+          "id": "b4"
+        },
+        {
+          "cap": "Here's what that same night looks like in Rally.",
+          "id": "b5"
+        },
+        {
+          "cap": "Every booking gets three dots. Gear, crew, and paperwork.",
+          "id": "b6"
+        },
+        {
+          "cap": "Your insurance certificate and contract go out with the booking, and the invoice sends itself.",
+          "id": "b7"
+        },
+        {
+          "cap": "Your helper gets the address, the time, and the gear list. Automatically.",
+          "id": "b8"
+        },
+        {
+          "cap": "Comment SATURDAY, and I'll send you the exact reminders we automate.",
+          "say": "Comment Saturday, and I'll send you the exact reminders we automate.",
+          "id": "b9"
+        }
+      ]
+    }
+  }
+}

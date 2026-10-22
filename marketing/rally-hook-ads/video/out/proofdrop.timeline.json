@@ -1,0 +1,38 @@
+{
+  "ad": "proofdrop",
+  "title": "Ad 5 \u00b7 Proof drop",
+  "sticker": "619 bookings.\n9 brands. 1 app.",
+  "total": 28.056,
+  "segments": [
+    {
+      "id": "d1",
+      "cap": "619 bookings this year, across nine brands, all run from one app.",
+      "s": 0.25,
+      "e": 5.692
+    },
+    {
+      "id": "d2",
+      "cap": "Foam parties, bubble shows, mini golf, fire trucks, a fun fair, even a pumpkin patch.",
+      "s": 5.992,
+      "e": 11.549
+    },
+    {
+      "id": "d3",
+      "cap": "Each brand gets its own booking page and its own prices, and they all share one crew and one calendar.",
+      "s": 11.849,
+      "e": 18.032
+    },
+    {
+      "id": "d4",
+      "cap": "So when a Saturday stacks up, I check one screen. Not nine.",
+      "s": 18.332,
+      "e": 22.116
+    },
+    {
+      "id": "d5",
+      "cap": "Comment SATURDAY, and I'll send you how we set it up.",
+      "s": 22.416,
+      "e": 25.356
+    }
+  ]
+}

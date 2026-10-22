@@ -1,0 +1,92 @@
+{
+  "ad": "realreason",
+  "title": "Ad 2 \u00b7 Real reason",
+  "sticker": "It's not you.\nIt's your 5 apps.",
+  "total": 36.343,
+  "segments": [
+    {
+      "id": "r1",
+      "cap": "The real reason you're doing admin at midnight isn't that you're disorganized.",
+      "s": 0.25,
+      "e": 4.831
+    },
+    {
+      "id": "r2",
+      "cap": "It's that your business lives in five apps that don't talk to each other.",
+      "s": 5.131,
+      "e": 8.794
+    },
+    {
+      "id": "r3",
+      "cap": "The booking is in a form.",
+      "s": 9.094,
+      "e": 10.607
+    },
+    {
+      "id": "r4",
+      "cap": "The schedule's in your calendar.",
+      "s": 10.727,
+      "e": 12.367
+    },
+    {
+      "id": "r5",
+      "cap": "The money's in a card reader.",
+      "s": 12.487,
+      "e": 14.15
+    },
+    {
+      "id": "r6",
+      "cap": "The waiver is a PDF.",
+      "s": 14.27,
+      "e": 15.875
+    },
+    {
+      "id": "r7",
+      "cap": "And your crew is in a group text.",
+      "s": 15.995,
+      "e": 17.829
+    },
+    {
+      "id": "r8",
+      "cap": "So you're the one copying everything between them. Every single booking.",
+      "s": 18.129,
+      "e": 22.327
+    },
+    {
+      "id": "r9",
+      "cap": "In Rally, one booking does all of it.",
+      "s": 22.627,
+      "e": 24.698
+    },
+    {
+      "id": "r10a",
+      "cap": "The invoice goes out.",
+      "s": 24.998,
+      "e": 26.271
+    },
+    {
+      "id": "r10b",
+      "cap": "The waiver goes out.",
+      "s": 26.371,
+      "e": 27.672
+    },
+    {
+      "id": "r10c",
+      "cap": "Your crew gets assigned.",
+      "s": 27.772,
+      "e": 29.219
+    },
+    {
+      "id": "r10d",
+      "cap": "And the reminders schedule themselves.",
+      "s": 29.319,
+      "e": 31.363
+    },
+    {
+      "id": "r11",
+      "cap": "Rally. Rally your crew, run your day.",
+      "s": 31.663,
+      "e": 33.643
+    }
+  ]
+}
