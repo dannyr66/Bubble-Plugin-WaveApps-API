@@ -1,0 +1,467 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+:root {
+  --bg: #0f1117; --panel: #1b1e27; --panel2: #262a35; --fg: #f3f3f5; --muted: #9aa0ad;
+  --flare: #ff5a1f; --sticker: #ffd43b; --good: #2fbf71; --warn: #f2b01e; --bad: #ef4b3c;
+  --paper: #ffffff; --ink: #17191f; --line: #e7e5de; --soft: #f4f3ef;
+  --display: "Bricolage Grotesque", "Arial Black", sans-serif;
+  --body: "Instrument Sans", "DejaVu Sans", sans-serif;
+  --mono: "JetBrains Mono", "DejaVu Sans Mono", monospace;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 720px; height: 1280px; overflow: hidden; background: var(--bg); }
+#stage { position: relative; width: 720px; height: 1280px; overflow: hidden; background: var(--bg); color: var(--fg); font-family: var(--body); }
+.abs { position: absolute; }
+#glow { position: absolute; inset: -200px; background: radial-gradient(520px 420px at 50% 22%, rgb(255 90 31 / 0.22), transparent 70%); }
+#brand { position: absolute; top: 46px; left: 40px; display: flex; align-items: center; gap: 12px; font-family: var(--display); font-size: 30px; font-weight: 800; z-index: 50; }
+.logo { width: 42px; height: 42px; border-radius: 50%; background: var(--flare); color: #fff; display: grid; place-items: center; font-family: var(--display); font-weight: 800; font-size: 24px; }
+#tag { position: absolute; top: 56px; right: 40px; font-family: var(--mono); font-size: 15px; font-weight: 700; letter-spacing: 0.08em; color: var(--muted); border: 2px solid #3a3f4c; padding: 4px 10px; border-radius: 6px; z-index: 50; }
+#sticker { position: absolute; top: 150px; left: 56px; right: 56px; z-index: 40; background: var(--sticker); color: var(--ink); font-family: var(--display); font-weight: 800; font-size: 54px; line-height: 1.04; text-align: center; padding: 18px 20px 20px; border-radius: 8px; box-shadow: 0 7px 0 rgb(0 0 0 / 0.45); white-space: pre-line; }
+#caps { position: absolute; left: 40px; right: 40px; top: 900px; z-index: 60; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 10px; }
+#caps span { font-family: var(--body); font-weight: 700; font-size: 46px; line-height: 1.15; padding: 2px 10px 6px; border-radius: 8px; color: #fff; text-shadow: 0 2px 10px rgb(0 0 0 / 0.6); }
+#caps span.on { background: #fff; color: var(--ink); text-shadow: none; }
+#caps span.future { color: rgb(255 255 255 / 0.45); }
+
+.pwrap { position: absolute; inset: 0; transform: translateY(-20px) scale(0.9); transform-origin: 360px 250px; }
+.phone { position: absolute; left: 150px; top: 250px; width: 420px; height: 700px; border-radius: 48px; background: #000; border: 9px solid #2c303b; overflow: hidden; box-shadow: 0 30px 80px rgb(0 0 0 / 0.55); }
+.screen { position: absolute; inset: 0; overflow: hidden; }
+.lock { background: linear-gradient(170deg, #1d2540 0%, #2b1d3f 60%, #1a1424 100%); }
+.lock .time { position: absolute; top: 84px; left: 0; right: 0; text-align: center; font-weight: 600; font-size: 92px; letter-spacing: -2px; }
+.lock .day { position: absolute; top: 60px; left: 0; right: 0; text-align: center; font-weight: 600; font-size: 22px; opacity: 0.8; }
+.notifs { position: absolute; top: 220px; left: 14px; right: 14px; display: flex; flex-direction: column; }
+.notif { background: rgb(255 255 255 / 0.15); border-radius: 20px; padding: 12px 14px; display: flex; gap: 12px; align-items: center; overflow: hidden; }
+.notif .ic { width: 38px; height: 38px; border-radius: 10px; flex: none; display: grid; place-items: center; font-weight: 700; font-size: 18px; color: #fff; }
+.notif b { display: block; font-size: 17px; }
+.notif p { font-size: 17px; line-height: 1.25; opacity: 0.92; }
+
+.app { background: var(--soft); color: var(--ink); }
+.app .hdr { background: var(--ink); color: #fff; padding: 56px 20px 16px; display: flex; align-items: center; gap: 10px; }
+.app .hdr .logo { width: 34px; height: 34px; font-size: 19px; }
+.app .hdr b { font-family: var(--display); font-size: 26px; }
+.app .hdr span { margin-left: auto; font-size: 16px; opacity: 0.75; }
+.legend { margin: 14px 16px 6px; display: flex; gap: 14px; font-family: var(--mono); font-size: 13px; font-weight: 700; letter-spacing: 0.04em; color: #5d6170; }
+.row { margin: 8px 12px; background: var(--paper); border-radius: 14px; padding: 12px 14px; display: flex; align-items: center; gap: 12px; border: 1px solid var(--line); }
+.row .tm { font-family: var(--mono); font-size: 14px; font-weight: 700; width: 72px; color: #5d6170; }
+.row .nm b { display: block; font-size: 17px; }
+.row .nm span { font-size: 14px; color: #5d6170; }
+.dots { margin-left: auto; display: flex; gap: 6px; }
+.dot { width: 16px; height: 16px; border-radius: 50%; }
+.toast { position: absolute; left: 16px; right: 16px; background: var(--ink); color: #fff; border-radius: 16px; padding: 14px 16px; font-size: 17px; font-weight: 600; display: flex; gap: 10px; align-items: center; }
+.tick { width: 26px; height: 26px; border-radius: 50%; background: var(--good); color: #fff; display: grid; place-items: center; font-size: 16px; font-weight: 700; flex: none; }
+.sheet { position: absolute; left: 0; right: 0; bottom: 0; background: var(--paper); color: var(--ink); border-radius: 26px 26px 0 0; padding: 22px 20px 28px; box-shadow: 0 -10px 40px rgb(0 0 0 / 0.3); display: grid; gap: 10px; }
+.sheet .lbl { font-family: var(--mono); font-size: 13px; font-weight: 700; color: #5d6170; letter-spacing: 0.06em; }
+.sheet .big { font-family: var(--display); font-size: 28px; font-weight: 800; }
+.sheet p { font-size: 17px; line-height: 1.35; }
+.btns { display: flex; gap: 10px; padding-top: 6px; }
+.btn { flex: 1; text-align: center; padding: 13px; border-radius: 12px; font-weight: 700; font-size: 17px; background: var(--soft); }
+.btn.go { background: var(--flare); color: #fff; }
+
+.end { position: absolute; inset: 0; background: var(--flare); z-index: 55; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 26px; padding-bottom: 260px; color: #fff; }
+.end .word { font-family: var(--display); font-weight: 800; font-size: 170px; line-height: 0.9; letter-spacing: -4px; display: flex; align-items: center; gap: 22px; }
+.end .word .logo { width: 120px; height: 120px; font-size: 76px; background: #fff; color: var(--flare); }
+.end .line { font-family: var(--display); font-weight: 800; font-size: 46px; }
+.end .cta { background: var(--ink); color: #fff; font-weight: 700; font-size: 38px; padding: 18px 30px; border-radius: 16px; }
+.end .cta em { font-style: normal; background: var(--sticker); color: var(--ink); padding: 0 10px; border-radius: 6px; }
+
+.clock { position: absolute; top: 380px; left: 0; right: 0; text-align: center; font-family: var(--mono); font-weight: 700; font-size: 130px; letter-spacing: -4px; }
+.clocksub { position: absolute; top: 550px; left: 0; right: 0; text-align: center; font-size: 34px; color: var(--muted); }
+.tile { position: absolute; width: 196px; height: 118px; margin: -59px 0 0 -98px; background: var(--panel); border: 3px solid #333846; border-radius: 18px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; }
+.tile .k { font-family: var(--mono); font-weight: 700; font-size: 17px; letter-spacing: 0.05em; color: var(--fg); }
+.tile .s { font-size: 15px; color: var(--muted); }
+.tile .g { width: 44px; height: 30px; border: 3px solid var(--muted); border-radius: 6px; }
+.hub { position: absolute; left: 360px; top: 450px; width: 210px; height: 210px; margin: -105px 0 0 -105px; border-radius: 50%; background: var(--flare); display: grid; place-items: center; font-family: var(--display); font-weight: 800; font-size: 52px; color: #fff; box-shadow: 0 0 0 18px rgb(255 90 31 / 0.18); }
+.you { position: absolute; width: 74px; height: 74px; margin: -37px 0 0 -37px; border-radius: 50%; background: var(--sticker); color: var(--ink); display: grid; place-items: center; font-family: var(--mono); font-weight: 700; font-size: 17px; z-index: 5; }
+.xmark { position: absolute; width: 38px; height: 38px; margin: -19px 0 0 -19px; border-radius: 50%; background: var(--bad); color: #fff; display: grid; place-items: center; font-weight: 700; font-size: 22px; }
+.checks { position: absolute; top: 600px; left: 120px; right: 120px; display: grid; gap: 14px; }
+.check { display: flex; align-items: center; gap: 16px; font-size: 34px; font-weight: 700; }
+.check .tick { width: 42px; height: 42px; font-size: 24px; }
+
+.rec { position: absolute; top: 250px; left: 190px; z-index: 30; background: var(--bad); color: #fff; font-family: var(--mono); font-weight: 700; font-size: 16px; padding: 4px 10px; border-radius: 6px; }
+.web { background: var(--paper); color: var(--ink); }
+.web .bhdr { padding: 54px 20px 18px; background: #0b7c8a; color: #fff; }
+.web .bhdr b { font-family: var(--display); font-size: 26px; display: block; }
+.web .bhdr span { font-size: 15px; opacity: 0.85; }
+.step { font-family: var(--mono); font-size: 13px; font-weight: 700; color: #5d6170; padding: 16px 20px 6px; letter-spacing: 0.04em; }
+.svc { margin: 8px 16px; border: 3px solid var(--line); border-radius: 16px; padding: 14px 16px; display: flex; justify-content: space-between; align-items: center; }
+.svc b { font-size: 19px; display: block; }
+.svc span { font-size: 14px; color: #5d6170; }
+.svc .pr { font-family: var(--display); font-weight: 800; font-size: 24px; }
+.submit { position: absolute; left: 16px; right: 16px; bottom: 28px; background: #0b7c8a; color: #fff; text-align: center; padding: 16px; border-radius: 14px; font-weight: 700; font-size: 19px; }
+.tap { position: absolute; width: 60px; height: 60px; margin: -30px 0 0 -30px; border-radius: 50%; background: rgb(255 255 255 / 0.5); border: 3px solid rgb(0 0 0 / 0.35); z-index: 20; }
+.det .title { padding: 18px 20px 4px; font-family: var(--display); font-size: 28px; font-weight: 800; }
+.det .sub { padding: 0 20px 12px; font-size: 16px; color: #5d6170; }
+.ev { margin: 8px 16px; background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 13px 14px; display: flex; gap: 12px; align-items: center; font-size: 17px; font-weight: 600; }
+.ev small { display: block; font-weight: 400; color: #5d6170; font-size: 14px; }
+.doc { padding: 20px; display: grid; gap: 10px; }
+.doc .bar { height: 10px; background: #e3e1da; border-radius: 5px; }
+.sigbox { margin: 10px 16px; height: 150px; border: 2px dashed #b9b6ad; border-radius: 14px; position: relative; background: #fbfaf7; }
+.sigbox .lbl { position: absolute; left: 14px; bottom: 10px; font-family: var(--mono); font-size: 12px; color: #8a877e; }
+.stamp { position: absolute; right: 26px; top: 430px; border: 4px solid var(--good); color: var(--good); font-family: var(--mono); font-weight: 700; font-size: 22px; padding: 6px 12px; border-radius: 8px; }
+.sms { background: #fff; color: var(--ink); }
+.sms .shdr { padding: 54px 20px 14px; text-align: center; border-bottom: 1px solid var(--line); font-weight: 700; font-size: 18px; }
+.bub { position: absolute; max-width: 300px; padding: 12px 15px; border-radius: 20px; font-size: 17px; line-height: 1.35; }
+.bub.in { left: 14px; background: #e9e9eb; }
+.bub.out { right: 14px; background: var(--flare); color: #fff; font-weight: 700; }
+.bigdots { position: absolute; top: 250px; left: 0; right: 0; display: flex; justify-content: center; gap: 26px; }
+.bd { display: grid; justify-items: center; gap: 10px; font-family: var(--mono); font-weight: 700; font-size: 14px; color: #5d6170; }
+.bd i { width: 76px; height: 76px; border-radius: 50%; background: #d8d6cf; display: grid; place-items: center; color: #fff; font-style: normal; font-size: 34px; font-family: var(--body); }
+.ready { position: absolute; top: 420px; left: 40px; right: 40px; text-align: center; background: var(--good); color: #fff; font-family: var(--display); font-weight: 800; font-size: 34px; padding: 14px; border-radius: 16px; }
+</style>
+</head>
+<body>
+<div id="stage"></div>
+<script>
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const eo = p => 1 - Math.pow(1 - p, 3);
+const back = p => { const c = 1.9; return 1 + (c + 1) * Math.pow(p - 1, 3) + c * Math.pow(p - 1, 2); };
+const lerp = (a, b, p) => a + (b - a) * p;
+const prog = (t, a, d = 0.35) => clamp((t - a) / d);
+const anims = [];
+const stage = document.getElementById('stage');
+
+function el(tag, cls, parent, html, style) {
+  const n = document.createElement(tag);
+  if (cls) n.className = cls;
+  if (html != null) n.innerHTML = html;
+  if (style) Object.assign(n.style, style);
+  (parent || stage).appendChild(n);
+  return n;
+}
+// Fade/slide an element in at tin and out at tout. base is a transform kept underneath.
+function show(n, tin, tout = Infinity, kind = 'up', dur = 0.35, base = '') {
+  anims.push(t => {
+    const p = prog(t, tin, dur);
+    const q = tout === Infinity ? 0 : prog(t, tout, 0.25);
+    const o = (kind === 'pop' ? clamp(p * 3) : eo(p)) * (1 - q);
+    let tr = '';
+    if (kind === 'up') tr = `translateY(${(1 - eo(p)) * 34}px)`;
+    if (kind === 'down') tr = `translateY(${(1 - eo(p)) * -34}px)`;
+    if (kind === 'left') tr = `translateX(${(1 - eo(p)) * -40}px)`;
+    if (kind === 'pop') tr = `scale(${lerp(0.5, 1, back(p))})`;
+    if (kind === 'slideup') tr = `translateY(${(1 - eo(p)) * 100}%)`;
+    n.style.opacity = kind === 'slideup' ? (1 - q) : o;
+    n.style.transform = `${base} ${tr}`;
+    n.style.visibility = (kind === 'slideup' ? (t < tin || q >= 1) : o <= 0.001) ? 'hidden' : 'visible';
+  });
+}
+function scene(tin, tout) { const n = el('div', 'abs', stage, null, { inset: '0' }); show(n, tin, tout, 'fade', 0.3); return n; }
+
+let TL, S;
+function seg(id) { return S[id]; }
+
+// Captions: words timed in proportion to their length inside each spoken line.
+function buildCaptions() {
+  const box = el('div', '', stage); box.id = 'caps';
+  const lines = TL.segments.map(sg => {
+    const words = sg.cap.split(/\s+/);
+    const w = words.map(x => x.length + 1 + (/[.,?!]$/.test(x) ? 3 : 0));
+    const tot = w.reduce((a, b) => a + b, 0);
+    let acc = sg.s; const times = [];
+    words.forEach((x, i) => { times.push(acc); acc += (sg.e - sg.s) * w[i] / tot; });
+    const chunks = []; let cur = [];
+    words.forEach((x, i) => {
+      cur.push(i);
+      const len = cur.map(j => words[j].length + 1).reduce((a, b) => a + b, 0);
+      if (cur.length >= 4 || len > 20 || /[.,?!]$/.test(x)) { chunks.push(cur); cur = []; }
+    });
+    if (cur.length) chunks.push(cur);
+    return { sg, words, times, chunks };
+  });
+  let key = '';
+  anims.push(t => {
+    const ln = lines.find((l, i) => t >= l.sg.s - 0.05 && (i === lines.length - 1 ? t <= l.sg.e + 1.2 : t < lines[i + 1].sg.s - 0.05));
+    if (!ln) { if (key) { box.innerHTML = ''; key = ''; } return; }
+    let wi = 0; ln.times.forEach((x, i) => { if (t >= x) wi = i; });
+    const ch = ln.chunks.find(c => c.includes(wi)) || ln.chunks[0];
+    const k = ln.sg.id + ':' + ln.chunks.indexOf(ch) + ':' + wi + ':' + (t > ln.sg.e);
+    if (k === key) return; key = k;
+    box.innerHTML = ch.map(j => `<span class="${j === wi && t <= ln.sg.e ? 'on' : j > wi ? 'future' : ''}">${ln.words[j]}</span>`).join('');
+  });
+}
+
+function chrome() {
+  const g = el('div', '', stage); g.id = 'glow';
+  anims.push(t => { g.style.transform = `translate(${Math.sin(t * 0.4) * 40}px, ${Math.cos(t * 0.3) * 30}px)`; });
+  el('div', '', stage, '<div class="logo">R</div>Rally').id = 'brand';
+  el('div', '', stage, 'CONCEPT · AI VOICE').id = 'tag';
+}
+function sticker(tin, tout) {
+  const n = el('div', '', stage, TL.sticker.replace(/</g, '&lt;')); n.id = 'sticker';
+  show(n, tin, tout, 'pop', 0.4, 'rotate(-2.5deg)');
+}
+function endCard(tin, ctaHtml) {
+  const n = el('div', 'end', stage);
+  el('div', 'word', n, '<div class="logo">R</div>Rally');
+  const l = el('div', 'line', n, 'Rally your crew. Run your day.');
+  const c = el('div', 'cta', n, ctaHtml);
+  show(n, tin, Infinity, 'fade', 0.3);
+  show(l, tin + 0.35, Infinity, 'up');
+  show(c, tin + 0.7, Infinity, 'pop', 0.45);
+}
+function phone(tin, tout) {
+  const w = el('div', 'pwrap', stage);
+  const p = el('div', 'phone', w);
+  show(p, tin, tout, 'up', 0.5);
+  return p;
+}
+const dotColor = { g: 'var(--good)', y: 'var(--warn)', r: 'var(--bad)' };
+
+/* ---------- Ad 1: Circumstance ---------- */
+function circumstance() {
+  const c1 = seg('c1'), c2 = seg('c2'), c3 = seg('c3'), c4 = seg('c4'), c5 = seg('c5'), c6 = seg('c6'), c7 = seg('c7'), c8 = seg('c8'), c9 = seg('c9');
+  const ph = phone(0.05, c9.s);
+  const lock = el('div', 'screen lock', ph);
+  el('div', 'day', lock, 'Friday');
+  el('div', 'time', lock, '11:48');
+  const list = el('div', 'notifs', lock);
+  const items = [
+    [c2.s + 0.15, '#34c759', 'J', 'Jess M.', 'did u get my deposit??'],
+    [c2.s + 0.9, '#34c759', 'M', 'Mark R.', 'what time are you guys coming tmrw'],
+    [c2.s + 1.65, '#34c759', 'P', 'Priya', 'is the $150 due before or after?'],
+    [c3.s + 0.05, '#ef4b3c', '!', 'Waivers', 'Johnson party · not signed'],
+    [c4.s + 0.05, '#2f7cf6', 'T', 'Tyler (crew)', 'yo whats the address for the 10am'],
+  ];
+  // newest on top: insert in reverse arrival order
+  items.slice().reverse().forEach(([tin, col, ic, who, msg]) => {
+    const n = el('div', 'notif', list, `<div class="ic" style="background:${col}">${ic}</div><div><b>${who}</b><p>${msg}</p></div>`);
+    anims.push(t => {
+      const p = eo(prog(t, tin, 0.35));
+      n.style.maxHeight = (p * 96) + 'px'; n.style.opacity = p; n.style.marginBottom = (p * 10) + 'px';
+      n.style.padding = `${p * 12}px 14px`;
+    });
+  });
+  anims.push(t => {
+    let off = 0;
+    items.forEach(([tin]) => { const d = t - tin; if (d > 0 && d < 0.3) off += Math.sin(d * 90) * 5 * (1 - d / 0.3); });
+    ph.style.marginLeft = off + 'px';
+  });
+  sticker(c1.s + 0.05, c3.s);
+
+  // Rally app slides over the lock screen
+  const app = el('div', 'screen app', ph);
+  show(app, c5.s + 0.3, Infinity, 'slideup', 0.55);
+  el('div', 'hdr', app, '<div class="logo">R</div><b>Saturday</b><span>4 parties</span>');
+  const lg = el('div', 'legend', app, '<span>DOTS =</span><span style="color:var(--ink)">GEAR · CREW · PAPERWORK</span>');
+  show(lg, c6.s + 0.6, Infinity, 'left');
+  const rows = [
+    ['10:00 AM', 'Foam Party Deluxe', "Ava's 7th · Doylestown", 'gyr'],
+    ['12:30 PM', 'Bubble Bash', "Mason's party · Newtown", 'ygr'],
+    ['2:00 PM', 'Foam Party Standard', 'Church picnic · Warminster', 'gry'],
+    ['5:00 PM', 'Glow Foam Night', 'Block party · Yardley', 'ryr'],
+  ];
+  const flips = [];
+  rows.forEach(([tm, nm, sub, ds], i) => {
+    const r = el('div', 'row', app, `<div class="tm">${tm}</div><div class="nm"><b>${nm}</b><span>${sub}</span></div>`);
+    show(r, c5.s + 0.7 + i * 0.12, Infinity, 'up');
+    const dots = el('div', 'dots', r);
+    [...ds].forEach(k => { const d = el('div', 'dot', dots, null, { background: dotColor[k] }); if (k !== 'g') flips.push(d); else d.dataset.g = 1; });
+  });
+  // pulse the dots while they're named, then flip every non-green dot to green through c7
+  const all = [...app.querySelectorAll('.dot')];
+  anims.push(t => {
+    const pulse = t > c6.s + 0.6 && t < c6.e ? 1 + 0.25 * Math.max(0, Math.sin((t - c6.s) * 8)) : 1;
+    all.forEach(d => d.style.transform = `scale(${pulse})`);
+  });
+  flips.forEach((d, i) => {
+    const orig = d.style.background;
+    const at = c7.s + 0.2 + i * ((c7.e - c7.s - 0.4) / flips.length);
+    anims.push(t => {
+      const p = prog(t, at, 0.2);
+      d.style.background = p > 0.5 ? 'var(--good)' : orig;
+      if (p > 0 && p < 1) d.style.transform = `scale(${1 + 0.6 * Math.sin(p * Math.PI)})`;
+    });
+  });
+  const t1 = el('div', 'toast', app, '<div class="tick">✓</div>Deposit paid · $150 · Jess M.', { bottom: '96px' });
+  show(t1, c7.s + 0.3, c8.s, 'up');
+  const t2 = el('div', 'toast', app, '<div class="tick">✓</div>Waiver signed · Johnson party', { bottom: '28px' });
+  show(t2, c7.s + 1.7, c8.s, 'up');
+  const sh = el('div', 'sheet', app, `
+    <div class="lbl">CREW · TYLER</div>
+    <div class="big">Sat · Call time 9:15 AM</div>
+    <p><b>412 Maple Ave, Doylestown PA</b></p>
+    <p>Gear: 2 foam cannons · generator · 50 ft hose</p>
+    <div class="btns"><div class="btn">Directions</div><div class="btn go">On my way</div></div>`);
+  show(sh, c8.s + 0.1, Infinity, 'slideup', 0.5);
+  endCard(c9.s, 'Comment <em>SATURDAY</em>');
+}
+
+/* ---------- Ad 2: Real reason ---------- */
+function realreason() {
+  const r = id => seg(id);
+  const s1 = scene(0.05, r('r2').s + 0.2);
+  const ck = el('div', 'clock', s1, '12:07<span style="font-size:60px"> AM</span>');
+  el('div', 'clocksub', s1, 'still doing admin…');
+  anims.push(t => { ck.style.opacity = 0.75 + 0.25 * Math.sin(t * 3); });
+  sticker(r('r1').s + 0.05, r('r2').s + 0.5);
+
+  const cx = 360, cy = 540, R = 225;
+  const names = [['BOOKING FORM', 'the request', 'r3'], ['CALENDAR', 'the schedule', 'r4'], ['CARD READER', 'the money', 'r5'], ['PDF WAIVER', 'the paperwork', 'r6'], ['GROUP TEXT', 'the crew', 'r7']];
+  const pos = names.map((_, i) => { const a = (-90 + i * 72) * Math.PI / 180; return [cx + R * Math.cos(a) * 1.05, cy + R * Math.sin(a)]; });
+  const s2 = scene(r('r2').s + 0.1, Infinity);
+  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  svg.setAttribute('width', 720); svg.setAttribute('height', 1280); svg.style.position = 'absolute'; svg.style.inset = '0';
+  s2.appendChild(svg);
+  const lines = [];
+  for (let i = 0; i < 5; i++) for (let j = i + 1; j < 5; j++) {
+    const l = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    l.setAttribute('x1', pos[i][0]); l.setAttribute('y1', pos[i][1]); l.setAttribute('x2', pos[j][0]); l.setAttribute('y2', pos[j][1]);
+    l.setAttribute('stroke', '#ef4b3c'); l.setAttribute('stroke-width', 4); l.setAttribute('stroke-dasharray', '10 12');
+    svg.appendChild(l); lines.push(l);
+  }
+  const r9 = r('r9');
+  anims.push(t => {
+    const p = prog(t, r('r2').s + 1.2, 0.8) * (1 - prog(t, r9.s, 0.4));
+    lines.forEach(l => { l.style.opacity = p * 0.55; l.setAttribute('stroke-dashoffset', -t * 30); });
+  });
+  const tiles = names.map(([k, s, id], i) => {
+    const n = el('div', 'tile', s2, `<div class="g"></div><div class="k">${k}</div><div class="s">${s}</div>`);
+    const tin = r('r2').s + 0.7 + i * 0.22;
+    const hs = r(id).s, he = r(id).e;
+    anims.push(t => {
+      const p = prog(t, tin, 0.4);
+      const m = eo(prog(t, r9.s + 0.1, 0.7));
+      const x = lerp(pos[i][0], cx, m), y = lerp(pos[i][1], 450, m);
+      const hl = t >= hs && t < he + 0.1 ? 1 : 0;
+      n.style.left = x + 'px'; n.style.top = y + 'px';
+      n.style.opacity = clamp(p * 3) * (1 - m);
+      n.style.transform = `scale(${lerp(0.5, 1, back(p)) * (1 + 0.12 * hl) * lerp(1, 0.3, m)})`;
+      n.style.borderColor = hl ? 'var(--flare)' : '#333846';
+      n.style.background = hl ? '#2a1e19' : 'var(--panel)';
+    });
+    return n;
+  });
+  // "you" shuttles between the tiles while they're described as manual copying
+  const r8 = r('r8');
+  const you = el('div', 'you', s2, 'YOU');
+  const route = [0, 2, 4, 1, 3, 0];
+  anims.push(t => {
+    const on = t >= r8.s && t < r9.s + 0.1;
+    you.style.opacity = on ? 1 : 0;
+    if (!on) return;
+    const k = ((t - r8.s) / 0.55) % (route.length - 1);
+    const a = Math.floor(k), f = eo(k - a);
+    you.style.left = lerp(pos[route[a]][0], pos[route[a + 1]][0], f) + 'px';
+    you.style.top = lerp(pos[route[a]][1], pos[route[a + 1]][1], f) + 'px';
+  });
+  [[0, 2], [2, 4], [4, 1], [1, 3], [3, 0]].forEach(([i, j], n) => {
+    const x = el('div', 'xmark', s2, '×', { left: (pos[i][0] + pos[j][0]) / 2 + 'px', top: (pos[i][1] + pos[j][1]) / 2 + 'px' });
+    show(x, r8.s + 0.3 + n * 0.35, r9.s, 'pop', 0.3);
+  });
+  const hub = el('div', 'hub', s2, 'Rally');
+  show(hub, r9.s + 0.6, Infinity, 'pop', 0.5);
+  const box = el('div', 'checks', s2);
+  [['r10a', 'Invoice sent'], ['r10b', 'Waiver sent'], ['r10c', 'Crew assigned'], ['r10d', 'Reminders scheduled']].forEach(([id, txt]) => {
+    const c = el('div', 'check', box, `<div class="tick">✓</div>${txt}`);
+    show(c, r(id).s, Infinity, 'left', 0.35);
+  });
+  endCard(r('r11').s, 'Start your free trial');
+}
+
+/* ---------- Ad 4: Receipt ---------- */
+function receipt() {
+  const p = id => seg(id);
+  const ph = phone(0.05, p('p7').s);
+  const rec = el('div', 'rec', stage, '● REC 00:00');
+  show(rec, 0.4, p('p7').s, 'fade');
+  anims.push(t => { const s = Math.floor(t); rec.textContent = `● REC 00:${String(s).padStart(2, '0')}`; });
+  sticker(p('p1').s + 0.05, p('p2').s + 0.3);
+
+  // A: client booking page
+  const web = el('div', 'screen web', ph);
+  el('div', 'bhdr', web, '<b>Splash Zone Foam Parties</b><span>Book your party</span>');
+  el('div', 'step', web, 'STEP 3 OF 4 · PICK A SERVICE');
+  const svcs = [['Foam Party Standard', 'Up to 30 kids · 1 hr', '$295'], ['Foam Party Deluxe', 'Up to 50 kids · 1.5 hr', '$395'], ['Glow Foam Night', 'Up to 50 · lights + DJ', '$495']]
+    .map(([a, b, c]) => el('div', 'svc', web, `<div><b>${a}</b><span>${b}</span></div><div class="pr">${c}</div>`));
+  const sub = el('div', 'submit', web, 'Submit request');
+  const tap = el('div', 'tap', ph);
+  const p2 = p('p2'), p3 = p('p3');
+  const tap1 = p2.s + 1.1, tap2 = p2.e - 0.2;
+  anims.push(t => {
+    const sel = t >= tap1;
+    svcs[1].style.borderColor = sel ? 'var(--flare)' : 'var(--line)';
+    svcs[1].style.background = sel ? '#fff4ee' : '';
+    sub.style.background = t >= tap2 && t < tap2 + 0.3 ? '#075a64' : '#0b7c8a';
+    let tp = null;
+    if (t > tap1 - 0.5 && t < tap1 + 0.4) tp = [210, 260, t - tap1];
+    if (t > tap2 - 0.5 && t < tap2 + 0.4) tp = [210, 640, t - tap2];
+    tap.style.opacity = tp ? clamp(1 - Math.abs(tp[2]) * 2.2) : 0;
+    if (tp) { tap.style.left = tp[0] + 'px'; tap.style.top = tp[1] + 'px'; tap.style.transform = `scale(${tp[2] > 0 ? 1 + tp[2] * 1.5 : 1})`; }
+  });
+
+  // B: operator booking detail
+  const det = el('div', 'screen app det', ph);
+  show(det, p3.s, Infinity, 'slideup', 0.5);
+  el('div', 'hdr', det, '<div class="logo">R</div><b>New booking</b><span>just now</span>');
+  el('div', 'title', det, "Ava's 7th Birthday");
+  el('div', 'sub', det, 'Sat · 10:00 AM · Foam Party Deluxe');
+  const evs = [
+    [p3.s + 0.6, '✓', 'var(--good)', 'Booking requested', 'Jess M. · booking page'],
+    [p3.s + 1.6, '$', 'var(--flare)', 'Deposit invoice sent · $100', 'sent automatically'],
+    [p3.e - 0.3, '✓', 'var(--good)', 'Deposit paid · $100', 'card on file saved'],
+  ];
+  evs.forEach(([tin, ic, col, a, b]) => show(el('div', 'ev', det, `<div class="tick" style="background:${col}">${ic}</div><div>${a}<small>${b}</small></div>`), tin, Infinity, 'left'));
+
+  // C: waiver signing on the client's phone
+  const p4 = p('p4');
+  const wv = el('div', 'screen web', ph);
+  show(wv, p4.s, Infinity, 'slideup', 0.5);
+  el('div', 'bhdr', wv, '<b>Foam Party Waiver</b><span>Splash Zone Foam Parties</span>');
+  const doc = el('div', 'doc', wv);
+  [92, 80, 96, 70, 88, 60].forEach(w => el('div', 'bar', doc, null, { width: w + '%' }));
+  const sb = el('div', 'sigbox', wv, '<div class="lbl">SIGN HERE · JESS M.</div>');
+  sb.insertAdjacentHTML('beforeend', '<svg width="380" height="150" style="position:absolute;inset:0"><path id="sig" d="M30 100 C 50 40, 70 40, 75 95 S 100 60, 120 80 S 150 110, 165 70 C 175 45, 190 60, 185 95 C 200 70, 230 60, 245 90 S 290 100, 345 60" fill="none" stroke="#17191f" stroke-width="4" stroke-linecap="round"/></svg>');
+  const sig = sb.querySelector('path');
+  const L = sig.getTotalLength();
+  sig.style.strokeDasharray = L;
+  anims.push(t => { sig.style.strokeDashoffset = L * (1 - prog(t, p4.s + 1.3, 1.4)); });
+  const stp = el('div', 'stamp', wv, 'SIGNED ✓');
+  show(stp, p4.s + 2.8, Infinity, 'pop', 0.4, 'rotate(-8deg)');
+
+  // D: crew text
+  const p5 = p('p5');
+  const sms = el('div', 'screen sms', ph);
+  show(sms, p5.s, Infinity, 'slideup', 0.5);
+  el('div', 'shdr', sms, 'Rally · Crew');
+  const b1 = el('div', 'bub in', sms, "<b>Sat · Ava's 7th</b><br>Call time 9:15 AM<br>412 Maple Ave, Doylestown<br>Gear: 2 foam cannons, generator, 50 ft hose<br>Reply 1 to confirm", { top: '110px' });
+  show(b1, p5.s + 0.5, Infinity, 'up');
+  const b2 = el('div', 'bub out', sms, '1', { top: '330px' });
+  show(b2, p5.e - 0.6, Infinity, 'up');
+  const b3 = el('div', 'bub in', sms, 'Confirmed · Tyler is on the 10:00 AM', { top: '400px' });
+  show(b3, p5.e + 0.1, Infinity, 'up');
+
+  // E: three dots go green
+  const p6 = p('p6');
+  const rd = el('div', 'screen app det', ph);
+  show(rd, p6.s, Infinity, 'slideup', 0.5);
+  el('div', 'hdr', rd, '<div class="logo">R</div><b>Booking</b><span>Sat 10:00 AM</span>');
+  el('div', 'title', rd, "Ava's 7th Birthday");
+  el('div', 'sub', rd, 'Foam Party Deluxe · Doylestown');
+  const bd = el('div', 'bigdots', rd);
+  ['GEAR', 'CREW', 'PAPERWORK'].forEach((k, i) => {
+    const w = el('div', 'bd', bd, `<i>✓</i>${k}`);
+    const dot = w.querySelector('i');
+    const at = p6.s + 0.9 + i * 0.45;
+    anims.push(t => {
+      const q = prog(t, at, 0.3);
+      dot.style.background = q > 0.3 ? 'var(--good)' : '#d8d6cf';
+      dot.style.transform = `scale(${1 + 0.35 * Math.sin(q * Math.PI)})`;
+    });
+  });
+  show(el('div', 'ready', rd, 'Ready to run'), p6.s + 2.5, Infinity, 'pop', 0.4);
+  endCard(p('p7').s, 'Learn more');
+}
+
+window.boot = tl => {
+  TL = tl; S = {}; tl.segments.forEach(s => S[s.id] = s);
+  chrome();
+  ({ circumstance, realreason, receipt })[tl.ad]();
+  buildCaptions();
+};
+window.render = t => { for (const f of anims) f(t); };
+</script>
+</body>
+</html>

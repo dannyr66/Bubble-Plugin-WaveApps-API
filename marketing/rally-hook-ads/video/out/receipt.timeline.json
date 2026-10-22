@@ -1,0 +1,50 @@
+{
+  "ad": "receipt",
+  "title": "Ad 4 \u00b7 Receipt",
+  "sticker": "Watch one booking\nrun itself.",
+  "total": 31.294,
+  "segments": [
+    {
+      "id": "p1",
+      "cap": "I just set up Saturday's foam party for a customer. Watch what happens when she books.",
+      "s": 0.25,
+      "e": 5.137
+    },
+    {
+      "id": "p2",
+      "cap": "She picks the Foam Party Deluxe right from my booking page.",
+      "s": 5.437,
+      "e": 8.857
+    },
+    {
+      "id": "p3",
+      "cap": "The second she submits, the deposit invoice goes out on its own.",
+      "s": 9.157,
+      "e": 12.969
+    },
+    {
+      "id": "p4",
+      "cap": "Then the waiver. She signs it right on her phone.",
+      "s": 13.269,
+      "e": 15.994
+    },
+    {
+      "id": "p5",
+      "cap": "My crew gets a text with the address, the time, and the gear list.",
+      "s": 16.294,
+      "e": 20.09
+    },
+    {
+      "id": "p6",
+      "cap": "And all three dots go green. That party is ready to run.",
+      "s": 20.39,
+      "e": 24.072
+    },
+    {
+      "id": "p7",
+      "cap": "That's the whole admin side of a party. Rally your crew, run your day.",
+      "s": 24.372,
+      "e": 28.594
+    }
+  ]
+}

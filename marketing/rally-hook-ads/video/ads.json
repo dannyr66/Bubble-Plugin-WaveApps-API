@@ -1,0 +1,54 @@
+{
+  "voice": "am_michael",
+  "speed": 1.08,
+  "ads": {
+    "circumstance": {
+      "title": "Ad 1 · Circumstance",
+      "sticker": "4 parties tomorrow.\n0 deposits confirmed.",
+      "segments": [
+        { "id": "c1", "cap": "It's Friday night, and you've got four parties tomorrow." },
+        { "id": "c2", "cap": "You're still texting three moms to find out who paid the deposit." },
+        { "id": "c3", "cap": "One waiver is still unsigned." },
+        { "id": "c4", "cap": "And your new guy doesn't know the address." },
+        { "id": "c5", "cap": "Here's what that same Friday looks like in Rally." },
+        { "id": "c6", "cap": "Every booking gets three dots. Gear, crew, and paperwork." },
+        { "id": "c7", "cap": "Deposits collect themselves, and waivers go out the second they book." },
+        { "id": "c8", "cap": "Your crew gets the address, the time, and the gear list. Automatically." },
+        { "id": "c9", "cap": "Comment SATURDAY, and I'll send you the exact reminders we automate.", "say": "Comment Saturday, and I'll send you the exact reminders we automate." }
+      ]
+    },
+    "realreason": {
+      "title": "Ad 2 · Real reason",
+      "sticker": "It's not you.\nIt's your 5 apps.",
+      "segments": [
+        { "id": "r1", "cap": "The real reason you're doing admin at midnight isn't that you're disorganized." },
+        { "id": "r2", "cap": "It's that your business lives in five apps that don't talk to each other." },
+        { "id": "r3", "cap": "The booking is in a form.", "gap": 0.12 },
+        { "id": "r4", "cap": "The schedule's in your calendar.", "gap": 0.12 },
+        { "id": "r5", "cap": "The money's in a card reader.", "gap": 0.12 },
+        { "id": "r6", "cap": "The waiver is a PDF.", "gap": 0.12 },
+        { "id": "r7", "cap": "And your crew is in a group text." },
+        { "id": "r8", "cap": "So you're the one copying everything between them. Every single booking." },
+        { "id": "r9", "cap": "In Rally, one booking does all of it." },
+        { "id": "r10a", "cap": "The invoice goes out.", "gap": 0.1 },
+        { "id": "r10b", "cap": "The waiver goes out.", "gap": 0.1 },
+        { "id": "r10c", "cap": "Your crew gets assigned.", "gap": 0.1 },
+        { "id": "r10d", "cap": "And the reminders schedule themselves." },
+        { "id": "r11", "cap": "Rally. Rally your crew, run your day." }
+      ]
+    },
+    "receipt": {
+      "title": "Ad 4 · Receipt",
+      "sticker": "Watch one booking\nrun itself.",
+      "segments": [
+        { "id": "p1", "cap": "I just set up Saturday's foam party for a customer. Watch what happens when she books." },
+        { "id": "p2", "cap": "She picks the Foam Party Deluxe right from my booking page." },
+        { "id": "p3", "cap": "The second she submits, the deposit invoice goes out on its own." },
+        { "id": "p4", "cap": "Then the waiver. She signs it right on her phone." },
+        { "id": "p5", "cap": "My crew gets a text with the address, the time, and the gear list." },
+        { "id": "p6", "cap": "And all three dots go green. That party is ready to run." },
+        { "id": "p7", "cap": "That's the whole admin side of a party. Rally your crew, run your day." }
+      ]
+    }
+  }
+}

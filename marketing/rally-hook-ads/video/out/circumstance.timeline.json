@@ -1,0 +1,62 @@
+{
+  "ad": "circumstance",
+  "title": "Ad 1 \u00b7 Circumstance",
+  "sticker": "4 parties tomorrow.\n0 deposits confirmed.",
+  "total": 33.832,
+  "segments": [
+    {
+      "id": "c1",
+      "cap": "It's Friday night, and you've got four parties tomorrow.",
+      "s": 0.25,
+      "e": 3.4
+    },
+    {
+      "id": "c2",
+      "cap": "You're still texting three moms to find out who paid the deposit.",
+      "s": 3.7,
+      "e": 7.1
+    },
+    {
+      "id": "c3",
+      "cap": "One waiver is still unsigned.",
+      "s": 7.4,
+      "e": 9.148
+    },
+    {
+      "id": "c4",
+      "cap": "And your new guy doesn't know the address.",
+      "s": 9.448,
+      "e": 11.554
+    },
+    {
+      "id": "c5",
+      "cap": "Here's what that same Friday looks like in Rally.",
+      "s": 11.854,
+      "e": 14.379
+    },
+    {
+      "id": "c6",
+      "cap": "Every booking gets three dots. Gear, crew, and paperwork.",
+      "s": 14.679,
+      "e": 18.216
+    },
+    {
+      "id": "c7",
+      "cap": "Deposits collect themselves, and waivers go out the second they book.",
+      "s": 18.516,
+      "e": 22.599
+    },
+    {
+      "id": "c8",
+      "cap": "Your crew gets the address, the time, and the gear list. Automatically.",
+      "s": 22.899,
+      "e": 26.786
+    },
+    {
+      "id": "c9",
+      "cap": "Comment SATURDAY, and I'll send you the exact reminders we automate.",
+      "s": 27.086,
+      "e": 31.132
+    }
+  ]
+}
